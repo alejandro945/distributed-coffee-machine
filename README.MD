@@ -25,4 +25,8 @@ sudo docker logs -f jenkins
 Navigate to the following route:
 http://localhost:8080
 
+Configuring GitHub credentials in Jenkins: On each Jenkins server, each developer must configure GitHub access credentials so that Jenkins can interact with the corresponding repository. This can be done in the "Credentials" section of the Jenkins configuration, where the developer's GitHub account access credentials, such as username and password or a personal access token, must be configured.
 
+Install "GitHub Integration Plugin"
+
+"Configure System"

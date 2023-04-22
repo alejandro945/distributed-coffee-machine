@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
+	xmlns:frascati="http://frascati.ow2.org/xmlns/sca/1.1" targetNamespace="http://frascati.ow2.org/mqcafe"
+	name="coffeemach">
+	
+	<component name="c">
+		<implementation.java class="control.Controlador" />
+		<service name="r">
+			<interface.java interface="java.lang.Runnable" />
+		</service>
+		<service name="servicioAbastecimiento">
+			<interface.java interface="servicios.ServicioAbastecimiento" />
+		</service>
+				
+		<reference name="servicioCom_MQCafe">
+			<interface.java interface="servicios.ServicioCom_MQCafe" />
+		</reference>
+		
+		<reference name="servicioMQProxy">
+		<interface.java interface="servicios.ServicioProxyCoffeMachine"></interface.java>
+		</reference>
+		
+	</component>
+	<service name="r" promote="c/r">
+		<interface.java interface="java.lang.Runnable"></interface.java>
+	</service>
+	
+	<service name="servicioAbastecimiento" promote="c/servicioAbastecimiento">
+		<interface.java interface="servicios.ServicioAbastecimiento"></interface.java>
+		<frascati:binding.rmi host="localhost" serviceName="rmiService33" port="1090" />
+	</service>
+		
+	<reference name="servicioCom_MQCafe" promote="c/servicioCom_MQCafe">
+		<frascati:binding.rmi host="localhost"
+			serviceName="rmiService4" port="1096" />
+	</reference>
+	
+	<reference name="servicioMQProxy" promote="c/servicioMQProxy">
+		<frascati:binding.rmi host="localhost"
+			serviceName="rmiService12" port="1100" />
+	</reference>
+	
+	
+	
+	<!--<reference name="servicioCom_MQCafeSalida" promote="c/servicioCom_MQCafeSalida"> 
+		<frascati:binding.rmi host="localhost" serviceName="rmiService" port="1099"/> 
+		</reference> -->
+	
+	
+</composite>

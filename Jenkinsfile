@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                git 'https://github.com/alejandro945/distributed-coffee-machine'
+                 checkout scmGit(
+                branches: [[name: 'main']],
+                userRemoteConfigs: [[url: 'https://github.com/alejandro945/distributed-coffee-machine']])
             }
         }
         stage('Copy Source code and Conect to server node') {

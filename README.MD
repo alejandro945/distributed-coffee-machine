@@ -154,3 +154,7 @@ sshpass -p "xxxxx" ssh swarch@xhgrid10
 Note that the configuration files must already be created when the pipeline is executed. 💀
 
 It is important to take into account that the pipeline as it is written may have some errors or areas for improvement, such as error handling in case of failures in copy operations or execution of SSH commands, the use of secure access keys instead of passwords in SSH commands, and the management of variables and configurations in a more structured and parameterized way.
+
+```bash
+docker exec -it --user=root jenkins /bin/bash
+```

@@ -9,6 +9,12 @@ pipeline {
                 userRemoteConfigs: [[url: 'https://github.com/alejandro945/distributed-coffee-machine']])
             }
         }
+        stage('Install sshpass') {
+            steps {
+                sh 'apt-get update' // Actualizar lista de paquetes
+                sh 'apt-get install -y sshpass' // Instalar sshpass 
+            }
+        }
         stage('Copy Source code and Conect to server node') {
             steps {
                 script {
@@ -22,7 +28,7 @@ pipeline {
                     sh sshCopy
 
                     def sshConect = """
-                        sshpass -p 'swarch' ssh swarch@${ip} 'cd cd ./ci-cd-coffee-machine/ && ./gradlew build && java -jar ServidorCentral/build/libs/ServidorCentral.jar'
+                        sshpass -p 'swarch' ssh swarch@${ip} 'cd cd ./ci-cd-coffee-machine/src/coffeemach && ./gradlew build && java -jar ServidorCentral/build/libs/ServidorCentral.jar'
                     """
                     // Ejecutar el comando SSH para conectar a la máquina remota y ejecutar el build
                     sh sshConect
@@ -42,7 +48,7 @@ pipeline {
                     sh sshCopy
 
                     def sshConect = """
-                        sshpass -p 'swarch' ssh swarch@${ip} 'cd cd ./ci-cd-coffee-machine/ && ./gradlew build && java -jar coffeeMach/build/libs/coffeeMach.jar'
+                        sshpass -p 'swarch' ssh swarch@${ip} 'cd cd ./ci-cd-coffee-machine/src/coffeemach && ./gradlew build && java -jar coffeeMach/build/libs/coffeeMach.jar'
                     """
                     // Ejecutar el comando SSH para conectar a la máquina remota y ejecutar el build
                     sh sshConect
@@ -62,7 +68,7 @@ pipeline {
                     sh sshCopy
 
                     def sshConect = """
-                        sshpass -p 'swarch' ssh swarch@${ip} 'cd cd ./ci-cd-coffee-machine/ && ./gradlew build && java -jar coffeeMach/build/libs/coffeeMach.jar'
+                        sshpass -p 'swarch' ssh swarch@${ip} 'cd cd ./ci-cd-coffee-machine/src/coffeemach && ./gradlew build && java -jar coffeeMach/build/libs/coffeeMach.jar'
                     """
                     // Ejecutar el comando SSH para conectar a la máquina remota y ejecutar el build
                     sh sshConect

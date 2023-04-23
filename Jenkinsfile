@@ -9,12 +9,6 @@ pipeline {
                 userRemoteConfigs: [[url: 'https://github.com/alejandro945/distributed-coffee-machine']])
             }
         }
-        stage('Install sshpass') {
-            steps {
-                sh 'sudo apt-get update' // Actualizar lista de paquetes
-                sh 'sudo apt-get install -y sshpass' // Instalar sshpass 
-            }
-        }
         stage('Copy Source code and Conect to server node') {
             steps {
                 script {

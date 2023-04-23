@@ -157,4 +157,6 @@ It is important to take into account that the pipeline as it is written may have
 
 ```bash
 docker exec -it --user=root jenkins /bin/bash
+apt-get update
+apt-get install -y sshpass
 ```

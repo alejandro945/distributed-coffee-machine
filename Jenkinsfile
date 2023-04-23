@@ -15,6 +15,12 @@ pipeline {
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier
                     def ip = '10.147.19.125' // xhgrid 9 ip in zerotier network
 
+                    def sshTest = """
+                        sshpass -p 'swarch' ssh swarch@${ip} 'cd ./'
+                    """
+                    // Ejecutar el comando SSH para conectar a la máquina remota y ejecutar el build
+                    sh sshTest
+
                     def sshCopy = """
                     sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r ./* swarch@${ip}:./ci-cd-coffee-machine/"
                     """

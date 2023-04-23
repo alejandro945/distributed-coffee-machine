@@ -11,8 +11,8 @@ pipeline {
         }
         stage('Install sshpass') {
             steps {
-                sh 'apt-get update' // Actualizar lista de paquetes
-                sh 'apt-get install -y sshpass' // Instalar sshpass 
+                sh 'sudo apt-get update' // Actualizar lista de paquetes
+                sh 'sudo apt-get install -y sshpass' // Instalar sshpass 
             }
         }
         stage('Copy Source code and Conect to server node') {

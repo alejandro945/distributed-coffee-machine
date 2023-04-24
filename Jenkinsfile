@@ -11,7 +11,9 @@ pipeline {
         }
         stage('Install sshpass') {
             steps {
-                sh 'brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb'
+                script {
+                    sh 'apt-get update && apt-get install -y sshpass' // Instalar sshpass en el contenedor del agente
+                }
             }
         }
         stage('Copy Source code and Conect to server node') {

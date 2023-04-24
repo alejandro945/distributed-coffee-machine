@@ -16,7 +16,7 @@ pipeline {
                     def ip = '10.147.19.125' // xhgrid 9 ip in zerotier network
 
                     def createFolder = """
-                    sh "sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@${ip} && mkdir ./ci-cd-coffee-machine/"
+                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'mkdir ci-cd-coffee-machine'"
                     """
                     
                     sh createFolder
@@ -42,7 +42,7 @@ pipeline {
                     def ip = '10.147.19.95' // xhgrid 10 ip in zerotier network
 
                     def createFolder = """
-                    sh "sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@${ip} && mkdir ./ci-cd-coffee-machine/"
+                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'mkdir ci-cd-coffee-machine'"
                     """
                     
                     sh createFolder
@@ -68,7 +68,7 @@ pipeline {
                     def ip = '10.147.19.107' // xhgrid 11 ip in zerotier network
 
                     def createFolder = """
-                    sh "sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@${ip} && mkdir ./ci-cd-coffee-machine/"
+                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'mkdir ci-cd-coffee-machine'"
                     """
                     
                     sh createFolder

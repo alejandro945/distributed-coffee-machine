@@ -9,6 +9,11 @@ pipeline {
                 userRemoteConfigs: [[url: 'https://github.com/alejandro945/distributed-coffee-machine']])
             }
         }
+        stage('Install sshpass') {
+            steps {
+                sh 'brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb'
+            }
+        }
         stage('Copy Source code and Conect to server node') {
             steps {
                 script {

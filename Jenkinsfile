@@ -16,7 +16,7 @@ pipeline {
                     def ip = '10.147.19.125' // xhgrid 9 ip in zerotier network
 
                     def createFolder = """
-                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'mkdir ci-cd-coffee-machine'"
+                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip}"
                     """
                     
                     sh createFolder

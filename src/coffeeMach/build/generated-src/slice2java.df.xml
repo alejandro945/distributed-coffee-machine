@@ -1,0 +1,27 @@
+<state>
+  <timestamp value='1682295055043' />
+  <sourceSet name='default'>
+    <source name='/home/swarch/ci-cd-coffee-machine/coffeemach/CoffeMach.ice'>
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/ServicioComLogistica.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/ServicioAbastecimiento.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/Moneda.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/AlarmaService.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/VentaService.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/RecetaService.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/StringSeqHelper.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/MapStrIntHelper.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/ServicioComLogisticaPrx.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/_ServicioComLogisticaPrxI.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/ServicioAbastecimientoPrx.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/_ServicioAbastecimientoPrxI.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/AlarmaServicePrx.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/_AlarmaServicePrxI.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/VentaServicePrx.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/_VentaServicePrxI.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/RecetaServicePrx.java' />
+      <file name='/home/swarch/ci-cd-coffee-machine/coffeemach/coffeeMach/build/generated-src/servicios/_RecetaServicePrxI.java' />
+    </source>
+    <arg value='/opt/Ice-3.7.6/bin/slice2java' />
+    <arg value='-I/opt/Ice-3.7.6/slice' />
+  </sourceSet>
+</state>

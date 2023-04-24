@@ -2,7 +2,7 @@ version: '3'
 
 services:
   jenkins:
-    image: jenkins/jenkins
+    image: alejandro945/jenkins-with-sshpass:latest
     container_name: jenkins
     ports:
       - "8080:8080"

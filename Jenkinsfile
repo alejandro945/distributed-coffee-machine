@@ -15,11 +15,11 @@ pipeline {
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier
                     def ip = '10.147.19.125' // xhgrid 9 ip in zerotier network
 
-                    def sshTest = """
-                        sshpass -p 'swarch' ssh swarch@${ip} 'cd ./'
+                    def createFolder = """
+                    sh "sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@${ip} && mkdir ./ci-cd-coffee-machine/"
                     """
-                    // Ejecutar el comando SSH para conectar a la máquina remota y ejecutar el build
-                    sh sshTest
+                    
+                    sh createFolder
 
                     def sshCopy = """
                     sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r ./* swarch@${ip}:./ci-cd-coffee-machine/"
@@ -27,11 +27,11 @@ pipeline {
                     // Ejecutar el comando SSH para copiar los archivos cambiados usando scp
                     sh sshCopy
 
-                    def sshConect = """
-                        sshpass -p 'swarch' ssh swarch@${ip} 'cd cd ./ci-cd-coffee-machine/src/coffeemach && ./gradlew build && java -jar ServidorCentral/build/libs/ServidorCentral.jar'
+                    def sshBuild = """
+                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'cd ./ci-cd-coffee-machine/src && gradle build'"
                     """
                     // Ejecutar el comando SSH para conectar a la máquina remota y ejecutar el build
-                    sh sshConect
+                    sh sshBuild
                 }
             }
         }
@@ -41,17 +41,23 @@ pipeline {
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier
                     def ip = '10.147.19.95' // xhgrid 10 ip in zerotier network
 
+                    def createFolder = """
+                    sh "sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@${ip} && mkdir ./ci-cd-coffee-machine/"
+                    """
+                    
+                    sh createFolder
+
                     def sshCopy = """
                     sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r ./* swarch@${ip}:./ci-cd-coffee-machine/"
                     """
                     // Ejecutar el comando SSH para copiar los archivos cambiados usando scp
                     sh sshCopy
 
-                    def sshConect = """
-                        sshpass -p 'swarch' ssh swarch@${ip} 'cd cd ./ci-cd-coffee-machine/src/coffeemach && ./gradlew build && java -jar coffeeMach/build/libs/coffeeMach.jar'
+                    def sshBuild = """
+                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'cd ./ci-cd-coffee-machine/src && gradle build'"
                     """
                     // Ejecutar el comando SSH para conectar a la máquina remota y ejecutar el build
-                    sh sshConect
+                    sh sshBuild
                 }
             }
         }
@@ -61,17 +67,23 @@ pipeline {
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier
                     def ip = '10.147.19.107' // xhgrid 11 ip in zerotier network
 
+                    def createFolder = """
+                    sh "sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@${ip} && mkdir ./ci-cd-coffee-machine/"
+                    """
+                    
+                    sh createFolder
+
                     def sshCopy = """
                     sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r ./* swarch@${ip}:./ci-cd-coffee-machine/"
                     """
                     // Ejecutar el comando SSH para copiar los archivos cambiados usando scp
                     sh sshCopy
 
-                    def sshConect = """
-                        sshpass -p 'swarch' ssh swarch@${ip} 'cd cd ./ci-cd-coffee-machine/src/coffeemach && ./gradlew build && java -jar coffeeMach/build/libs/coffeeMach.jar'
+                    def sshBuild = """
+                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'cd ./ci-cd-coffee-machine/src && gradle build'"
                     """
                     // Ejecutar el comando SSH para conectar a la máquina remota y ejecutar el build
-                    sh sshConect
+                    sh sshBuild
                 }
             }
         }

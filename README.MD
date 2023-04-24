@@ -3,7 +3,7 @@
 ## Goals 🫰
 Put into practice the deployment of a simple distributed software system, taking into account the considerations and factors that this implies, for example the installation and configuration of the database.
 
-## Components 💥
+## Components
 
 1. Coffeemach: component that represents an instance of a coffee machine, the point of interaction with the customer of the business of this system.
 2. Cm_logistics: component that handles the responsibilities of supply and repair logistics to resolve alarms from coffee machines.

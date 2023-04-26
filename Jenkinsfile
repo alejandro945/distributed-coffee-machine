@@ -7,12 +7,14 @@ pipeline {
                 checkout scmGit(
                 branches: [[name: 'main']],
                 userRemoteConfigs: [[url: 'https://github.com/alejandro945/distributed-coffee-machine']])
+                // Ejecutar el comando SSH para copiar los archivos cambiados usando scp
+                sh 'sshpass -p "swarch" scp -o StrictHostKeyChecking=no -r -f $(pwd)/* swarch@10.147.19.125:./ci-cd-coffee-machine/'
+                sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r -f $(pwd)/* swarch@10.147.19.95:./ci-cd-coffee-machine/"
+                sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r -f $(pwd)/* swarch@10.147.19.107:./ci-cd-coffee-machine/"
             }
         }
         stage('Copy Source code and Conect to server node') {
             steps {
-                // Ejecutar el comando SSH para copiar los archivos cambiados usando scp
-                sh 'sshpass -p "swarch" scp -o StrictHostKeyChecking=no -r -f $(pwd)/* swarch@10.147.19.125:./ci-cd-coffee-machine/'
                 script {
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier
                     def ip = '10.147.19.125' // xhgrid 9 ip in zerotier network
@@ -27,8 +29,6 @@ pipeline {
         }
         stage('Copy Source code and Conect to first client node') {
             steps {
-                // Ejecutar el comando SSH para copiar los archivos cambiados usando scp
-                sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r -f $(pwd)/* swarch@10.147.19.95:./ci-cd-coffee-machine/"
                 script {
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier
                     def ip = '10.147.19.95' // xhgrid 10 ip in zerotier network
@@ -42,8 +42,6 @@ pipeline {
             }
         }
         stage('Copy Source code and Conect to second client node') {
-            // Ejecutar el comando SSH para copiar los archivos cambiados usando scp
-            sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r -f $(pwd)/* swarch@10.147.19.107:./ci-cd-coffee-machine/"
             steps {
                 script {
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier

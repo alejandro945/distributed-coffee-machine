@@ -9,13 +9,6 @@ pipeline {
                 userRemoteConfigs: [[url: 'https://github.com/alejandro945/distributed-coffee-machine']])
             }
         }
-        stage('Install sshpass') {
-            steps {
-                script {
-                    sh 'apt-get update && apt-get install -y sshpass' // Instalar sshpass en el contenedor del agente
-                }
-            }
-        }
         stage('Copy Source code and Conect to server node') {
             steps {
                 script {
@@ -23,13 +16,13 @@ pipeline {
                     def ip = '10.147.19.125' // xhgrid 9 ip in zerotier network
 
                     def createFolder = """
-                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip}"
+                    sh "sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'mkdir ci-cd-coffee-machine'"
                     """
                     
                     sh createFolder
 
                     def sshCopy = """
-                    sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r ./* swarch@${ip}:./ci-cd-coffee-machine/"
+                    sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r $(pwd)/* swarch@${ip}:./ci-cd-coffee-machine/"
                     """
                     // Ejecutar el comando SSH para copiar los archivos cambiados usando scp
                     sh sshCopy

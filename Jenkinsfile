@@ -16,6 +16,7 @@ pipeline {
         stage('Copy Source code and Conect to server node') {
             steps {
                 script {
+                    sh "export LC_CTYPE=C"
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier
                     def ip = '10.147.19.125' // xhgrid 9 ip in zerotier network
 
@@ -30,6 +31,7 @@ pipeline {
         stage('Copy Source code and Conect to first client node') {
             steps {
                 script {
+                    sh "export LC_CTYPE=C"
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier
                     def ip = '10.147.19.95' // xhgrid 10 ip in zerotier network
 
@@ -44,6 +46,7 @@ pipeline {
         stage('Copy Source code and Conect to second client node') {
             steps {
                 script {
+                    sh "export LC_CTYPE=C"
                     // Configurar la conexión a través de la dirección IP asignada por ZeroTier
                     def ip = '10.147.19.107' // xhgrid 11 ip in zerotier network
 

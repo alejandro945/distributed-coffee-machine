@@ -4,10 +4,10 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                 checkout scmGit(
+                checkout scmGit(
                 branches: [[name: 'main']],
                 userRemoteConfigs: [[url: 'https://github.com/alejandro945/distributed-coffee-machine']])
-                sh "sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r $(pwd)/* swarch@${ip}:./ci-cd-coffee-machine/"
+                sh 'sshpass -p "swarch" scp -o StrictHostKeyChecking=no -r $(pwd)/* swarch@10.147.19.125:./ci-cd-coffee-machine/'
             }
         }
         stage('Copy Source code and Conect to server node') {

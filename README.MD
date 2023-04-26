@@ -123,7 +123,7 @@ To connect our Jenkins server with our Webhook, we will first need to create an 
 
 2. Inside the Payload URL text box, we need to write the direction to our Jenkins Server, plus: /github-webhook/. If you created a ngrok account, it'd be obtained at the end of section one. The payload must have both / to work, otherwise it'll throw some error. Inside the Secret box, we'll paste the Jenkins API Token from section two. Finally, click on: Let me select individual elements to choose the desired webhook events for our needs to trigger Jenkins. 
 
-## 3- Install sshpass on your local pc (optional)
+## 3- Install sshpass on your local pc (OPTIONAL)
 
 We want to automate the way we access our remote machines on the second floor of the laboratory, for which we will use the sshpass tool to inject the password of the computer in question, we know the risks that this has but we do not have administrator privileges on these computers to store our public key.
 
@@ -150,7 +150,7 @@ Try it on your local machine:
 sshpass -p "xxxxx" ssh swarch@xhgrid2
 ```
 
-## 4-Pipeline
+## 4-Database Configuration
 
 1. For managing the postgres server.
     - pg_ctl status
@@ -166,33 +166,34 @@ sshpass -p "xxxxx" ssh swarch@xhgrid2
     - psql -h xhgrid2 -U cofmachu_ssv -d coffeemachine -c "\i script/coffeemach-ddl.sql"
     - psql -h xhgrid2 -U cofmachu_ssv -d coffeemachine -c "\i script/coffeemach-inserts.sql"
 
-
-Once our data base is configured:
+## 5-Jenkins Pipeline
+Once our **database** is configured:
 
 **1- Clone Reposiory stage**
 
 We must pull our repository to see the last changes in our jenkinsfile and code respectively.
 
-**2- Create app folder**
-```bash
-sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@${ip} && mkdir ./ci-cd-coffee-machine/
-```
-
-**3- Copy Source code from jenkins agent to remote pc**
+**2- Copy Source code from jenkins agent to remote pc**
 ```bash
 sshpass -p 'swarch' scp -o StrictHostKeyChecking=no -r ./* swarch@${ip}:./ci-cd-coffee-machine/
 ```
 
-**4- Build project in remote machine**
+**3- Build project in remote machine**
 ```bash
 sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'cd ./ci-cd-coffee-machine/src && gradle build
 ```
 
+**4- Compile node**
+```bash
+java -jar ServidorCentral/build/libs/ServidorCentral.jar
+```
 
 ## Remarks
 Note that the configuration files must already be created when the pipeline is executed. 💀
 
 It is important to take into account that the pipeline as it is written may have some errors or areas for improvement, such as error handling in case of failures in copy operations or execution of SSH commands, the use of secure access keys instead of passwords in SSH commands, and the management of variables and configurations in a more structured and parameterized way.
+
+Enter as root to jenkins container:
 
 ```bash
 docker exec -it --user=root jenkins /bin/bash

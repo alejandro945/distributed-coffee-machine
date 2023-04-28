@@ -1,5 +1,5 @@
-CoffeeMach.java
- CoffeeMach
+alarma/AlarmaService.java
+ alarma.AlarmaService
 servicios/RecetaServicePrx.java
  servicios.RecetaServicePrx
 servicios/_ServicioAbastecimientoPrxI.java
@@ -51,17 +51,8 @@ productoReceta/RecetaRepositorio.java
 servicios/RecetaService.java
  servicios.RecetaService
  servicios.RecetaService$1
-McControlador/ControladorMQ.java
- McControlador.ControladorMQ
- McControlador.ControladorMQ$1
- McControlador.ControladorMQ$2
- McControlador.ControladorMQ$3
- McControlador.ControladorMQ$4
- McControlador.ControladorMQ$5
- McControlador.ControladorMQ$6
- McControlador.ControladorMQ$7
- McControlador.ControladorMQ$8
- McControlador.ControladorMQ$9
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx
 McControlador/Venta.java
  McControlador.Venta
 monedero/DepositoMonedas.java
@@ -86,7 +77,16 @@ servicios/MapStrIntHelper.java
  servicios.MapStrIntHelper
 ingrediente/IngredienteService.java
  ingrediente.IngredienteService
-servicios/ServicioComLogisticaPrx.java
- servicios.ServicioComLogisticaPrx
-alarma/AlarmaService.java
- alarma.AlarmaService
+CoffeeMach.java
+ CoffeeMach
+McControlador/ControladorMQ.java
+ McControlador.ControladorMQ
+ McControlador.ControladorMQ$1
+ McControlador.ControladorMQ$2
+ McControlador.ControladorMQ$3
+ McControlador.ControladorMQ$4
+ McControlador.ControladorMQ$5
+ McControlador.ControladorMQ$6
+ McControlador.ControladorMQ$7
+ McControlador.ControladorMQ$8
+ McControlador.ControladorMQ$9

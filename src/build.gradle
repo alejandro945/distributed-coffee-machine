@@ -46,4 +46,9 @@ subprojects {
             )
         }
     }
+    task copyToLib(type: Copy) {
+        into "${buildDir}/libs"
+        from configurations.runtimeClasspath
+    }
+    build.dependsOn(copyToLib)
 }

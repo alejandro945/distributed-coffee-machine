@@ -78,10 +78,10 @@ interfaz/ControladorRecetas.java
  interfaz.ControladorRecetas$3
 modelo/VentasReceta.java
  modelo.VentasReceta
+servicios/MapStrIntHelper.java
+ servicios.MapStrIntHelper
 servicios/ServicioAbastecimiento.java
  servicios.ServicioAbastecimiento
  servicios.ServicioAbastecimiento$1
-servicios/MapStrIntHelper.java
- servicios.MapStrIntHelper
 servicios/ServicioComLogisticaPrx.java
  servicios.ServicioComLogisticaPrx

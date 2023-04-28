@@ -59,15 +59,21 @@ sudo docker logs -f jenkins
 You need a way to expose Jenkins to outside networks since this is a requisite to work with external services such as Webhooks. To do so, we are going to use a service called: ngrok. Ngrok can expose local servers to the internet through a public IP. The free tier can work with one online ngrok process and up to 4 tunnels. In this case, we only need one for Jenkins, so the free tier is great for our needs. 
 
 **Install ngrok:**
-```bash
-brew install --cask ngrok
-```
+
+1. MacOS ans Linux:
+    ```bash
+    brew install --cask ngrok
+    ```
+
+2. Windows: Download the latest version of Ngrok from the official website (https://ngrok.com/download).
 
 **Create an ngrok account to receive token**: Go to https://ngrok.com/ and sign up
 
 **Push authtoken**:
 ```bash
 ngrok config add-authtoken XXXXXXXXXXXXXXXX
+
+ngrok.exe authtoken <token>
 ```
 
 **Create a Temporal public IP**: Take in mind that every time you will test jenkins locally, you have to run the following command ⚠️
@@ -85,6 +91,7 @@ To connect our Jenkins server with our Webhook, we will first need to create an 
 ```bash
 114ae705e84a26e1acb7f258612f984ec4
 ```
+
 #### 1.3 Adding GitHub Credentials
 
 1. To add our Github credentials on Jenkins, we need to go to the dashboard, Manage Jenkins, and Configure System. If a message appears saying that our reverse proxy set up is broken, just click on dismiss. This message is due to the proxy connection using ngrok. 
@@ -121,52 +128,26 @@ To connect our Jenkins server with our Webhook, we will first need to create an 
 
 1. To create our GitHub Webhook, we need to open our repository and click on settings. Then click on Webhooks and Add webhook
 
-2. Inside the Payload URL text box, we need to write the direction to our Jenkins Server, plus: /github-webhook/. If you created a ngrok account, it'd be obtained at the end of section one. The payload must have both / to work, otherwise it'll throw some error. Inside the Secret box, we'll paste the Jenkins API Token from section two. Finally, click on: Let me select individual elements to choose the desired webhook events for our needs to trigger Jenkins. 
+2. Inside the Payload URL text box, we need to write the direction to our Jenkins Server **[ngrok public ip]**, plus: /github-webhook/. The payload must have both / to work, otherwise it'll throw some error. Inside the Secret box, we'll paste the Jenkins API Token from section **1.2**. 
 
-## 3- Install sshpass on your local pc (OPTIONAL)
+## 3-Database Configuration
 
-We want to automate the way we access our remote machines on the second floor of the laboratory, for which we will use the sshpass tool to inject the password of the computer in question, we know the risks that this has but we do not have administrator privileges on these computers to store our public key.
+1. Modify the pg_hba.conf file inside data, to give network permissions.
 
-**MacOs 🖥️**
-```bash
-brew install hudochenkov/sshpass/sshpass
-```
-
-**Linux 🐧**
-```bash
-sudo apt-get install sshpass
-```
-
-**Windows 🥹**
-You cant run sshpass in windows. You can however use putty via the windows command line, to achieve the same thing 💥:
-
-```bash
-putty -load "host" -l username -pw password
-```
-
-Try it on your local machine:
-
-```bash
-sshpass -p "xxxxx" ssh swarch@xhgrid2
-```
-
-## 4-Database Configuration
-
-1. For managing the postgres server.
-    - pg_ctl status
-    - pg_ctl stop
-    - pg_ctl -D /var/lib/pgsql/data -l pgstartup.log start &
-
-2. Modify the pg_hba.conf file inside data, to give network permissions.
-
-3. Create user and database.
+2. Create user and database.
     - psql -h xhgrid2 -U postgres -c "\i script/coffeemach-user.sql"
 
-4. Execute the creation and population scripts to the server.
+3. Execute the creation and population scripts to the server.
     - psql -h xhgrid2 -U cofmachu_ssv -d coffeemachine -c "\i script/coffeemach-ddl.sql"
     - psql -h xhgrid2 -U cofmachu_ssv -d coffeemachine -c "\i script/coffeemach-inserts.sql"
 
-## 5-Jenkins Pipeline
+For managing the postgres server:
+
+- pg_ctl status
+- pg_ctl stop
+- pg_ctl -D /var/lib/pgsql/data -l pgstartup.log start
+
+## 4-Jenkins Pipeline
 Once our **database** is configured:
 
 **1- Clone Reposiory stage**
@@ -188,12 +169,55 @@ sshpass -p 'swarch' ssh -o StrictHostKeyChecking=no swarch@${ip} 'cd ./ci-cd-cof
 java -jar ServidorCentral/build/libs/ServidorCentral.jar
 ```
 
-## Remarks
+## 5-X11 Port forwarding
+
+**Windows**
+
+1. Download and install an X11 server for Windows, such as Xming or VcXsrv.
+
+2. Run X11 server on your Windows PC.
+
+3. Verify that the X11 connection is working correctly by running the xclock command. If everything is set up correctly, you should see a graphical clock in a separate window.
+
+**MacOs**
+
+1. Install an X11 server on macOS. You can use XQuartz as an X11 server. You can download and install it from the official website: https://www.xquartz.org/. Once installed, you must start it before proceeding with the next steps.
+
+2. Make sure the "Allow connections from network clients" option is enabled in the XQuartz preferences. You can enable it in the "Security" tab of the XQuartz preferences.
+
+3. Run the Docker container with the -e DISPLAY option to set the DISPLAY environment variable to the container. This environment variable specifies the address of the X11 server on your Mac that the container should use to display graphical applications. The value of the environment variable should be the IP address of your Mac followed by :0
+
+**Linux**
+
+1. Update Package manager
+```bash
+sudo apt-get update && sudo apt-get upgrade
+```
+
+2. Install the X11 server and the necessary tools:
+
+```bash
+sudo apt-get install -y xauth xorg openbox
+```
+
+3. Configure the X11 server to allow remote connections via SSH:
+
+```bash
+sudo sed -i 's/#X11Forwarding no/X11Forwarding yes/' /etc/ssh/sshd_config
+sudo sed -i 's/#X11UseLocalhost yes/X11UseLocalhost no/' /etc/ssh/sshd_config
+```
+4. Restart the SSH service to apply the changes:
+
+```bash
+sudo service ssh restart
+```
+
+## 6- Remarks
 Note that the configuration files must already be created when the pipeline is executed. 💀
 
 It is important to take into account that the pipeline as it is written may have some errors or areas for improvement, such as error handling in case of failures in copy operations or execution of SSH commands, the use of secure access keys instead of passwords in SSH commands, and the management of variables and configurations in a more structured and parameterized way.
 
-Enter as root to jenkins container:
+Enter as root to jenkins container: 🚦
 
 ```bash
 docker exec -it --user=root jenkins /bin/bash

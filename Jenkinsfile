@@ -3,7 +3,6 @@ pipeline {
     tools {
         gradle '6.6'
     }
-
     stages {
         stage('Clone repository, Copy and build') {
             steps {

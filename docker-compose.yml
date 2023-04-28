@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   jenkins:
@@ -7,9 +7,10 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DISPLAY=IP_de_tu_PC_con_servidor_X11:0
+      - DISPLAY=host.docker.internal:0
     volumes:
       - jenkins_home:/var/jenkins_home
+      - /tmp/.X11-unix:/tmp/.X11-unix
     restart: always
 
 volumes:

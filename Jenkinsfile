@@ -18,7 +18,6 @@ pipeline {
                 sh 'sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@10.147.19.125 "cd ci-cd-coffee-machine/src/ && gradle build && java -jar ServidorCentral/build/libs/ServidorCentral.jar"'
                 sh 'sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@10.147.19.95 "cd ci-cd-coffee-machine/src/ && gradle build && java -jar coffeeMach/build/libs/coffeeMach.jar"'
                 sh 'sshpass -p "swarch" ssh -o StrictHostKeyChecking=no swarch@10.147.19.107 "cd ci-cd-coffee-machine/src/ && gradle build && java -jar coffeeMach/build/libs/coffeeMach.jar"'
-
             }
         }
     }

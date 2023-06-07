@@ -931,4 +931,28 @@ public class ManejadorDatos {
 		return retorno;
 
 	}
+
+	public void insertOrdenEntrega (OrdenEntrega oe){
+		try {
+			Statement st = conexion.createStatement();
+			st.execute("SELECT NEXTVAL('SEQ_ORDEN_ENTREGA')");
+			ResultSet rs = st.getResultSet();
+			int consecutivo = 0;
+			if (rs.next()) {
+				consecutivo = rs.getInt(1);
+			}
+
+			String insertnuevaA = "INSERT INTO ALARMA_MAQUINA (ID_ALARMA,ID_MAQUINA,FECHA_INICIAL,CONSECUTIVO) VALUES (?,?,?,?)";
+			PreparedStatement pst = conexion
+					.prepareStatement(insertnuevaA);
+			pst.setInt(1, aM.getIdAlarma());
+			pst.setInt(2, aM.getIdMaquina());
+			pst.setDate(3, new Date(aM.getFechaInicialAlarma().getTime()));
+			pst.setInt(4, consecutivo);
+			pst.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

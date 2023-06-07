@@ -7,6 +7,10 @@ delete from maquina;
 delete from alarma_maquina;
 delete from operadores;
 delete from asignacion_maquina;
+delete from monedas;
+delete from ingredientesInv;
+delete from suministros;
+delete from kit_reparacion;
 
 /*Ingredientes*/
 insert into ingrediente (idingrediente,nombre) values (1,'Agua');
@@ -74,5 +78,26 @@ insert into asignacion_maquina (id_operador,id_maquina) values (2,5);
 insert into asignacion_maquina (id_operador,id_maquina) values (2,6);
 insert into asignacion_maquina (id_operador,id_maquina) values (3,7);
 insert into asignacion_maquina (id_operador,id_maquina) values (4,8);
+
+/*Monedas*/
+insert into monedas (idmoneda,nombre,cantidad) values (1,'Moneda 100',500);
+insert into monedas (idmoneda,nombre,cantidad) values (2,'Moneda 200',500);
+insert into monedas (idmoneda,nombre,cantidad) values (3,'Moneda 500',500);
+
+/*Ingredientes Inventario*/
+insert into ingredientesInv (idingrediente,cantidad) values (1,1000);
+insert into ingredientesInv (idingrediente,cantidad) values (2,1000);
+insert into ingredientesInv (idingrediente,cantidad) values (3,1000);
+insert into ingredientesInv (idingrediente,cantidad) values (4,1000);
+
+/*Suministros*/
+insert into suministros (idsuministro,nombre,cantidad) values (1,'Pitillos',1000);
+insert into suministros (idsuministro,nombre,cantidad) values (2,'Vasos',1000);
+insert into suministros (idsuministro,nombre,cantidad) values (3,'Tapas',1000);
+
+/*Kit Reparación*/
+insert into kit_reparacion (idkit,nombre,cantidad) values (1,'Kit 1',20);
+insert into kit_reparacion (idkit,nombre,cantidad) values (2,'Kit 2',20);
+insert into kit_reparacion (idkit,nombre,cantidad) values (3,'Kit 3',20);
 
 commit;

@@ -1,7 +1,7 @@
 package ServerControl;
 
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 import com.zeroc.Ice.Communicator;
 
@@ -14,9 +14,9 @@ public class ServerControl {
 
 	public ServerControl(Communicator com) {
 		this.comunicator = com;
-		// ConsolaAdministracion cAdmin=new ConsolaAdministracion(this);
-		// Thread th=new Thread(cAdmin);
-		// th.start();
+		ConsolaAdministracion cAdmin = new ConsolaAdministracion(this);
+		Thread th = new Thread(cAdmin);
+		th.start();
 
 	}
 

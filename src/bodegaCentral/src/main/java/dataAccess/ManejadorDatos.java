@@ -1,20 +1,20 @@
 package dataAccess;
 
 import java.sql.Connection;
-import java.sql.Date;
+//import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+//import java.sql.Statement;
+//import java.util.ArrayList;
+//import java.util.List;
 
 public class ManejadorDatos {
 
     private Connection conexion;
 
     public void updateSuministro(int idSuministro, int cantidad, String type) {
-        String updateSuministro = "UPDATE SUMINISTRO SET CANTIDAD = CANTIDAD "+type+" ? WHERE ID_SUMINISTRO = ?";
+        String updateSuministro = "UPDATE SUMINISTRO SET CANTIDAD = CANTIDAD " + type + " ? WHERE ID_SUMINISTRO = ?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(updateSuministro);
@@ -29,10 +29,10 @@ public class ManejadorDatos {
     }
 
     public void updateKitReparacion(int idKit, int cantidad, String type) {
-        String updateKitReparacion = "UPDATE KIT_REPARACION SET CANTIDAD = CANTIDAD "+type+" ? WHERE ID_KIT = ?";
+        String updateKitReparacion = "UPDATE KIT_REPARACION SET CANTIDAD = CANTIDAD " + type + " ? WHERE ID_KIT = ?";
 
         try {
-            PreparedStatement ps = conexion.prepareStatement(updateSuministro);
+            PreparedStatement ps = conexion.prepareStatement(updateKitReparacion);
             ps.setInt(1, cantidad);
             ps.setInt(2, idKit);
 
@@ -43,8 +43,9 @@ public class ManejadorDatos {
         }
     }
 
-    public void updateIngredientesInv(int idIngrediente, int cantidad, String type){
-        String updateIngrediente = "UPDATE INGREDIENTE_INV SET CANTIDAD = CANTIDAD "+type+" ? WHERE ID_INGREDIENTE = ?";
+    public void updateIngredientesInv(int idIngrediente, int cantidad, String type) {
+        String updateIngrediente = "UPDATE INGREDIENTE_INV SET CANTIDAD = CANTIDAD " + type
+                + " ? WHERE ID_INGREDIENTE = ?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(updateIngrediente);
@@ -58,8 +59,8 @@ public class ManejadorDatos {
         }
     }
 
-    public void updateMonedas(int idMoneda, int cantidad, String type){
-        String updateMoneda = "UPDATE MONEDA SET CANTIDAD = CANTIDAD "+type+" ? WHERE ID_MONEDA = ?";
+    public void updateMonedas(int idMoneda, int cantidad, String type) {
+        String updateMoneda = "UPDATE MONEDA SET CANTIDAD = CANTIDAD " + type + " ? WHERE ID_MONEDA = ?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(updateMoneda);

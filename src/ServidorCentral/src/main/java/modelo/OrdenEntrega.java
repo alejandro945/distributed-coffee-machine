@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.Date;
 
-
 public class OrdenEntrega {
 
     private int idOperador;
@@ -13,8 +12,10 @@ public class OrdenEntrega {
     private Date fecha;
     private int idSuministro;
     private int idIngrediente;
+    private int idAlarma;
 
-    public OrdenEntrega(int idOperador, int idOrden, int idMaquina, int idKit, int cantidad, Date fecha, int idSuministro, int idIngrediente) {
+    public OrdenEntrega(int idOperador, int idOrden, int idMaquina, int idKit, int cantidad, Date fecha,
+            int idSuministro, int idIngrediente, int idAlarma) {
         this.idOperador = idOperador;
         this.idOrden = idOrden;
         this.idMaquina = idMaquina;
@@ -23,6 +24,7 @@ public class OrdenEntrega {
         this.fecha = fecha;
         this.idSuministro = idSuministro;
         this.idIngrediente = idIngrediente;
+        this.idAlarma = idAlarma;
     }
 
     public OrdenEntrega() {
@@ -91,5 +93,13 @@ public class OrdenEntrega {
 
     public void setIdIngrediente(int idIngrediente) {
         this.idIngrediente = idIngrediente;
+    }
+
+    public int getIdAlarma() {
+        return idAlarma;
+    }
+
+    public void setIdAlarma(int idAlarma) {
+        this.idAlarma = idAlarma;
     }
 }

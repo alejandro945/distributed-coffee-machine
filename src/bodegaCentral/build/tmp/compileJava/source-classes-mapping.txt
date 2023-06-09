@@ -1,0 +1,63 @@
+servicios/RecetaServicePrx.java
+ servicios.RecetaServicePrx
+servicios/_ServicioAbastecimientoPrxI.java
+ servicios._ServicioAbastecimientoPrxI
+servicios/_AlarmaServicePrxI.java
+ servicios._AlarmaServicePrxI
+servicios/_ServicioComLogisticaPrxI.java
+ servicios._ServicioComLogisticaPrxI
+modelo/OrdenEntrega.java
+ modelo.OrdenEntrega
+servicios/_VentaServicePrxI.java
+ servicios._VentaServicePrxI
+servicios/ServicioAbastecimientoPrx.java
+ servicios.ServicioAbastecimientoPrx
+servicios/VentaService.java
+ servicios.VentaService
+ servicios.VentaService$1
+mantenimientoExistencias/Inventario.java
+ mantenimientoExistencias.Inventario
+servicios/_RecetaServicePrxI.java
+ servicios._RecetaServicePrxI
+servicios/Moneda.java
+ servicios.Moneda
+servicios/ServicioComLogistica.java
+ servicios.ServicioComLogistica
+ servicios.ServicioComLogistica$1
+servicios/AlarmaServicePrx.java
+ servicios.AlarmaServicePrx
+BodegaCentral.java
+ BodegaCentral
+modelo/KitReparacion.java
+ modelo.KitReparacion
+servicios/RecetaService.java
+ servicios.RecetaService
+ servicios.RecetaService$1
+dataAccess/ManejadorDatos.java
+ dataAccess.ManejadorDatos
+dataAccess/ConexionBD.java
+ dataAccess.ConexionBD
+bodega/Bodega.java
+ bodega.Bodega
+servicios/AlarmaService.java
+ servicios.AlarmaService
+ servicios.AlarmaService$1
+guiInventario/Interfaz.java
+ guiInventario.Interfaz
+modelo/Monedas.java
+ modelo.Monedas
+servicios/StringSeqHelper.java
+ servicios.StringSeqHelper
+servicios/VentaServicePrx.java
+ servicios.VentaServicePrx
+modelo/Suministro.java
+ modelo.Suministro
+modelo/IngredientesInv.java
+ modelo.IngredientesInv
+servicios/MapStrIntHelper.java
+ servicios.MapStrIntHelper
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx

@@ -1,6 +1,6 @@
-package model;
+package modelo;
 
-public class KitReparacion{
+public class KitReparacion {
 
     private int idKit;
     private String nombre;

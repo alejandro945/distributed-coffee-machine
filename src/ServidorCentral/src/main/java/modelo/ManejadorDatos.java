@@ -932,7 +932,7 @@ public class ManejadorDatos {
 
 	}
 
-	public void insertOrdenEntrega (OrdenEntrega oe){
+	public void insertOrdenEntrega(OrdenEntrega oe) {
 		try {
 			Statement st = conexion.createStatement();
 			st.execute("SELECT NEXTVAL('SEQ_ORDEN_ENTREGA')");
@@ -942,15 +942,19 @@ public class ManejadorDatos {
 				consecutivo = rs.getInt(1);
 			}
 
-			String insertnuevaA = "INSERT INTO ALARMA_MAQUINA (ID_ALARMA,ID_MAQUINA,FECHA_INICIAL,CONSECUTIVO) VALUES (?,?,?,?)";
+			String insertnuevaOrden = "INSERT INTO ORDENES_ENTREGA (IDOPERADOR, IDORDEN, IDMAQUINA, IDKIT, FECHA, CANTIDAD, IDSUMINISTRO, IDINGREDIENTE, IDALARMA) VALUES (?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pst = conexion
-					.prepareStatement(insertnuevaA);
-			pst.setInt(1, aM.getIdAlarma());
-			pst.setInt(2, aM.getIdMaquina());
-			pst.setDate(3, new Date(aM.getFechaInicialAlarma().getTime()));
-			pst.setInt(4, consecutivo);
+					.prepareStatement(insertnuevaOrden);
+			pst.setInt(1, oe.getIdOperador());
+			pst.setInt(2, consecutivo);
+			pst.setInt(3, oe.getIdMaquina());
+			pst.setInt(4, oe.getIdKit());
+			pst.setDate(5, new Date(oe.getFecha().getTime()));
+			pst.setInt(6, oe.getCantidad());
+			pst.setInt(7, oe.getIdSuministro());
+			pst.setInt(8, oe.getIdIngrediente());
+			pst.setInt(9, oe.getIdAlarma());
 			pst.executeUpdate();
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

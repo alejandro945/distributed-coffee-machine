@@ -1,5 +1,5 @@
 <state>
-  <timestamp value='1686270239128' />
+  <timestamp value='1686353496862' />
   <sourceSet name='default'>
     <source name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\CoffeMach.ice'>
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\ServicioComLogistica.java' />
@@ -8,6 +8,7 @@
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\AlarmaService.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\VentaService.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\RecetaService.java' />
+      <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\ProxyService.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\StringSeqHelper.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\MapStrIntHelper.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\ServicioComLogisticaPrx.java' />
@@ -20,6 +21,8 @@
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\_VentaServicePrxI.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\RecetaServicePrx.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\_RecetaServicePrxI.java' />
+      <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\ProxyServicePrx.java' />
+      <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\src\coffeeMach\build\generated-src\servicios\_ProxyServicePrxI.java' />
     </source>
     <arg value='C:\Program Files\ZeroC\Ice-3.7.8\\bin\slice2java.exe' />
     <arg value='-IC:\Program Files\ZeroC\Ice-3.7.8\\slice' />

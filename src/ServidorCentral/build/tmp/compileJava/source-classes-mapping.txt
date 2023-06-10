@@ -7,8 +7,9 @@ alarma/Alarma.java
  alarma.Alarma$1
 servicios/_AlarmaServicePrxI.java
  servicios._AlarmaServicePrxI
-ServerControl/ServerControl.java
- ServerControl.ServerControl
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1
 receta/ProductoReceta.java
  receta.ProductoReceta
 servicios/_ServicioComLogisticaPrxI.java
@@ -32,16 +33,16 @@ ventas/VentasManager.java
 servicios/VentaService.java
  servicios.VentaService
  servicios.VentaService$1
-ServerControl/ConsolaAdministracion.java
- ServerControl.ConsolaAdministracion
+servicios/MapStrIntHelper.java
+ servicios.MapStrIntHelper
 servicios/_RecetaServicePrxI.java
  servicios._RecetaServicePrxI
 modelo/Maquina.java
  modelo.Maquina
 servicios/Moneda.java
  servicios.Moneda
-ServidorCentral.java
- ServidorCentral
+modelo/VentasReceta.java
+ modelo.VentasReceta
 servicios/ServicioComLogistica.java
  servicios.ServicioComLogistica
  servicios.ServicioComLogistica$1
@@ -50,8 +51,8 @@ servicios/AlarmaServicePrx.java
 servicios/RecetaService.java
  servicios.RecetaService
  servicios.RecetaService$1
-comunicacion/ControlComLogistica.java
- comunicacion.ControlComLogistica
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx
 interfaz/InterfazRecetas.java
  interfaz.InterfazRecetas
 modelo/Ingrediente.java
@@ -78,12 +79,18 @@ interfaz/ControladorRecetas.java
  interfaz.ControladorRecetas$1
  interfaz.ControladorRecetas$2
  interfaz.ControladorRecetas$3
-modelo/VentasReceta.java
- modelo.VentasReceta
-servicios/MapStrIntHelper.java
- servicios.MapStrIntHelper
-servicios/ServicioAbastecimiento.java
- servicios.ServicioAbastecimiento
- servicios.ServicioAbastecimiento$1
-servicios/ServicioComLogisticaPrx.java
- servicios.ServicioComLogisticaPrx
+comunicacion/ControlComLogistica.java
+ comunicacion.ControlComLogistica
+ServerControl/ServerControl.java
+ ServerControl.ServerControl
+ServerControl/ConsolaAdministracion.java
+ ServerControl.ConsolaAdministracion
+ServidorCentral.java
+ ServidorCentral
+servicios/ProxyServicePrx.java
+ servicios.ProxyServicePrx
+servicios/_ProxyServicePrxI.java
+ servicios._ProxyServicePrxI
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1

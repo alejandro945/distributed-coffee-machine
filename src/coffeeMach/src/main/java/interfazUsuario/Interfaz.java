@@ -101,11 +101,10 @@ public class Interfaz extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
-		/*
-		 * JLabel lblAlarmas = new JLabel("Alarmas");
-		 * lblAlarmas.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblAlarmas.setBounds(10, 11, 172, 14); panel_1.add(lblAlarmas);
-		 */
+		JLabel lblAlarmas = new JLabel("Alarmas");
+		lblAlarmas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlarmas.setBounds(10, 11, 172, 14);
+		panel_1.add(lblAlarmas);
 
 		btnMantenimiento = new JButton("Mantenimiento");
 		btnMantenimiento.setBounds(10, 7, 139, 23);
@@ -122,7 +121,7 @@ public class Interfaz extends JFrame {
 		textAreaAlarmas = new JTextArea();
 		scrollPane_3.setViewportView(textAreaAlarmas);
 		textAreaAlarmas.setEditable(false);
-		
+
 		btnActualizar = new JButton("Actualizar Rec");
 		btnActualizar.setBounds(293, 7, 153, 23);
 		panel_1.add(btnActualizar);
@@ -374,6 +373,4 @@ public class Interfaz extends JFrame {
 	public JButton getBtnActualizar() {
 		return btnActualizar;
 	}
-	
-	
 }

@@ -41,3 +41,10 @@ servicios/ServicioComLogisticaPrx.java
 servicios/ServicioComLogistica.java
  servicios.ServicioComLogistica
  servicios.ServicioComLogistica$1
+servicios/ProxyServicePrx.java
+ servicios.ProxyServicePrx
+servicios/_ProxyServicePrxI.java
+ servicios._ProxyServicePrxI
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1

@@ -61,3 +61,10 @@ servicios/ServicioAbastecimiento.java
  servicios.ServicioAbastecimiento$1
 servicios/ServicioComLogisticaPrx.java
  servicios.ServicioComLogisticaPrx
+servicios/ProxyServicePrx.java
+ servicios.ProxyServicePrx
+servicios/_ProxyServicePrxI.java
+ servicios._ProxyServicePrxI
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1

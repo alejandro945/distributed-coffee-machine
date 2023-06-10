@@ -14,9 +14,9 @@ public class ServerControl {
 
 	public ServerControl(Communicator com) {
 		this.comunicator = com;
-		ConsolaAdministracion cAdmin = new ConsolaAdministracion(this);
-		Thread th = new Thread(cAdmin);
-		th.start();
+		//ConsolaAdministracion cAdmin = new ConsolaAdministracion(this);
+		//Thread th = new Thread(cAdmin);
+		//th.start();
 
 	}
 

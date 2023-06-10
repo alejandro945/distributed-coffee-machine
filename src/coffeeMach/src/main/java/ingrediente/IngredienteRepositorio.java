@@ -19,13 +19,13 @@ public class IngredienteRepositorio extends Repositorio<String, Ingrediente> {
 
   public void loadDataP() {
     Ingrediente agua = new Ingrediente("Agua", "8", (double) 500, (double) 50,
-        (double) 1000, 6000);
+        (double) 1000, 0);
     Ingrediente cafe = new Ingrediente("Cafe", "9", (double) 500, (double) 50,
-        (double) 1000, 600);
+        (double) 1000, 0);
     Ingrediente azucar = new Ingrediente("Azucar", "10", (double) 500, (double) 50,
-        (double) 1000, 600);
+        (double) 1000, 0);
     Ingrediente vaso = new Ingrediente("Vaso", "11", (double) 50, (double) 5,
-        (double) 200, 200);
+        (double) 200, 0);
 
     addElement("Agua", agua);
     addElement("Cafe", cafe);

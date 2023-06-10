@@ -71,6 +71,10 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 		}
 
 		arrancarMaquina();
+		/*
+		 * Esto se hace para automatizar el proceso de envio de alarmas al ProxyCache
+		 */
+		verificarProductos();
 		eventos();
 	}
 

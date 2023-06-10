@@ -1,5 +1,5 @@
-CoffeeMach.java
- CoffeeMach
+interfazUsuario/Interfaz.java
+ interfazUsuario.Interfaz
 servicios/RecetaServicePrx.java
  servicios.RecetaServicePrx
 servicios/_ServicioAbastecimientoPrxI.java
@@ -29,8 +29,8 @@ servicios/VentaService.java
  servicios.VentaService$1
 McControlador/VentaService.java
  McControlador.VentaService
-ingrediente/IngredienteRepositorio.java
- ingrediente.IngredienteRepositorio
+servicios/MapStrIntHelper.java
+ servicios.MapStrIntHelper
 monedero/MonedasRepositorio.java
  monedero.MonedasRepositorio
 servicios/_RecetaServicePrxI.java
@@ -46,22 +46,13 @@ servicios/AlarmaServicePrx.java
  servicios.AlarmaServicePrx
 ingrediente/Ingrediente.java
  ingrediente.Ingrediente
-productoReceta/RecetaRepositorio.java
- productoReceta.RecetaRepositorio
+alarma/AlarmaService.java
+ alarma.AlarmaService
 servicios/RecetaService.java
  servicios.RecetaService
  servicios.RecetaService$1
-McControlador/ControladorMQ.java
- McControlador.ControladorMQ
- McControlador.ControladorMQ$1
- McControlador.ControladorMQ$2
- McControlador.ControladorMQ$3
- McControlador.ControladorMQ$4
- McControlador.ControladorMQ$5
- McControlador.ControladorMQ$6
- McControlador.ControladorMQ$7
- McControlador.ControladorMQ$8
- McControlador.ControladorMQ$9
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx
 McControlador/Venta.java
  McControlador.Venta
 monedero/DepositoMonedas.java
@@ -77,16 +68,32 @@ interfaces/Repositorio.java
  interfaces.Repositorio
 servicios/VentaServicePrx.java
  servicios.VentaServicePrx
-interfazUsuario/Interfaz.java
- interfazUsuario.Interfaz
+ingrediente/IngredienteService.java
+ ingrediente.IngredienteService
 servicios/ServicioAbastecimiento.java
  servicios.ServicioAbastecimiento
  servicios.ServicioAbastecimiento$1
-servicios/MapStrIntHelper.java
- servicios.MapStrIntHelper
-ingrediente/IngredienteService.java
- ingrediente.IngredienteService
-servicios/ServicioComLogisticaPrx.java
- servicios.ServicioComLogisticaPrx
-alarma/AlarmaService.java
- alarma.AlarmaService
+productoReceta/RecetaRepositorio.java
+ productoReceta.RecetaRepositorio
+CoffeeMach.java
+ CoffeeMach
+McControlador/ControladorMQ.java
+ McControlador.ControladorMQ
+ McControlador.ControladorMQ$1
+ McControlador.ControladorMQ$2
+ McControlador.ControladorMQ$3
+ McControlador.ControladorMQ$4
+ McControlador.ControladorMQ$5
+ McControlador.ControladorMQ$6
+ McControlador.ControladorMQ$7
+ McControlador.ControladorMQ$8
+ McControlador.ControladorMQ$9
+ingrediente/IngredienteRepositorio.java
+ ingrediente.IngredienteRepositorio
+servicios/ProxyServicePrx.java
+ servicios.ProxyServicePrx
+servicios/_ProxyServicePrxI.java
+ servicios._ProxyServicePrxI
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1

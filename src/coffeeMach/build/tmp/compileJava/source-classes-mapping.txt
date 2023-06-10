@@ -73,10 +73,17 @@ ingrediente/IngredienteService.java
 servicios/ServicioAbastecimiento.java
  servicios.ServicioAbastecimiento
  servicios.ServicioAbastecimiento$1
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1
+servicios/_ProxyServicePrxI.java
+ servicios._ProxyServicePrxI
+servicios/ProxyServicePrx.java
+ servicios.ProxyServicePrx
 productoReceta/RecetaRepositorio.java
  productoReceta.RecetaRepositorio
-CoffeeMach.java
- CoffeeMach
+ingrediente/IngredienteRepositorio.java
+ ingrediente.IngredienteRepositorio
 McControlador/ControladorMQ.java
  McControlador.ControladorMQ
  McControlador.ControladorMQ$1
@@ -88,12 +95,5 @@ McControlador/ControladorMQ.java
  McControlador.ControladorMQ$7
  McControlador.ControladorMQ$8
  McControlador.ControladorMQ$9
-ingrediente/IngredienteRepositorio.java
- ingrediente.IngredienteRepositorio
-servicios/ProxyServicePrx.java
- servicios.ProxyServicePrx
-servicios/_ProxyServicePrxI.java
- servicios._ProxyServicePrxI
-servicios/ProxyService.java
- servicios.ProxyService
- servicios.ProxyService$1
+CoffeeMach.java
+ CoffeeMach

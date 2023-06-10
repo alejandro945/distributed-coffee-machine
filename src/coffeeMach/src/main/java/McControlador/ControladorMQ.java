@@ -23,6 +23,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 
 	private AlarmaServicePrx alarmaServicePrx;
 	private VentaServicePrx ventasService;
+	private ProxyServicePrx proxyServicePrx;
 
 	// @Reference
 	private AlarmaRepositorio alarmas = AlarmaRepositorio.getInstance();
@@ -35,6 +36,10 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 	// @Referenc
 	private VentaRepositorio ventas = VentaRepositorio.getInstance();
 
+	public void setProxyServicePrx(ProxyServicePrx proxyServicePrx) {
+		this.proxyServicePrx = proxyServicePrx;
+	}
+
 	/**
 	 * @param ventas the ventas to set
 	 */
@@ -44,15 +49,6 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 
 	public void setAlarmaService(AlarmaServicePrx a) {
 		alarmaServicePrx = a;
-	}
-
-	private RecetaServicePrx recetaServicePrx;
-
-	/**
-	 * @param recetaServicePrx the recetaServicePrx to set
-	 */
-	public void setRecetaServicePrx(RecetaServicePrx recetaServicePrx) {
-		this.recetaServicePrx = recetaServicePrx;
 	}
 
 	private Interfaz frame;
@@ -357,7 +353,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 
 		recetas.setElements(new HashMap<String, Receta>());
 
-		String[] recetasServer = recetaServicePrx.consultarProductos();
+		String[] recetasServer = proxyServicePrx.consultarProductosProxy();
 
 		for (int i = 0; i < recetasServer.length; i++) {
 

@@ -20,7 +20,7 @@ public class CoffeeMach {
       System.out.println(communicator.getProperties().toString());
 
       ProxyServicePrx proxyServicePrx = ProxyServicePrx.checkedCast(
-          communicator.stringToProxy("tcp:default -h 192.168.131.44 -p 12345")).ice_twoway();
+          communicator.propertyToProxy("proxy")).ice_twoway();
 
       ObjectAdapter adapter = communicator.createObjectAdapter("CoffeMach");
       ControladorMQ service = new ControladorMQ();

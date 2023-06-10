@@ -354,38 +354,45 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 		recetas.setElements(new HashMap<String, Receta>());
 
 		String[] recetasServer = proxyServicePrx.consultarProductosProxy();
+		System.out.println(proxyServicePrx.consultarProductosProxy().length);
+		System.out.println(proxyServicePrx.consultarProductosProxy()[0]);
 
-		for (int i = 0; i < recetasServer.length; i++) {
+		System.out.println(recetasServer[0]);
 
-			String[] splitInicial = recetasServer[i].split("#");
-
-			String[] receta = splitInicial[0].split("-");
-
-			HashMap<Ingrediente, Double> listaIngredientes = new HashMap<Ingrediente, Double>();
-
-			for (int i2 = 1; i2 < splitInicial.length; i2++) {
-
-				String[] splitdeIng = splitInicial[i2].split("-");
-
-				Ingrediente ingred = ingredientes.findByKey(splitdeIng[1]);
-				if (ingred == null) {
-					ingred = new Ingrediente(splitdeIng[1], splitdeIng[2], 500, 50, 1000, 1000);
-				}
-				listaIngredientes.put(ingred, Double.parseDouble(splitdeIng[4]));
-
-			}
-
-			Receta r = new Receta(receta[1], receta[0],
-					Integer.parseInt(receta[2]), listaIngredientes);
-
-			recetas.addElement(receta[0], r);
-		}
-
-		// Actualizar Archivo Plano
-		recetas.saveData();
-		actualizarInsumosGraf();
-		actualizarRecetasGraf();
-		actualizarRecetasCombo();
+		/*
+		 * for (int i = 0; i < recetasServer.length; i++) {
+		 * 
+		 * String[] splitInicial = recetasServer[i].split("#");
+		 * 
+		 * String[] receta = splitInicial[0].split("-");
+		 * 
+		 * HashMap<Ingrediente, Double> listaIngredientes = new HashMap<Ingrediente,
+		 * Double>();
+		 * 
+		 * for (int i2 = 1; i2 < splitInicial.length; i2++) {
+		 * 
+		 * String[] splitdeIng = splitInicial[i2].split("-");
+		 * 
+		 * Ingrediente ingred = ingredientes.findByKey(splitdeIng[1]);
+		 * if (ingred == null) {
+		 * ingred = new Ingrediente(splitdeIng[1], splitdeIng[2], 500, 50, 1000, 1000);
+		 * }
+		 * listaIngredientes.put(ingred, Double.parseDouble(splitdeIng[4]));
+		 * 
+		 * }
+		 * 
+		 * Receta r = new Receta(receta[1], receta[0],
+		 * Integer.parseInt(receta[2]), listaIngredientes);
+		 * 
+		 * recetas.addElement(receta[0], r);
+		 * }
+		 * 
+		 * // Actualizar Archivo Plano
+		 * recetas.saveData();
+		 * actualizarInsumosGraf();
+		 * actualizarRecetasGraf();
+		 * actualizarRecetasCombo();
+		 */
 	}
 
 	public void respaldarMaq() {

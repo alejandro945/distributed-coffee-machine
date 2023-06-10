@@ -14,7 +14,7 @@ public class ProxyCache {
 
             ProxyServices proxyServices = new ProxyServices();
 
-            adapter.add(proxyServices, Util.stringToIdentity("server"));
+            adapter.add(proxyServices, Util.stringToIdentity("Proxy"));
             String hostName = InetAddress.getLocalHost().getHostName();
             System.out.println("Running on machine: " + hostName);
 

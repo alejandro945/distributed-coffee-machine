@@ -12,14 +12,12 @@ public class ProxyServices implements ProxyService {
 
     @Override
     public String[] consultarRecetasProxy(Current current) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'consultarRecetasProxy'");
+        return new String[] { "hola", "chau" };
     }
 
     @Override
     public String[] consultarProductosProxy(Current current) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'consultarProductosProxy'");
+        return new String[] { "hola", "chau" };
     }
 
 }

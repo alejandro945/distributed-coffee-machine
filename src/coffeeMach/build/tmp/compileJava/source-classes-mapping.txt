@@ -84,6 +84,8 @@ productoReceta/RecetaRepositorio.java
  productoReceta.RecetaRepositorio
 ingrediente/IngredienteRepositorio.java
  ingrediente.IngredienteRepositorio
+CoffeeMach.java
+ CoffeeMach
 McControlador/ControladorMQ.java
  McControlador.ControladorMQ
  McControlador.ControladorMQ$1
@@ -95,5 +97,3 @@ McControlador/ControladorMQ.java
  McControlador.ControladorMQ$7
  McControlador.ControladorMQ$8
  McControlador.ControladorMQ$9
-CoffeeMach.java
- CoffeeMach

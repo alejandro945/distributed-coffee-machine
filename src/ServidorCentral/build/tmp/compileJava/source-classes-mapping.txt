@@ -85,12 +85,12 @@ ServerControl/ServerControl.java
  ServerControl.ServerControl
 ServerControl/ConsolaAdministracion.java
  ServerControl.ConsolaAdministracion
-ServidorCentral.java
- ServidorCentral
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1
 servicios/ProxyServicePrx.java
  servicios.ProxyServicePrx
 servicios/_ProxyServicePrxI.java
  servicios._ProxyServicePrxI
-servicios/ProxyService.java
- servicios.ProxyService
- servicios.ProxyService$1
+ServidorCentral.java
+ ServidorCentral

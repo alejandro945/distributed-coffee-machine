@@ -14,13 +14,9 @@ public class CoffeeMach {
           communicator.propertyToProxy("alarmas")).ice_twoway();
       VentaServicePrx ventas = VentaServicePrx.checkedCast(
           communicator.propertyToProxy("ventas")).ice_twoway();
-
-      System.out.println(communicator.getProperties().getProperty("proxy"));
-      System.out.println(communicator.getProperties().getProperty("alarmas"));
-      System.out.println(communicator.getProperties().toString());
-
       ProxyServicePrx proxyServicePrx = ProxyServicePrx.checkedCast(
           communicator.propertyToProxy("proxy")).ice_twoway();
+          
 
       ObjectAdapter adapter = communicator.createObjectAdapter("CoffeMach");
       ControladorMQ service = new ControladorMQ();

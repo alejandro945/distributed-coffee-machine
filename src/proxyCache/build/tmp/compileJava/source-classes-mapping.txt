@@ -48,5 +48,7 @@ servicios/ServicioComLogistica.java
  servicios.ServicioComLogistica$1
 ProxyCache.java
  ProxyCache
-ProxyServices.java
- ProxyServices
+service/ProxyServices.java
+ service.ProxyServices
+service/CacheService.java
+ service.CacheService

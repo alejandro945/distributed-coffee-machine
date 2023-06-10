@@ -59,4 +59,12 @@ module servicios{
       StringArr consultarProductosProxy();
     }
 
+    interface Observer{
+      boolean attach();
+      StringArr getUpdate();
+    }
+
+    interface Observarble{
+      booelan notify();
+    }
 }

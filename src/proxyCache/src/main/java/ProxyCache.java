@@ -1,23 +1,24 @@
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import com.zeroc.Ice.*;
 
+import service.ProxyServices;
+import servicios.RecetaServicePrx;
+
 public class ProxyCache {
     public static void main(String[] args) throws UnknownHostException {
-        System.out.println("Test");
         List<String> params = new ArrayList<>();
         try (Communicator communicator = Util.initialize(args, "proxy.cfg", params)) {
 
             ObjectAdapter adapter = communicator.createObjectAdapter("Proxy");
 
-            ProxyServices proxyServices = new ProxyServices();
+            RecetaServicePrx recetaServicePrx = RecetaServicePrx.checkedCast(
+                    communicator.propertyToProxy("recetas")).ice_twoway();
+
+            ProxyServices proxyServices = new ProxyServices(recetaServicePrx);
 
             adapter.add(proxyServices, Util.stringToIdentity("Proxy"));
-            String hostName = InetAddress.getLocalHost().getHostName();
-            System.out.println("Running on machine: " + hostName);
-
             adapter.activate();
 
             communicator.waitForShutdown();

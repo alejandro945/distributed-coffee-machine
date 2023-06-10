@@ -353,11 +353,19 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 
 		recetas.setElements(new HashMap<String, Receta>());
 
-		String[] recetasServer = proxyServicePrx.consultarProductosProxy();
+		long start = System.currentTimeMillis();
+
+		System.out.println(proxyServicePrx.consultarIngredientesProxy().length);
+		System.out.println(proxyServicePrx.consultarIngredientesProxy()[0]);
+
 		System.out.println(proxyServicePrx.consultarProductosProxy().length);
 		System.out.println(proxyServicePrx.consultarProductosProxy()[0]);
 
-		System.out.println(recetasServer[0]);
+		System.out.println(proxyServicePrx.consultarRecetasProxy().length);
+		System.out.println(proxyServicePrx.consultarRecetasProxy()[0]);
+
+		long end = System.currentTimeMillis();
+		System.out.println("Tiempo de ejecucion: " + (end - start) + "ms");
 
 		/*
 		 * for (int i = 0; i < recetasServer.length; i++) {

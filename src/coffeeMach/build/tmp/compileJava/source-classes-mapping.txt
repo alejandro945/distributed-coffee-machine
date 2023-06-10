@@ -97,3 +97,17 @@ McControlador/ControladorMQ.java
  McControlador.ControladorMQ$7
  McControlador.ControladorMQ$8
  McControlador.ControladorMQ$9
+servicios/ObservablePrx.java
+ servicios.ObservablePrx
+servicios/_ObservablePrxI.java
+ servicios._ObservablePrxI
+servicios/Observable.java
+ servicios.Observable
+ servicios.Observable$1
+servicios/Observer.java
+ servicios.Observer
+ servicios.Observer$1
+servicios/ObserverPrx.java
+ servicios.ObserverPrx
+servicios/_ObserverPrxI.java
+ servicios._ObserverPrxI

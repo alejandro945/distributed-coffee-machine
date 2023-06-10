@@ -6,6 +6,8 @@ module servicios{
     sequence<string> StringSeq;
     ["java:serializable:java.util.Date"]
     sequence<byte> Date;
+    ["java:type:java.util.HashMap<string, StringArr>"]
+    HashMap<string, StringArr> test;
 
     dictionary<string,int> MapStrInt;
 
@@ -59,12 +61,12 @@ module servicios{
       StringArr consultarProductosProxy();
     }
 
-    interface Observer{
-      boolean attach();
-      StringArr getUpdate();
+    interface Observable{
+      bool not();
     }
 
-    interface Observarble{
-      booelan notify();
+    interface Observer{
+      bool attach(Observable* machine);
+      test getUpdate();
     }
 }

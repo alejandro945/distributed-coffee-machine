@@ -1,6 +1,6 @@
 package service;
 
-import interfacE.ISuministro;
+import interfaces.ISuministro;
 
 public class SuministroServiceImp implements ISuministro {
 

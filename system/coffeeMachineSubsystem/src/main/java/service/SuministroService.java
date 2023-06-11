@@ -2,7 +2,7 @@ package service;
 
 import interfaces.ISuministro;
 
-public class SuministroServiceImp implements ISuministro {
+public class SuministroService implements ISuministro {
 
     @Override
     public boolean verificatExistenciaSuministro(String sumId) {

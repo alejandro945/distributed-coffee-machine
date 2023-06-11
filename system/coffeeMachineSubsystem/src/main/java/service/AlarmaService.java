@@ -3,7 +3,7 @@ package service;
 import interfaces.IAlarma;
 import servicios.AlarmaServicePrx;
 
-public class AlarmaServiceImp implements IAlarma {
+public class AlarmaService implements IAlarma {
 
     //private AlarmaServicePrx alarmaServicePrx;
 

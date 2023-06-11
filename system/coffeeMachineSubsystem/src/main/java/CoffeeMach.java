@@ -1,6 +1,6 @@
 import com.zeroc.Ice.*;
 
-import McControlador.ControladorMQ;
+import controller.ControladorMQ;
 
 import java.util.*;
 import servicios.*;
@@ -16,10 +16,7 @@ public class CoffeeMach {
       ProxyServicePrx proxyServicePrx = ProxyServicePrx.checkedCast(communicator.propertyToProxy("proxy")).ice_twoway();
           
       // Controller
-      ControladorMQ controller = new ControladorMQ();
-      controller.setAlarmaService(alarmaS);
-      controller.setVentas(ventas);
-      controller.setProxyServicePrx(proxyServicePrx);
+      ControladorMQ controller = new ControladorMQ(proxyServicePrx, ventas, alarmaS);
       controller.run();
 
       // Ice Adapter

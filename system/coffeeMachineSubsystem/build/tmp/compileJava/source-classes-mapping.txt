@@ -1,8 +1,7 @@
 model/Receta.java
  model.Receta
-servicios/ProxyService.java
- servicios.ProxyService
- servicios.ProxyService$1
+CoffeeMach.java
+ CoffeeMach
 interfaces/IAlarma.java
  interfaces.IAlarma
 servicios/RecetaServicePrx.java
@@ -100,14 +99,15 @@ repository/VentaRepositorio.java
 servicios/Observable.java
  servicios.Observable
  servicios.Observable$1
-servicios/ServicioComLogisticaPrx.java
- servicios.ServicioComLogisticaPrx
+service/ObservableService.java
+ service.ObservableService
 servicios/ServicioAbastecimiento.java
  servicios.ServicioAbastecimiento
  servicios.ServicioAbastecimiento$1
 servicios/MapStrIntHelper.java
  servicios.MapStrIntHelper
-CoffeeMach.java
- CoffeeMach
-service/ObservableService.java
- service.ObservableService
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1

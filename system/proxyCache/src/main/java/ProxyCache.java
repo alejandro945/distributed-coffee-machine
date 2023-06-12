@@ -20,15 +20,18 @@ public class ProxyCache {
             ObjectAdapter adapter = communicator.createObjectAdapter("Proxy");
 
             // Ice Services
-            ObserverPrx observerServicePrx = ObserverPrx.checkedCast(communicator.propertyToProxy("observer")).ice_twoway(); // Server
-            RecetaServicePrx recetaServicePrx = RecetaServicePrx.checkedCast(communicator.propertyToProxy("recetas")).ice_twoway();
+            ObserverPrx observerServicePrx = ObserverPrx.checkedCast(communicator.propertyToProxy("observer"))
+                    .ice_twoway(); // Server
+            RecetaServicePrx recetaServicePrx = RecetaServicePrx.checkedCast(communicator.propertyToProxy("recetas"))
+                    .ice_twoway();
 
             // Services
             ObserverService observerService = new ObserverService(recetaServicePrx, CacheService.getInstance());
-            ObservablePrx observablePrx = ObservablePrx.uncheckedCast(adapter.add(new ObservableService(CacheService.getInstance(), observerService), Util.stringToIdentity("observable"))); // Proxy observable same reference
+            ObservablePrx observablePrx = ObservablePrx
+                    .uncheckedCast(adapter.add(new ObservableService(CacheService.getInstance(), observerService),
+                            Util.stringToIdentity("observable"))); // Proxy observable same reference
             observerServicePrx.attach(observablePrx);
             ProxyServices proxyServices = new ProxyServices(recetaServicePrx);
-
             // Add services to adapter
             adapter.add(proxyServices, Util.stringToIdentity("Proxy")); // To server
             adapter.add(observerService, Util.stringToIdentity("Observer")); // To server

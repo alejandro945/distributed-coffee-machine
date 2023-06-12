@@ -1,6 +1,0 @@
-{
-    "java.project.sourcePaths": [
-        "system/messageBroker"
-    ],
-    "java.configuration.updateBuildConfiguration": "interactive"
-}

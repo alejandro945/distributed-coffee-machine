@@ -1,5 +1,5 @@
 <state>
-  <timestamp value='1686586255665' />
+  <timestamp value='1686589964471' />
   <sourceSet name='default'>
     <source name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\CoffeMach.ice'>
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\remoteAdministration\build\generated-src\servicios\Moneda.java' />

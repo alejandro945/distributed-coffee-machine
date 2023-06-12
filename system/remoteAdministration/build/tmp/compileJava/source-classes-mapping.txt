@@ -82,11 +82,13 @@ servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
 servicios/Moneda.java
  servicios.Moneda
-servicios/MapStrIntHelper.java
- servicios.MapStrIntHelper
-servicios/ServicioAbastecimiento.java
- servicios.ServicioAbastecimiento
- servicios.ServicioAbastecimiento$1
+ServidorCentral.java
+ ServidorCentral
+controller/ControladorRecetas.java
+ controller.ControladorRecetas
+ controller.ControladorRecetas$1
+ controller.ControladorRecetas$2
+ controller.ControladorRecetas$3
 servicios/AlarmaServicePrx.java
  servicios.AlarmaServicePrx
 servicios/_ProxyServicePrxI.java
@@ -103,10 +105,8 @@ repository/ServerControl.java
  repository.ServerControl
 model/RecetaIngrediente.java
  model.RecetaIngrediente
-controller/ControladorRecetas.java
- controller.ControladorRecetas
- controller.ControladorRecetas$1
- controller.ControladorRecetas$2
- controller.ControladorRecetas$3
-ServidorCentral.java
- ServidorCentral
+servicios/MapStrIntHelper.java
+ servicios.MapStrIntHelper
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1

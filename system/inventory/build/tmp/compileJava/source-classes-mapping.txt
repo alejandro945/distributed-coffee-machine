@@ -25,10 +25,10 @@ mantenimientoExistencias/Inventario.java
  mantenimientoExistencias.Inventario
 servicios/_RecetaServicePrxI.java
  servicios._RecetaServicePrxI
-servicios/_ObserverPrxI.java
- servicios._ObserverPrxI
 servicios/Moneda.java
  servicios.Moneda
+servicios/_ObserverPrxI.java
+ servicios._ObserverPrxI
 servicios/ServicioComLogistica.java
  servicios.ServicioComLogistica
  servicios.ServicioComLogistica$1

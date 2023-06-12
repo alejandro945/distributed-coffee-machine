@@ -76,7 +76,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 	 * Method that initializes the events of the interface
 	 */
 	public void initMachine() {
-		//Code
+		// Code
 		readMachineCode();
 		// Interface
 		actualizarRecetasCombo();
@@ -123,16 +123,16 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				rechargeSpecificCurrency("100");
 			} else if (idAlarma == 4 | idAlarma == 5) {
 				rechargeSpecificCurrency("200");
-			}else if (idAlarma == 6 | idAlarma == 7) {
+			} else if (idAlarma == 6 | idAlarma == 7) {
 				rechargeSpecificCurrency("500");
-			}else if (idAlarma == 8 | idAlarma == 12) {
+			} else if (idAlarma == 8 | idAlarma == 12) {
 				// Reference to the alarm with out ingredients
 				recargarIngredienteEspecifico("Agua");
-			}else if (idAlarma == 9 | idAlarma == 13) {
+			} else if (idAlarma == 9 | idAlarma == 13) {
 				recargarIngredienteEspecifico("Cafe");
-			}else if (idAlarma == 10 | idAlarma == 14) {
+			} else if (idAlarma == 10 | idAlarma == 14) {
 				recargarIngredienteEspecifico("Azucar");
-			}else if (idAlarma == 11 | idAlarma == 15) {
+			} else if (idAlarma == 11 | idAlarma == 15) {
 				recargarIngredienteEspecifico("Vaso");
 			}
 
@@ -171,6 +171,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 
 	/**
 	 * Method that recharge a specific ingredient
+	 * 
 	 * @param ingrediente != "" || != null
 	 */
 	public void recargarIngredienteEspecifico(String ingrediente) {
@@ -226,7 +227,8 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			public void actionPerformed(ActionEvent e) {
 				frame.getTextAreaSaldo().setText("0");
 				if (suma > 0) {
-					frame.getTextAreaDevuelta().setText(frame.getTextAreaDevuelta().getText() + "Se devolvio: " + suma + "\n");
+					frame.getTextAreaDevuelta()
+							.setText(frame.getTextAreaDevuelta().getText() + "Se devolvio: " + suma + "\n");
 					devolverMonedas();
 				}
 			}
@@ -242,7 +244,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 					}
 				}
 				frame.getTextAreaInfo().setText(frame.getTextAreaInfo().getText()
-								+ "El producto cuesta: " + precio + "\n");
+						+ "El producto cuesta: " + precio + "\n");
 				frame.getTextAreaInfo().repaint();
 			}
 		});
@@ -309,11 +311,12 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			public void actionPerformed(ActionEvent e) {
 				// Enviar Alarma por SCA
 				Alarma temp = new Alarma("1", "Se requiere mantenimiento", new Date());
-				frame.getTextAreaAlarmas().setText(frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Mantenimiento" + "\n");
+				frame.getTextAreaAlarmas().setText(
+						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Mantenimiento" + "\n");
 
 				// DRIVER # 2 - Alarma de mal funcionamiento @alexandersanchezjr
 				alarmaServicePrx.recibirNotificacionMalFuncionamiento(codMaquina, "Se requiere mantenimiento");
-				
+
 				// LDB Adding alarm to the list
 				alarmas.addElement("1", temp);
 				frame.interfazDeshabilitada();
@@ -345,62 +348,70 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 		});
 	}
 
+	public String[] cargarInformacionReceta() {
+		return null;
+	}
+
 	/**
-	 * This method in next version will be call automatally when pub and sub component
+	 * This method in next version will be call automatally when pub and sub
+	 * component
 	 * notify a change in the data of recipes
 	 */
-	public void cargarRecetaMaquinas() {
+	public Boolean cargarRecetaMaquinas() {
+
+		System.out.println("Varela Sapa hpta");
 
 		recetas.setElements(new HashMap<String, Receta>());
-
 		long start = System.currentTimeMillis();
-
-		System.out.println(proxyServicePrx.consultarIngredientesProxy().length);
-		System.out.println(proxyServicePrx.consultarIngredientesProxy()[0]);
-
-		System.out.println(proxyServicePrx.consultarProductosProxy().length);
-		System.out.println(proxyServicePrx.consultarProductosProxy()[0]);
-
-		System.out.println(proxyServicePrx.consultarRecetasProxy().length);
-		System.out.println(proxyServicePrx.consultarRecetasProxy()[0]);
-
+		String[] recetasServer = proxyServicePrx.consultarProductosProxy();
 		long end = System.currentTimeMillis();
 		System.out.println("Tiempo de ejecucion: " + (end - start) + "ms");
 
 		/*
-		 * for (int i = 0; i < recetasServer.length; i++) {
+		 * System.out.println(proxyServicePrx.consultarIngredientesProxy().length);
+		 * System.out.println(proxyServicePrx.consultarIngredientesProxy()[0]);
 		 * 
-		 * String[] splitInicial = recetasServer[i].split("#");
+		 * System.out.println(proxyServicePrx.consultarProductosProxy().length);
+		 * System.out.println(proxyServicePrx.consultarProductosProxy()[0]);
 		 * 
-		 * String[] receta = splitInicial[0].split("-");
+		 * System.out.println(proxyServicePrx.consultarRecetasProxy().length);
+		 * System.out.println(proxyServicePrx.consultarRecetasProxy()[0]);
 		 * 
-		 * HashMap<Ingrediente, Double> listaIngredientes = new HashMap<Ingrediente,
-		 * Double>();
-		 * 
-		 * for (int i2 = 1; i2 < splitInicial.length; i2++) {
-		 * 
-		 * String[] splitdeIng = splitInicial[i2].split("-");
-		 * 
-		 * Ingrediente ingred = ingredientes.findByKey(splitdeIng[1]);
-		 * if (ingred == null) {
-		 * ingred = new Ingrediente(splitdeIng[1], splitdeIng[2], 500, 50, 1000, 1000);
-		 * }
-		 * listaIngredientes.put(ingred, Double.parseDouble(splitdeIng[4]));
-		 * 
-		 * }
-		 * 
-		 * Receta r = new Receta(receta[1], receta[0],
-		 * Integer.parseInt(receta[2]), listaIngredientes);
-		 * 
-		 * recetas.addElement(receta[0], r);
-		 * }
-		 * 
-		 * // Actualizar Archivo Plano
-		 * recetas.saveData();
-		 * actualizarInsumosGraf();
-		 * actualizarRecetasGraf();
-		 * actualizarRecetasCombo();
+		 * System.out.println("Tiempo de ejecucion: " + (end - start) + "ms");
 		 */
+
+		for (int i = 0; i < recetasServer.length; i++) {
+
+			String[] splitInicial = recetasServer[i].split("#");
+
+			String[] receta = splitInicial[0].split("-");
+
+			HashMap<Ingrediente, Double> listaIngredientes = new HashMap<Ingrediente, Double>();
+
+			for (int i2 = 1; i2 < splitInicial.length; i2++) {
+
+				String[] splitdeIng = splitInicial[i2].split("-");
+
+				Ingrediente ingred = ingredientes.findByKey(splitdeIng[1]);
+				if (ingred == null) {
+					ingred = new Ingrediente(splitdeIng[1], splitdeIng[2], 500, 50, 1000, 1000);
+				}
+				listaIngredientes.put(ingred, Double.parseDouble(splitdeIng[4]));
+
+			}
+
+			Receta r = new Receta(receta[1], receta[0],
+					Integer.parseInt(receta[2]), listaIngredientes);
+
+			recetas.addElement(receta[0], r);
+		}
+
+		// Actualizar Archivo Plano
+		recetas.saveData();
+		actualizarInsumosGraf();
+		actualizarRecetasGraf();
+		actualizarRecetasCombo();
+		return true;
 	}
 
 	/**
@@ -606,7 +617,8 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				alarmas.addElement("2", alMon);
 				// Driver # 2 - Alarma de escasez de monedas 100 @alexandersanchezjr
 				alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN, codMaquina);
-				frame.getTextAreaAlarmas().setText(frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de 100" + "\n");
+				frame.getTextAreaAlarmas().setText(
+						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de 100" + "\n");
 			}
 		}
 		if (moneda.getCantidad() <= moneda.getCritico()) {
@@ -615,7 +627,8 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			alarmas.addElement("3", alMon);
 			// Driver # 2 - Alarma de escasez CRITICO de monedas 100 @alexandersanchezjr
 			alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN, codMaquina);
-			frame.getTextAreaAlarmas().setText(frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica Monedas de 100" + "\n");
+			frame.getTextAreaAlarmas().setText(
+					frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica Monedas de 100" + "\n");
 			frame.interfazDeshabilitada();
 		}
 
@@ -628,7 +641,8 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				alarmas.addElement("4", alMon);
 				// Driver # 2 - Alarma de escasez de monedas 200 @alexandersanchezjr
 				alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS, codMaquina);
-				frame.getTextAreaAlarmas().setText(frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Mondedas de 200" + "\n");
+				frame.getTextAreaAlarmas().setText(
+						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Mondedas de 200" + "\n");
 			}
 		}
 		if (moneda.getCantidad() <= moneda.getCritico()) {
@@ -637,7 +651,8 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			alarmas.addElement("5", alMon);
 			// Driver # 2 - Alarma de escasez CRITICO de monedas 200 @alexandersanchezjr
 			alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS, codMaquina);
-			frame.getTextAreaAlarmas().setText(frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica de Monedas de 200" + "\n");
+			frame.getTextAreaAlarmas().setText(
+					frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica de Monedas de 200" + "\n");
 			frame.interfazDeshabilitada();
 		}
 
@@ -650,16 +665,18 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				alarmas.addElement("6", alMon);
 				// Driver # 2 - Alarma de escasez de monedas 500 @alexandersanchezjr
 				alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS, codMaquina);
-				frame.getTextAreaAlarmas().setText(frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de 500" + "\n");
+				frame.getTextAreaAlarmas().setText(
+						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de 500" + "\n");
 			}
 		}
 		if (moneda.getCantidad() <= moneda.getCritico()) {
-			Alarma alMon = new Alarma("7" , "ESTADO CRITICO: Faltan monedas de 500", new Date());
+			Alarma alMon = new Alarma("7", "ESTADO CRITICO: Faltan monedas de 500", new Date());
 			// Update Alarms locally
 			alarmas.addElement("7", alMon);
 			// Driver # 2 - Alarma de escasez CRITICO de monedas 500 @alexandersanchezjr
 			alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS, codMaquina);
-			frame.getTextAreaAlarmas().setText( frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica Monedas de 500" + "\n");
+			frame.getTextAreaAlarmas().setText(
+					frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica Monedas de 500" + "\n");
 			frame.interfazDeshabilitada();
 		}
 	}

@@ -21,14 +21,27 @@ public class ObserverService implements Observer {
     /* Methods */
     @Override
     public boolean attach(ObservablePrx proxy, Current current) {
-        if (proxy == null) return false;
+        if (proxy == null)
+            return false;
         observables.add(proxy);
         return true;
     }
 
     @Override
     public String[] getUpdate(String key, Current current) {
-        return productoReceta.consultarIngredientes(current);
+        if (key == "product") {
+            return productoReceta.consultarProductos(current);
+        } else if (key == "receta") {
+            return productoReceta.consultarRecetas(current);
+        } else {
+            return productoReceta.consultarIngredientes(current);
+        }
     }
-    
+
+    public void automatizationNoti() {
+        for (int i = 0; i < observables.size(); i++) {
+            observables.get(i).noti();
+        }
+    }
+
 }

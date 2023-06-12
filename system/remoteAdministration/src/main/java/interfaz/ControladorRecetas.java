@@ -6,12 +6,20 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import receta.ObserverService;
 import receta.ProductoReceta;
 //import servicios.*;
 
 public class ControladorRecetas implements Runnable {
 
 	private ProductoReceta recetaService;
+
+	private ObserverService observerService;
+
+	public ControladorRecetas(ProductoReceta recetaService, ObserverService observerService) {
+		this.recetaService = recetaService;
+		this.observerService = observerService;
+	}
 
 	/**
 	 * @param recetaService the recetaService to set
@@ -86,6 +94,7 @@ public class ControladorRecetas implements Runnable {
 					listaReceta.add(listadoRec);
 
 					actualizarVista();
+					observerService.automatizationNoti();
 				}
 
 				iR.getTextFieldNombreRec().setText("");

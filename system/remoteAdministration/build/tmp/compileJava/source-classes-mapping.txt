@@ -83,8 +83,9 @@ servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
 servicios/Moneda.java
  servicios.Moneda
-ServidorCentral.java
- ServidorCentral
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1
 servicios/AlarmaServicePrx.java
  servicios.AlarmaServicePrx
 servicios/_ProxyServicePrxI.java
@@ -107,6 +108,5 @@ modelo/VentasReceta.java
  modelo.VentasReceta
 servicios/MapStrIntHelper.java
  servicios.MapStrIntHelper
-servicios/ServicioAbastecimiento.java
- servicios.ServicioAbastecimiento
- servicios.ServicioAbastecimiento$1
+ServidorCentral.java
+ ServidorCentral

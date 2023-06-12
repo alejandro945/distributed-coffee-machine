@@ -59,4 +59,9 @@ module servicios{
       bool attach(Observable* subscriber);
       void notifyAll();
     }
+
+    interface MessageBroker{
+      StringArr alarmas();
+      StringArr ventas();
+    }
 }

@@ -16,8 +16,9 @@ servicios/_VentaServicePrxI.java
  servicios._VentaServicePrxI
 servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
-MessageBroker.java
- MessageBroker
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1
 servicios/ProxyServicePrx.java
  servicios.ProxyServicePrx
 servicios/VentaService.java
@@ -41,13 +42,14 @@ servicios/RecetaService.java
  servicios.RecetaService$1
 servicios/_ProxyServicePrxI.java
  servicios._ProxyServicePrxI
-repository/VentasRepository.java
- repository.VentasRepository
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx
 servicios/Observer.java
  servicios.Observer
  servicios.Observer$1
-model/Alarma.java
- model.Alarma
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1
 servicios/AlarmaService.java
  servicios.AlarmaService
  servicios.AlarmaService$1
@@ -64,11 +66,22 @@ repository/IRepositorio.java
  repository.IRepositorio
 servicios/MapStrIntHelper.java
  servicios.MapStrIntHelper
-servicios/ServicioAbastecimiento.java
- servicios.ServicioAbastecimiento
- servicios.ServicioAbastecimiento$1
-servicios/ServicioComLogisticaPrx.java
- servicios.ServicioComLogisticaPrx
-servicios/ProxyService.java
- servicios.ProxyService
- servicios.ProxyService$1
+MessageBroker.java
+ MessageBroker
+servicios/_MessageBrokerPrxI.java
+ servicios._MessageBrokerPrxI
+servicios/MessageBroker.java
+ servicios.MessageBroker
+ servicios.MessageBroker$1
+servicios/MessageBrokerPrx.java
+ servicios.MessageBrokerPrx
+model/Venta.java
+ model.Venta
+repository/VentasRepository.java
+ repository.VentasRepository
+services/AlarmaServiceBroker.java
+ services.AlarmaServiceBroker
+model/Alarma.java
+ model.Alarma
+services/VentaServiceBroker.java
+ services.VentaServiceBroker

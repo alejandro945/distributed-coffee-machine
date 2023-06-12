@@ -1,5 +1,5 @@
 <state>
-  <timestamp value='1686589962834' />
+  <timestamp value='1686592396555' />
   <sourceSet name='default'>
     <source name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\CoffeMach.ice'>
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\Moneda.java' />
@@ -11,6 +11,7 @@
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\ProxyService.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\Observable.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\Observer.java' />
+      <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\MessageBroker.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\MapStrIntHelper.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\StringSeqHelper.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\ServicioComLogisticaPrx.java' />
@@ -29,6 +30,8 @@
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\_ObservablePrxI.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\ObserverPrx.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\_ObserverPrxI.java' />
+      <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\MessageBrokerPrx.java' />
+      <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\proxyCache\build\generated-src\servicios\_MessageBrokerPrxI.java' />
     </source>
     <arg value='C:\Program Files\ZeroC\Ice-3.7.8\\bin\slice2java.exe' />
     <arg value='-IC:\Program Files\ZeroC\Ice-3.7.8\\slice' />

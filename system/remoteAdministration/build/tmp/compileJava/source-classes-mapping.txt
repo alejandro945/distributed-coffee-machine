@@ -110,3 +110,10 @@ servicios/MapStrIntHelper.java
 servicios/ServicioAbastecimiento.java
  servicios.ServicioAbastecimiento
  servicios.ServicioAbastecimiento$1
+servicios/_MessageBrokerPrxI.java
+ servicios._MessageBrokerPrxI
+servicios/MessageBroker.java
+ servicios.MessageBroker
+ servicios.MessageBroker$1
+servicios/MessageBrokerPrx.java
+ servicios.MessageBrokerPrx

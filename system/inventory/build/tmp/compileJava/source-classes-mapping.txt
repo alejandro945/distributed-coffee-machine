@@ -82,3 +82,10 @@ servicios/ServicioComLogisticaPrx.java
 servicios/ProxyService.java
  servicios.ProxyService
  servicios.ProxyService$1
+servicios/_MessageBrokerPrxI.java
+ servicios._MessageBrokerPrxI
+servicios/MessageBroker.java
+ servicios.MessageBroker
+ servicios.MessageBroker$1
+servicios/MessageBrokerPrx.java
+ servicios.MessageBrokerPrx

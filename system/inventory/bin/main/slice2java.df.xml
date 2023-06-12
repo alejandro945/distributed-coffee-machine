@@ -1,7 +1,8 @@
 <state>
-  <timestamp value='1686592394792' />
+  <timestamp value='1686610149816' />
   <sourceSet name='default'>
     <source name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\CoffeMach.ice'>
+      <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\inventory\build\generated-src\servicios\Alarma.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\inventory\build\generated-src\servicios\Moneda.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\inventory\build\generated-src\servicios\ServicioComLogistica.java' />
       <file name='D:\Gabriel Suarez\Desktop\University\Semestre 7\Arquitectura de Software\DespliegueMQ\distributed-coffee-machine\system\inventory\build\generated-src\servicios\ServicioAbastecimiento.java' />

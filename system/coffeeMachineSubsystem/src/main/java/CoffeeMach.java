@@ -15,7 +15,7 @@ public class CoffeeMach {
       ObjectAdapter adapter = communicator.createObjectAdapter("CoffeMach");
 
       // Ice Services
-      AlarmaServicePrx alarmaS = AlarmaServicePrx.checkedCast(communicator.propertyToProxy("alarmas")).ice_twoway();
+      MessageBrokerPrx alarmaS = MessageBrokerPrx.checkedCast(communicator.propertyToProxy("alarmas")).ice_twoway();
       VentaServicePrx ventas = VentaServicePrx.checkedCast(communicator.propertyToProxy("ventas")).ice_twoway();
       ProxyServicePrx proxyServicePrx = ProxyServicePrx.checkedCast(communicator.propertyToProxy("proxy")).ice_twoway();
       ObserverPrx observerServicePrx = ObserverPrx.checkedCast(communicator.propertyToProxy("observer")).ice_twoway();
@@ -23,9 +23,10 @@ public class CoffeeMach {
       // Controller
       ControladorMQ controller = new ControladorMQ(proxyServicePrx, ventas, alarmaS);
       controller.run();
-      
+
       // Services
-      ObservablePrx observablePrx = ObservablePrx.uncheckedCast(adapter.add(new ObservableService(controller), Util.stringToIdentity("observable")));
+      ObservablePrx observablePrx = ObservablePrx
+          .uncheckedCast(adapter.add(new ObservableService(controller), Util.stringToIdentity("observable")));
       observerServicePrx.attach(observablePrx);
 
       // Add services to adapter

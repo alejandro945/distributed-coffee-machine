@@ -17,61 +17,60 @@ package servicios;
 
 public interface MessageBrokerPrx extends com.zeroc.Ice.ObjectPrx
 {
-    default String[] alarmas()
+    default void queueAlarma(Alarma am)
     {
-        return alarmas(com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        queueAlarma(am, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default String[] alarmas(java.util.Map<String, String> context)
+    default void queueAlarma(Alarma am, java.util.Map<String, String> context)
     {
-        return _iceI_alarmasAsync(context, true).waitForResponse();
+        _iceI_queueAlarmaAsync(am, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<String[]> alarmasAsync()
+    default java.util.concurrent.CompletableFuture<Void> queueAlarmaAsync(Alarma am)
     {
-        return _iceI_alarmasAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_queueAlarmaAsync(am, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<String[]> alarmasAsync(java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> queueAlarmaAsync(Alarma am, java.util.Map<String, String> context)
     {
-        return _iceI_alarmasAsync(context, false);
+        return _iceI_queueAlarmaAsync(am, context, false);
     }
 
     /**
      * @hidden
+     * @param iceP_am -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<String[]> _iceI_alarmasAsync(java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_queueAlarmaAsync(Alarma iceP_am, java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<String[]> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "alarmas", null, sync, null);
-        f.invoke(true, context, null, null, istr -> {
-                     String[] ret;
-                     ret = istr.readStringSeq();
-                     return ret;
-                 });
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "queueAlarma", null, sync, null);
+        f.invoke(false, context, null, ostr -> {
+                     Alarma.ice_write(ostr, iceP_am);
+                 }, null);
         return f;
     }
 
-    default String[] ventas()
+    default boolean acknowledge()
     {
-        return ventas(com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        return acknowledge(com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default String[] ventas(java.util.Map<String, String> context)
+    default boolean acknowledge(java.util.Map<String, String> context)
     {
-        return _iceI_ventasAsync(context, true).waitForResponse();
+        return _iceI_acknowledgeAsync(context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<String[]> ventasAsync()
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> acknowledgeAsync()
     {
-        return _iceI_ventasAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_acknowledgeAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<String[]> ventasAsync(java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> acknowledgeAsync(java.util.Map<String, String> context)
     {
-        return _iceI_ventasAsync(context, false);
+        return _iceI_acknowledgeAsync(context, false);
     }
 
     /**
@@ -80,12 +79,12 @@ public interface MessageBrokerPrx extends com.zeroc.Ice.ObjectPrx
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<String[]> _iceI_ventasAsync(java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_acknowledgeAsync(java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<String[]> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "ventas", null, sync, null);
+        com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "acknowledge", null, sync, null);
         f.invoke(true, context, null, null, istr -> {
-                     String[] ret;
-                     ret = istr.readStringSeq();
+                     boolean ret;
+                     ret = istr.readBool();
                      return ret;
                  });
         return f;

@@ -8,6 +8,14 @@ module servicios{
     ["java:serializable:java.util.Date"]
     sequence<byte> Date;
 
+    struct Alarma {
+      int idAlarma;
+      int codMaquina;
+      int externalType;
+      bool isTerminated;
+      string message;
+    }
+
     enum Moneda{
       CIEN, DOCIENTOS, QUINIENTOS
     }
@@ -61,7 +69,7 @@ module servicios{
     }
 
     interface MessageBroker{
-      StringArr alarmas();
-      StringArr ventas();
+      void queueAlarma(Alarma am);
+      bool acknowledge();    
     }
 }

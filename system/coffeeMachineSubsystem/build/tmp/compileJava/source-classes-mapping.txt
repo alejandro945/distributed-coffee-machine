@@ -1,27 +1,18 @@
-model/Receta.java
- model.Receta
-CoffeeMach.java
- CoffeeMach
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1
 interfaces/IAlarma.java
  interfaces.IAlarma
-servicios/RecetaServicePrx.java
- servicios.RecetaServicePrx
 servicios/_ServicioAbastecimientoPrxI.java
  servicios._ServicioAbastecimientoPrxI
 servicios/_ObservablePrxI.java
  servicios._ObservablePrxI
 servicios/_AlarmaServicePrxI.java
  servicios._AlarmaServicePrxI
-servicios/_ServicioComLogisticaPrxI.java
- servicios._ServicioComLogisticaPrxI
-model/Venta.java
- model.Venta
 servicios/ObserverPrx.java
  servicios.ObserverPrx
 servicios/_VentaServicePrxI.java
  servicios._VentaServicePrxI
-servicios/ServicioAbastecimientoPrx.java
- servicios.ServicioAbastecimientoPrx
 servicios/ProxyServicePrx.java
  servicios.ProxyServicePrx
 servicios/VentaService.java
@@ -29,14 +20,8 @@ servicios/VentaService.java
  servicios.VentaService$1
 ui/Interfaz.java
  ui.Interfaz
-repository/MonedasRepositorio.java
- repository.MonedasRepositorio
 servicios/_RecetaServicePrxI.java
  servicios._RecetaServicePrxI
-servicios/Moneda.java
- servicios.Moneda
-service/VentaService.java
- service.VentaService
 servicios/_ObserverPrxI.java
  servicios._ObserverPrxI
 repository/RecetaRepositorio.java
@@ -44,8 +29,6 @@ repository/RecetaRepositorio.java
 servicios/ServicioComLogistica.java
  servicios.ServicioComLogistica
  servicios.ServicioComLogistica$1
-servicios/AlarmaServicePrx.java
- servicios.AlarmaServicePrx
 service/SuministroService.java
  service.SuministroService
 repository/AlarmaRepositorio.java
@@ -55,6 +38,70 @@ servicios/ObservablePrx.java
 servicios/RecetaService.java
  servicios.RecetaService
  servicios.RecetaService$1
+servicios/Alarma.java
+ servicios.Alarma
+model/Ingrediente.java
+ model.Ingrediente
+servicios/Observer.java
+ servicios.Observer
+ servicios.Observer$1
+model/Alarma.java
+ model.Alarma
+servicios/AlarmaService.java
+ servicios.AlarmaService
+ servicios.AlarmaService$1
+model/DepositoMonedas.java
+ model.DepositoMonedas
+servicios/StringSeqHelper.java
+ servicios.StringSeqHelper
+interfaces/IIngrediente.java
+ interfaces.IIngrediente
+interfaces/ISuministro.java
+ interfaces.ISuministro
+servicios/Observable.java
+ servicios.Observable
+ servicios.Observable$1
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1
+model/Receta.java
+ model.Receta
+servicios/RecetaServicePrx.java
+ servicios.RecetaServicePrx
+servicios/_ServicioComLogisticaPrxI.java
+ servicios._ServicioComLogisticaPrxI
+model/Venta.java
+ model.Venta
+servicios/ServicioAbastecimientoPrx.java
+ servicios.ServicioAbastecimientoPrx
+servicios/MapStrIntHelper.java
+ servicios.MapStrIntHelper
+repository/MonedasRepositorio.java
+ repository.MonedasRepositorio
+servicios/Moneda.java
+ servicios.Moneda
+service/VentaService.java
+ service.VentaService
+servicios/AlarmaServicePrx.java
+ servicios.AlarmaServicePrx
+servicios/VentaServicePrx.java
+ servicios.VentaServicePrx
+servicios/_ProxyServicePrxI.java
+ servicios._ProxyServicePrxI
+repository/VentaRepositorio.java
+ repository.VentaRepositorio
+service/AlarmaService.java
+ service.AlarmaService
+interfaces/IRepositorio.java
+ interfaces.IRepositorio
+repository/IngredienteRepositorio.java
+ repository.IngredienteRepositorio
+servicios/_MessageBrokerPrxI.java
+ servicios._MessageBrokerPrxI
+CoffeeMach.java
+ CoffeeMach
 controller/ControladorMQ.java
  controller.ControladorMQ
  controller.ControladorMQ$1
@@ -66,55 +113,10 @@ controller/ControladorMQ.java
  controller.ControladorMQ$7
  controller.ControladorMQ$8
  controller.ControladorMQ$9
-servicios/_ProxyServicePrxI.java
- servicios._ProxyServicePrxI
-service/AlarmaService.java
- service.AlarmaService
-interfaces/IRepositorio.java
- interfaces.IRepositorio
-servicios/Observer.java
- servicios.Observer
- servicios.Observer$1
-model/Alarma.java
- model.Alarma
-servicios/AlarmaService.java
- servicios.AlarmaService
- servicios.AlarmaService$1
-repository/IngredienteRepositorio.java
- repository.IngredienteRepositorio
-model/DepositoMonedas.java
- model.DepositoMonedas
-servicios/StringSeqHelper.java
- servicios.StringSeqHelper
-servicios/VentaServicePrx.java
- servicios.VentaServicePrx
-model/Ingrediente.java
- model.Ingrediente
-interfaces/IIngrediente.java
- interfaces.IIngrediente
-interfaces/ISuministro.java
- interfaces.ISuministro
-repository/VentaRepositorio.java
- repository.VentaRepositorio
-servicios/Observable.java
- servicios.Observable
- servicios.Observable$1
-service/ObservableService.java
- service.ObservableService
-servicios/ServicioAbastecimiento.java
- servicios.ServicioAbastecimiento
- servicios.ServicioAbastecimiento$1
-servicios/MapStrIntHelper.java
- servicios.MapStrIntHelper
-servicios/ServicioComLogisticaPrx.java
- servicios.ServicioComLogisticaPrx
-servicios/ProxyService.java
- servicios.ProxyService
- servicios.ProxyService$1
-servicios/_MessageBrokerPrxI.java
- servicios._MessageBrokerPrxI
 servicios/MessageBroker.java
  servicios.MessageBroker
  servicios.MessageBroker$1
 servicios/MessageBrokerPrx.java
  servicios.MessageBrokerPrx
+service/ObservableService.java
+ service.ObservableService

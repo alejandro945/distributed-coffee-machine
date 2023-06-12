@@ -21,12 +21,12 @@ public class ServidorCentral {
             // Adapter
             ObjectAdapter adapter = communicator.createObjectAdapter("Server");
 
-            //Repositories that implements services better decoupling
+            // Repositories that implements services better decoupling
             ServerControl control = new ServerControl(communicator);
             ProductoReceta recetas = new ProductoReceta(communicator);
             VentasManager ventas = new VentasManager(communicator);
-            
-            //Services
+
+            // Services
             ObserverService observerService = new ObserverService(recetas);
             AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator));
 
@@ -39,8 +39,8 @@ public class ServidorCentral {
             adapter.add(alarma, Util.stringToIdentity("Alarmas"));
             adapter.add(ventas, Util.stringToIdentity("Ventas"));
             adapter.add(log, Util.stringToIdentity("logistica"));
-            adapter.add(recetas, Util.stringToIdentity("Recetas"));//Conection with proxy
-            adapter.add(observerService, Util.stringToIdentity("Observer")); //Conection with pub-sub
+            adapter.add(recetas, Util.stringToIdentity("Recetas"));// Conection with proxy
+            adapter.add(observerService, Util.stringToIdentity("Observer")); // Conection with pub-sub
 
             // Activate adapter
             adapter.activate();

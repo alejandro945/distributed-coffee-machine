@@ -16,6 +16,9 @@ servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
 servicios/ProxyServicePrx.java
  servicios.ProxyServicePrx
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1
 servicios/VentaService.java
  servicios.VentaService
  servicios.VentaService$1
@@ -35,10 +38,17 @@ servicios/ObservablePrx.java
 servicios/RecetaService.java
  servicios.RecetaService
  servicios.RecetaService$1
+servicios/Alarma.java
+ servicios.Alarma
 servicios/_ProxyServicePrxI.java
  servicios._ProxyServicePrxI
 CmLogistics.java
  CmLogistics
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1
 servicios/Observer.java
  servicios.Observer
  servicios.Observer$1
@@ -54,14 +64,6 @@ servicios/Observable.java
  servicios.Observable$1
 servicios/MapStrIntHelper.java
  servicios.MapStrIntHelper
-servicios/ServicioAbastecimiento.java
- servicios.ServicioAbastecimiento
- servicios.ServicioAbastecimiento$1
-servicios/ServicioComLogisticaPrx.java
- servicios.ServicioComLogisticaPrx
-servicios/ProxyService.java
- servicios.ProxyService
- servicios.ProxyService$1
 servicios/_MessageBrokerPrxI.java
  servicios._MessageBrokerPrxI
 servicios/MessageBroker.java

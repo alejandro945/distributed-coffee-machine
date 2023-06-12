@@ -2,43 +2,48 @@ package repository;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public abstract class IRepositorio<K extends Serializable, T extends Serializable> implements Serializable {
+public abstract class IRepositorio<T extends Serializable, > implements Serializable {
 
-    private HashMap<K, T> elements;
+    private List<T> list;
+
+    private int code;
+    private int externalType;
+
     private String name;
 
     public IRepositorio(String name) {
-        elements = new HashMap<>();
+        this.list = new ArrayList<>();
         this.name = name;
         loadData();
     }
 
-    /**
-     * note que este metodo tambien sirve para setear el valor de un elemento cuando
-     * k ya esta en la hashmap.
-     */
-    public void addElement(K key, T element) {
-        elements.put(key, element);
-        this.saveData();
+    public void add(T element) {
+        list.add(element);
+        saveData();
     }
 
-    public void removeElement(K key) {
-        elements.remove(key);
+    public void remove(T element) {
+        list.remove(element);
+        saveData();
     }
 
-    public HashMap<K, T> getElements() {
-        return elements;
+    public void setElements(List<T> elements) {
+        this.list = elements;
     }
 
-    public void setElements(HashMap<K, T> elements) {
-        this.elements = elements;
+    public List<T> getElements() {
+        return list;
     }
 
-    public T findByKey(K key) {
-
-        return elements.get(key);
-
+    public T getElement(int codMaquina, int externalType) {
+        for (T element : list) {
+            if (element.getCodMaquina() == codMaquina && element.getExternalType() == externalType) {
+                return element;
+            }
+        }
+        return null;
     }
 
     public void saveData() {
@@ -58,19 +63,6 @@ public abstract class IRepositorio<K extends Serializable, T extends Serializabl
         }
     }
 
-    public List<T> getValues() {
-        return new ArrayList<>(elements.values());
-    }
-
-    public List<K> getkeys() {
-        List<K> answer = new ArrayList<>();
-        Iterator<K> keys = elements.keySet().iterator();
-        while (keys.hasNext()) {
-            answer.add(keys.next());
-        }
-        return answer;
-    }
-
     @SuppressWarnings("unchecked")
     public void loadData() {
         FileInputStream fis;
@@ -84,8 +76,8 @@ public abstract class IRepositorio<K extends Serializable, T extends Serializabl
             fis = new FileInputStream(f);
             ObjectInputStream oos = new ObjectInputStream(fis);
             Object ois = oos.readObject();
-            IRepositorio<K, T> md = (IRepositorio<K, T>) ois;
-            this.setElements(md.getElements());
+            IRepositorio<T> md = (IRepositorio<T>) ois;
+            this.setElements(md.getQueue());
             oos.close();
         } catch (Exception e) {
             System.err.println("Error al cargar AlarmaRepositorio");

@@ -38,6 +38,10 @@ service/ObserverService.java
  service.ObserverService
 servicios/ObservablePrx.java
  servicios.ObservablePrx
+servicios/Alarma.java
+ servicios.Alarma
+servicios/MessageBrokerPrx.java
+ servicios.MessageBrokerPrx
 servicios/Observer.java
  servicios.Observer
  servicios.Observer$1
@@ -80,6 +84,8 @@ servicios/_ServicioComLogisticaPrxI.java
  servicios._ServicioComLogisticaPrxI
 servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
+servicios/_MessageBrokerPrxI.java
+ servicios._MessageBrokerPrxI
 servicios/Moneda.java
  servicios.Moneda
 ServidorCentral.java
@@ -93,6 +99,9 @@ servicios/AlarmaServicePrx.java
  servicios.AlarmaServicePrx
 servicios/_ProxyServicePrxI.java
  servicios._ProxyServicePrxI
+servicios/MessageBroker.java
+ servicios.MessageBroker
+ servicios.MessageBroker$1
 ui/InterfazRecetas.java
  ui.InterfazRecetas
 model/AsignacionMaquina.java
@@ -110,10 +119,3 @@ servicios/MapStrIntHelper.java
 servicios/ServicioAbastecimiento.java
  servicios.ServicioAbastecimiento
  servicios.ServicioAbastecimiento$1
-servicios/_MessageBrokerPrxI.java
- servicios._MessageBrokerPrxI
-servicios/MessageBroker.java
- servicios.MessageBroker
- servicios.MessageBroker$1
-servicios/MessageBrokerPrx.java
- servicios.MessageBrokerPrx

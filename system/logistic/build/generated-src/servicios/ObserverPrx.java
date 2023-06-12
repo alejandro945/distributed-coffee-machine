@@ -17,38 +17,38 @@ package servicios;
 
 public interface ObserverPrx extends com.zeroc.Ice.ObjectPrx
 {
-    default boolean attach(ObservablePrx machine)
+    default boolean attach(ObservablePrx subscriber)
     {
-        return attach(machine, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        return attach(subscriber, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default boolean attach(ObservablePrx machine, java.util.Map<String, String> context)
+    default boolean attach(ObservablePrx subscriber, java.util.Map<String, String> context)
     {
-        return _iceI_attachAsync(machine, context, true).waitForResponse();
+        return _iceI_attachAsync(subscriber, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> attachAsync(ObservablePrx machine)
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> attachAsync(ObservablePrx subscriber)
     {
-        return _iceI_attachAsync(machine, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_attachAsync(subscriber, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> attachAsync(ObservablePrx machine, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> attachAsync(ObservablePrx subscriber, java.util.Map<String, String> context)
     {
-        return _iceI_attachAsync(machine, context, false);
+        return _iceI_attachAsync(subscriber, context, false);
     }
 
     /**
      * @hidden
-     * @param iceP_machine -
+     * @param iceP_subscriber -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_attachAsync(ObservablePrx iceP_machine, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_attachAsync(ObservablePrx iceP_subscriber, java.util.Map<String, String> context, boolean sync)
     {
         com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "attach", null, sync, null);
         f.invoke(true, context, null, ostr -> {
-                     ostr.writeProxy(iceP_machine);
+                     ostr.writeProxy(iceP_subscriber);
                  }, istr -> {
                      boolean ret;
                      ret = istr.readBool();
@@ -57,43 +57,36 @@ public interface ObserverPrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
-    default String[] getUpdate(String key)
+    default void _notifyAll()
     {
-        return getUpdate(key, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        _notifyAll(com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default String[] getUpdate(String key, java.util.Map<String, String> context)
+    default void _notifyAll(java.util.Map<String, String> context)
     {
-        return _iceI_getUpdateAsync(key, context, true).waitForResponse();
+        _iceI_notifyAllAsync(context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<String[]> getUpdateAsync(String key)
+    default java.util.concurrent.CompletableFuture<Void> notifyAllAsync()
     {
-        return _iceI_getUpdateAsync(key, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_notifyAllAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<String[]> getUpdateAsync(String key, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> notifyAllAsync(java.util.Map<String, String> context)
     {
-        return _iceI_getUpdateAsync(key, context, false);
+        return _iceI_notifyAllAsync(context, false);
     }
 
     /**
      * @hidden
-     * @param iceP_key -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<String[]> _iceI_getUpdateAsync(String iceP_key, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_notifyAllAsync(java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<String[]> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "getUpdate", null, sync, null);
-        f.invoke(true, context, null, ostr -> {
-                     ostr.writeString(iceP_key);
-                 }, istr -> {
-                     String[] ret;
-                     ret = istr.readStringSeq();
-                     return ret;
-                 });
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "notifyAll", null, sync, null);
+        f.invoke(false, context, null, null, null);
         return f;
     }
 

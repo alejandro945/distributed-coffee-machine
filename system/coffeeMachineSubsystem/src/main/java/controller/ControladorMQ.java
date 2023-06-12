@@ -352,37 +352,10 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 		return null;
 	}
 
-	/**
-	 * This method in next version will be call automatally when pub and sub
-	 * component
-	 * notify a change in the data of recipes
-	 */
-	public Boolean cargarRecetaMaquinas() {
+	public void updateRecipes(String[] data) {
+		for (int i = 0; i < data.length; i++) {
 
-		System.out.println("Varela Sapa hpta");
-
-		recetas.setElements(new HashMap<String, Receta>());
-		long start = System.currentTimeMillis();
-		String[] recetasServer = proxyServicePrx.consultarProductosProxy();
-		long end = System.currentTimeMillis();
-		System.out.println("Tiempo de ejecucion: " + (end - start) + "ms");
-
-		/*
-		 * System.out.println(proxyServicePrx.consultarIngredientesProxy().length);
-		 * System.out.println(proxyServicePrx.consultarIngredientesProxy()[0]);
-		 * 
-		 * System.out.println(proxyServicePrx.consultarProductosProxy().length);
-		 * System.out.println(proxyServicePrx.consultarProductosProxy()[0]);
-		 * 
-		 * System.out.println(proxyServicePrx.consultarRecetasProxy().length);
-		 * System.out.println(proxyServicePrx.consultarRecetasProxy()[0]);
-		 * 
-		 * System.out.println("Tiempo de ejecucion: " + (end - start) + "ms");
-		 */
-
-		for (int i = 0; i < recetasServer.length; i++) {
-
-			String[] splitInicial = recetasServer[i].split("#");
+			String[] splitInicial = data[i].split("#");
 
 			String[] receta = splitInicial[0].split("-");
 
@@ -411,6 +384,35 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 		actualizarInsumosGraf();
 		actualizarRecetasGraf();
 		actualizarRecetasCombo();
+	}
+
+	/**
+	 * Method Manual for get recipes from proxy cache
+	 */
+	public Boolean cargarRecetaMaquinas() {
+
+		System.out.println("Varela Sapa hpta");
+
+		recetas.setElements(new HashMap<String, Receta>());
+		long start = System.currentTimeMillis();
+		String[] recetasServer = proxyServicePrx.consultarProductosProxy();
+		long end = System.currentTimeMillis();
+		System.out.println("Tiempo de ejecucion: " + (end - start) + "ms");
+		
+		updateRecipes(recetasServer);
+		/*
+		 * System.out.println(proxyServicePrx.consultarIngredientesProxy().length);
+		 * System.out.println(proxyServicePrx.consultarIngredientesProxy()[0]);
+		 * 
+		 * System.out.println(proxyServicePrx.consultarProductosProxy().length);
+		 * System.out.println(proxyServicePrx.consultarProductosProxy()[0]);
+		 * 
+		 * System.out.println(proxyServicePrx.consultarRecetasProxy().length);
+		 * System.out.println(proxyServicePrx.consultarRecetasProxy()[0]);
+		 * 
+		 * System.out.println("Tiempo de ejecucion: " + (end - start) + "ms");
+		 */
+
 		return true;
 	}
 

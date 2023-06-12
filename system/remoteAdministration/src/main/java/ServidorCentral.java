@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 import com.zeroc.Ice.*;
-import comunicacion.*;
-import interfaz.ControladorRecetas;
-import receta.ObserverService;
-import receta.ProductoReceta;
+
+import repository.AlarmasManager;
+import repository.ProductoReceta;
+import repository.ServerControl;
+import repository.VentasManager;
+import service.AlarmaServiceImp;
+import service.ObserverService;
 import servicios.*;
-import ventas.VentasManager;
-import ServerControl.*;
-import alarma.Alarma;
-import alarma.AlarmasManager;
+import controller.ControlComLogistica;
+import controller.ControladorRecetas;
 
 public class ServidorCentral {
 
@@ -17,36 +18,33 @@ public class ServidorCentral {
         List<String> params = new ArrayList<>();
         try (Communicator communicator = Util.initialize(args, "server.cfg", params)) {
 
-            System.out.println("Servidor Central Iniciado");
-
+            // Adapter
             ObjectAdapter adapter = communicator.createObjectAdapter("Server");
 
+            //Repositories that implements services better decoupling
             ServerControl control = new ServerControl(communicator);
-
-            ServicioComLogistica log = new ControlComLogistica(control);
-
-            Alarma alarma = new Alarma(new AlarmasManager(communicator));
-
-            ProductoReceta recetas = new ProductoReceta();
-            recetas.setCommunicator(communicator);
-
-            VentasManager ventas = new VentasManager();
-            ventas.setCommunicator(communicator);
-
+            ProductoReceta recetas = new ProductoReceta(communicator);
+            VentasManager ventas = new VentasManager(communicator);
+            
+            //Services
             ObserverService observerService = new ObserverService(recetas);
+            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator));
 
+            // Controllers
+            ServicioComLogistica log = new ControlComLogistica(control);
             ControladorRecetas controladorRecetas = new ControladorRecetas(recetas, observerService);
             controladorRecetas.run();
 
+            // Add services to adapter
             adapter.add(alarma, Util.stringToIdentity("Alarmas"));
             adapter.add(ventas, Util.stringToIdentity("Ventas"));
             adapter.add(log, Util.stringToIdentity("logistica"));
-            adapter.add(recetas, Util.stringToIdentity("Recetas"));
-            adapter.add(observerService, Util.stringToIdentity("Observer"));
+            adapter.add(recetas, Util.stringToIdentity("Recetas"));//Conection with proxy
+            adapter.add(observerService, Util.stringToIdentity("Observer")); //Conection with pub-sub
 
+            // Activate adapter
             adapter.activate();
             communicator.waitForShutdown();
-
         }
     }
 }

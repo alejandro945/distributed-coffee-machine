@@ -6,18 +6,18 @@ import servicios.Observable;
 
 public class ObservableService implements Observable {
 
+    private CacheService cacheService;
     private ObserverService observerService;
 
-    public ObservableService(ObserverService observerService) {
+   public ObservableService(CacheService cacheService, ObserverService observerService) {
+        this.cacheService = cacheService;
         this.observerService = observerService;
     }
 
     @Override
-    public boolean noti(Current current) {
-        boolean out = true;
-        for (int i = 0; i < observerService.getObservables().size() && out; i++) {
-            out = observerService.getObservables().get(i).noti();
-        }
-        return out;
+    public void update(String[] data, Current current) {
+        System.out.println("ObservableService.update - Server · Data: " + data);
+        cacheService.putElementInCache("product", data);
+        observerService._notifyAll(current);
     }
 }

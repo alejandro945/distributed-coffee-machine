@@ -14,8 +14,9 @@ public class ObservableService implements Observable {
     }
 
     @Override
-    public boolean noti(Current current) {
-        return controladorMQ.cargarRecetaMaquinas();
+    public void update(String[] data, Current current) {
+        System.out.println("ObservableService.update  - Proxy · Data: " + data);
+        controladorMQ.cargarRecetaMaquinas();
     }
 
 }

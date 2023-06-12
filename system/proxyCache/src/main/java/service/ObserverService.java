@@ -22,18 +22,18 @@ public class ObserverService implements Observer {
 
     @Override
     public boolean attach(ObservablePrx machine, Current current) {
+        System.out.println("ObserverService.attach - Client: " + machine);
         if (machine == null)
             return false;
+        System.out.println("Size of machines observables" + observables.size());
         observables.add(machine);
         return true;
     }
 
-    @Override
-    public String[] getUpdate(String key, Current current) {
+    public String[] getFromCache(String key) {
         if (cacheService.getElementFromCache(key) != null) {
             return cacheService.getCache().getIfPresent(key);
         }
-
         if (key == "product") {
             cacheService.putElementInCache(key, recetaServicePrx.consultarProductos());
             return recetaServicePrx.consultarProductos();
@@ -46,7 +46,10 @@ public class ObserverService implements Observer {
         }
     }
 
-    public ArrayList<ObservablePrx> getObservables() {
-        return observables;
+    @Override
+    public void _notifyAll(Current current) {
+        for (int i = 0; i < observables.size(); i++) {
+            observables.get(i).update(getFromCache("product"));;
+        }
     }
 }

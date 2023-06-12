@@ -17,9 +17,9 @@ package servicios;
 
 public interface Observer extends com.zeroc.Ice.Object
 {
-    boolean attach(ObservablePrx machine, com.zeroc.Ice.Current current);
+    boolean attach(ObservablePrx subscriber, com.zeroc.Ice.Current current);
 
-    String[] getUpdate(String key, com.zeroc.Ice.Current current);
+    void _notifyAll(com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -56,10 +56,10 @@ public interface Observer extends com.zeroc.Ice.Object
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();
-        ObservablePrx iceP_machine;
-        iceP_machine = ObservablePrx.uncheckedCast(istr.readProxy());
+        ObservablePrx iceP_subscriber;
+        iceP_subscriber = ObservablePrx.uncheckedCast(istr.readProxy());
         inS.endReadParams();
-        boolean ret = obj.attach(iceP_machine, current);
+        boolean ret = obj.attach(iceP_subscriber, current);
         com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
         ostr.writeBool(ret);
         inS.endWriteParams(ostr);
@@ -73,29 +73,23 @@ public interface Observer extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getUpdate(Observer obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_notifyAll(Observer obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
-        com.zeroc.Ice.InputStream istr = inS.startReadParams();
-        String iceP_key;
-        iceP_key = istr.readString();
-        inS.endReadParams();
-        String[] ret = obj.getUpdate(iceP_key, current);
-        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
-        ostr.writeStringSeq(ret);
-        inS.endWriteParams(ostr);
-        return inS.setResult(ostr);
+        inS.readEmptyParams();
+        obj._notifyAll(current);
+        return inS.setResult(inS.writeEmptyParams());
     }
 
     /** @hidden */
     final static String[] _iceOps =
     {
         "attach",
-        "getUpdate",
         "ice_id",
         "ice_ids",
         "ice_isA",
-        "ice_ping"
+        "ice_ping",
+        "notifyAll"
     };
 
     /** @hidden */
@@ -117,23 +111,23 @@ public interface Observer extends com.zeroc.Ice.Object
             }
             case 1:
             {
-                return _iceD_getUpdate(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 2:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 3:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
             }
             case 4:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
             case 5:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
+                return _iceD_notifyAll(this, in, current);
             }
         }
 

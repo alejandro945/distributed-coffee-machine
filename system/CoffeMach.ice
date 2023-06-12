@@ -52,11 +52,11 @@ module servicios{
     }
 
     interface Observable{
-      bool noti();
+      void update(StringArr data);
     }
 
     interface Observer{
-      bool attach(Observable* machine);
-      StringArr getUpdate(string key);
+      bool attach(Observable* subscriber);
+      void notifyAll();
     }
 }

@@ -17,40 +17,39 @@ package servicios;
 
 public interface ObservablePrx extends com.zeroc.Ice.ObjectPrx
 {
-    default boolean noti()
+    default void update(String[] data)
     {
-        return noti(com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        update(data, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default boolean noti(java.util.Map<String, String> context)
+    default void update(String[] data, java.util.Map<String, String> context)
     {
-        return _iceI_notiAsync(context, true).waitForResponse();
+        _iceI_updateAsync(data, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> notiAsync()
+    default java.util.concurrent.CompletableFuture<Void> updateAsync(String[] data)
     {
-        return _iceI_notiAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_updateAsync(data, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> notiAsync(java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> updateAsync(String[] data, java.util.Map<String, String> context)
     {
-        return _iceI_notiAsync(context, false);
+        return _iceI_updateAsync(data, context, false);
     }
 
     /**
      * @hidden
+     * @param iceP_data -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_notiAsync(java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_updateAsync(String[] iceP_data, java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "noti", null, sync, null);
-        f.invoke(true, context, null, null, istr -> {
-                     boolean ret;
-                     ret = istr.readBool();
-                     return ret;
-                 });
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "update", null, sync, null);
+        f.invoke(false, context, null, ostr -> {
+                     ostr.writeStringSeq(iceP_data);
+                 }, null);
         return f;
     }
 

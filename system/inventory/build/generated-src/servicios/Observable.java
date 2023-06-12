@@ -17,7 +17,7 @@ package servicios;
 
 public interface Observable extends com.zeroc.Ice.Object
 {
-    boolean noti(com.zeroc.Ice.Current current);
+    void update(String[] data, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -50,15 +50,15 @@ public interface Observable extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_noti(Observable obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_update(Observable obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
-        inS.readEmptyParams();
-        boolean ret = obj.noti(current);
-        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
-        ostr.writeBool(ret);
-        inS.endWriteParams(ostr);
-        return inS.setResult(ostr);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        String[] iceP_data;
+        iceP_data = istr.readStringSeq();
+        inS.endReadParams();
+        obj.update(iceP_data, current);
+        return inS.setResult(inS.writeEmptyParams());
     }
 
     /** @hidden */
@@ -68,7 +68,7 @@ public interface Observable extends com.zeroc.Ice.Object
         "ice_ids",
         "ice_isA",
         "ice_ping",
-        "noti"
+        "update"
     };
 
     /** @hidden */
@@ -102,7 +102,7 @@ public interface Observable extends com.zeroc.Ice.Object
             }
             case 4:
             {
-                return _iceD_noti(this, in, current);
+                return _iceD_update(this, in, current);
             }
         }
 

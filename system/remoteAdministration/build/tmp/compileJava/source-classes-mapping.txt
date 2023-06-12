@@ -1,112 +1,112 @@
+service/AlarmaServiceImp.java
+ service.AlarmaServiceImp
+ service.AlarmaServiceImp$1
 servicios/_ServicioAbastecimientoPrxI.java
  servicios._ServicioAbastecimientoPrxI
 servicios/_ObservablePrxI.java
  servicios._ObservablePrxI
-alarma/Alarma.java
- alarma.Alarma
- alarma.Alarma$1
 servicios/_AlarmaServicePrxI.java
  servicios._AlarmaServicePrxI
-ServerControl/ServerControl.java
- ServerControl.ServerControl
-modelo/AlarmaMaquina.java
- modelo.AlarmaMaquina
+model/ConexionBD.java
+ model.ConexionBD
 servicios/ObserverPrx.java
  servicios.ObserverPrx
-modelo/Operador.java
- modelo.Operador
 servicios/_VentaServicePrxI.java
  servicios._VentaServicePrxI
-modelo/ManejadorDatos.java
- modelo.ManejadorDatos
-alarma/AlarmasManager.java
- alarma.AlarmasManager
-ventas/VentasManager.java
- ventas.VentasManager
 servicios/ProxyServicePrx.java
  servicios.ProxyServicePrx
 servicios/VentaService.java
  servicios.VentaService
  servicios.VentaService$1
-ServerControl/ConsolaAdministracion.java
- ServerControl.ConsolaAdministracion
 servicios/_RecetaServicePrxI.java
  servicios._RecetaServicePrxI
-modelo/Maquina.java
- modelo.Maquina
+model/VentasMaquina.java
+ model.VentasMaquina
+model/OrdenEntrega.java
+ model.OrdenEntrega
 servicios/_ObserverPrxI.java
  servicios._ObserverPrxI
 servicios/ServicioComLogistica.java
  servicios.ServicioComLogistica
  servicios.ServicioComLogistica$1
+model/AlarmaMaquina.java
+ model.AlarmaMaquina
+service/ObserverService.java
+ service.ObserverService
 servicios/RecetaService.java
  servicios.RecetaService
  servicios.RecetaService$1
 servicios/ObservablePrx.java
  servicios.ObservablePrx
-comunicacion/ControlComLogistica.java
- comunicacion.ControlComLogistica
 servicios/Observer.java
  servicios.Observer
  servicios.Observer$1
-modelo/Receta.java
- modelo.Receta
+model/VentasReceta.java
+ model.VentasReceta
 servicios/AlarmaService.java
  servicios.AlarmaService
  servicios.AlarmaService$1
-receta/ObserverService.java
- receta.ObserverService
+repository/AlarmasManager.java
+ repository.AlarmasManager
+model/Maquina.java
+ model.Maquina
 servicios/StringSeqHelper.java
  servicios.StringSeqHelper
+repository/ProductoReceta.java
+ repository.ProductoReceta
+ui/ConsolaAdministracion.java
+ ui.ConsolaAdministracion
+controller/ControlComLogistica.java
+ controller.ControlComLogistica
 servicios/Observable.java
  servicios.Observable
  servicios.Observable$1
-interfaz/ControladorRecetas.java
- interfaz.ControladorRecetas
- interfaz.ControladorRecetas$1
- interfaz.ControladorRecetas$2
- interfaz.ControladorRecetas$3
+repository/VentasManager.java
+ repository.VentasManager
+model/Operador.java
+ model.Operador
 servicios/ServicioComLogisticaPrx.java
  servicios.ServicioComLogisticaPrx
 servicios/ProxyService.java
  servicios.ProxyService
  servicios.ProxyService$1
+model/Receta.java
+ model.Receta
 servicios/RecetaServicePrx.java
  servicios.RecetaServicePrx
-receta/ProductoReceta.java
- receta.ProductoReceta
+repository/ManejadorDatos.java
+ repository.ManejadorDatos
 servicios/_ServicioComLogisticaPrxI.java
  servicios._ServicioComLogisticaPrxI
-modelo/OrdenEntrega.java
- modelo.OrdenEntrega
 servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
 servicios/Moneda.java
  servicios.Moneda
-servicios/ServicioAbastecimiento.java
- servicios.ServicioAbastecimiento
- servicios.ServicioAbastecimiento$1
+ServidorCentral.java
+ ServidorCentral
+controller/ControladorRecetas.java
+ controller.ControladorRecetas
+ controller.ControladorRecetas$1
+ controller.ControladorRecetas$2
+ controller.ControladorRecetas$3
 servicios/AlarmaServicePrx.java
  servicios.AlarmaServicePrx
 servicios/_ProxyServicePrxI.java
  servicios._ProxyServicePrxI
-interfaz/InterfazRecetas.java
- interfaz.InterfazRecetas
-modelo/Ingrediente.java
- modelo.Ingrediente
-modelo/VentasMaquina.java
- modelo.VentasMaquina
-modelo/AsignacionMaquina.java
- modelo.AsignacionMaquina
-modelo/RecetaIngrediente.java
- modelo.RecetaIngrediente
+ui/InterfazRecetas.java
+ ui.InterfazRecetas
+model/AsignacionMaquina.java
+ model.AsignacionMaquina
+model/Ingrediente.java
+ model.Ingrediente
 servicios/VentaServicePrx.java
  servicios.VentaServicePrx
-modelo/ConexionBD.java
- modelo.ConexionBD
-modelo/VentasReceta.java
- modelo.VentasReceta
+repository/ServerControl.java
+ repository.ServerControl
+model/RecetaIngrediente.java
+ model.RecetaIngrediente
 servicios/MapStrIntHelper.java
  servicios.MapStrIntHelper
-ServidorCentral.java
- ServidorCentral
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1

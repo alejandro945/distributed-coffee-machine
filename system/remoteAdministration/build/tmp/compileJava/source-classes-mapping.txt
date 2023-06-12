@@ -20,10 +20,10 @@ servicios/VentaService.java
  servicios.VentaService$1
 servicios/_RecetaServicePrxI.java
  servicios._RecetaServicePrxI
-model/VentasMaquina.java
- model.VentasMaquina
 model/OrdenEntrega.java
  model.OrdenEntrega
+model/VentasMaquina.java
+ model.VentasMaquina
 servicios/_ObserverPrxI.java
  servicios._ObserverPrxI
 servicios/ServicioComLogistica.java
@@ -31,11 +31,11 @@ servicios/ServicioComLogistica.java
  servicios.ServicioComLogistica$1
 model/AlarmaMaquina.java
  model.AlarmaMaquina
-service/ObserverService.java
- service.ObserverService
 servicios/RecetaService.java
  servicios.RecetaService
  servicios.RecetaService$1
+service/ObserverService.java
+ service.ObserverService
 servicios/ObservablePrx.java
  servicios.ObservablePrx
 servicios/Observer.java
@@ -43,11 +43,11 @@ servicios/Observer.java
  servicios.Observer$1
 model/VentasReceta.java
  model.VentasReceta
+repository/AlarmasManager.java
+ repository.AlarmasManager
 servicios/AlarmaService.java
  servicios.AlarmaService
  servicios.AlarmaService$1
-repository/AlarmasManager.java
- repository.AlarmasManager
 model/Maquina.java
  model.Maquina
 servicios/StringSeqHelper.java
@@ -82,13 +82,11 @@ servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
 servicios/Moneda.java
  servicios.Moneda
-ServidorCentral.java
- ServidorCentral
-controller/ControladorRecetas.java
- controller.ControladorRecetas
- controller.ControladorRecetas$1
- controller.ControladorRecetas$2
- controller.ControladorRecetas$3
+servicios/MapStrIntHelper.java
+ servicios.MapStrIntHelper
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1
 servicios/AlarmaServicePrx.java
  servicios.AlarmaServicePrx
 servicios/_ProxyServicePrxI.java
@@ -105,8 +103,10 @@ repository/ServerControl.java
  repository.ServerControl
 model/RecetaIngrediente.java
  model.RecetaIngrediente
-servicios/MapStrIntHelper.java
- servicios.MapStrIntHelper
-servicios/ServicioAbastecimiento.java
- servicios.ServicioAbastecimiento
- servicios.ServicioAbastecimiento$1
+controller/ControladorRecetas.java
+ controller.ControladorRecetas
+ controller.ControladorRecetas$1
+ controller.ControladorRecetas$2
+ controller.ControladorRecetas$3
+ServidorCentral.java
+ ServidorCentral

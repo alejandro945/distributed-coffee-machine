@@ -34,3 +34,5 @@ echo "send config files to each process node"
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/server.cfg ${maquinas}3:./${path}/libs
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/proxy.cfg ${maquinas}4:./${path}/libs
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/coffeMach.cfg ${maquinas}11:./${path}/libs
+sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/codMaquina.cafe ${maquinas}11:./${path}/libs
+

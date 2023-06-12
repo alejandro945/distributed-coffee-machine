@@ -18,7 +18,7 @@ public class CacheService {
     }
 
     private CacheService() {
-        this.cache = CacheBuilder.newBuilder().maximumSize(10).expireAfterWrite(30, TimeUnit.SECONDS).build();
+        this.cache = CacheBuilder.newBuilder().maximumSize(10).expireAfterWrite(3, TimeUnit.MINUTES).build();
     }
 
     public Cache<String, String[]> getCache() {

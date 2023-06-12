@@ -94,7 +94,7 @@ public class ControladorRecetas implements Runnable {
 					listaReceta.add(listadoRec);
 
 					actualizarVista();
-					observerService.notifyAll();
+					observerService._notifyAll(null);
 				}
 
 				iR.getTextFieldNombreRec().setText("");

@@ -16,7 +16,8 @@ public class ObservableService implements Observable {
     @Override
     public void update(String[] data, Current current) {
         System.out.println("ObservableService.update  - Proxy · Data: " + data);
-        controladorMQ.cargarRecetaMaquinas();
+        // controladorMQ.cargarRecetaMaquinas();
+        controladorMQ.updateRecipes(data);
     }
 
 }

@@ -183,5 +183,5 @@ public class Alarma implements java.lang.Cloneable,
     private static final Alarma _nullMarshalValue = new Alarma();
 
     /** @hidden */
-    public static final long serialVersionUID = -707008221L;
+    public static final long serialVersionUID = 7418159404322384163L;
 }

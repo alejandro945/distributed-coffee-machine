@@ -8,10 +8,10 @@ servicios/_AlarmaServicePrxI.java
  servicios._AlarmaServicePrxI
 servicios/_ServicioComLogisticaPrxI.java
  servicios._ServicioComLogisticaPrxI
-model/Venta.java
- model.Venta
 services/ThreadMessage.java
  services.ThreadMessage
+model/Venta.java
+ model.Venta
 servicios/ObserverPrx.java
  servicios.ObserverPrx
 repository/AlarmaRepository.java
@@ -22,10 +22,10 @@ servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
 MessageBroker.java
  MessageBroker
-servicios/ProxyServicePrx.java
- servicios.ProxyServicePrx
 servicios/_MessageBrokerPrxI.java
  servicios._MessageBrokerPrxI
+servicios/ProxyServicePrx.java
+ servicios.ProxyServicePrx
 servicios/VentaService.java
  servicios.VentaService
  servicios.VentaService$1
@@ -54,10 +54,10 @@ servicios/MessageBroker.java
  servicios.MessageBroker$1
 servicios/MessageBrokerPrx.java
  servicios.MessageBrokerPrx
-repository/VentasRepository.java
- repository.VentasRepository
 services/AlarmaServiceBroker.java
  services.AlarmaServiceBroker
+repository/VentasRepository.java
+ repository.VentasRepository
 servicios/Observer.java
  servicios.Observer
  servicios.Observer$1
@@ -82,6 +82,8 @@ servicios/MapStrIntHelper.java
 servicios/ServicioAbastecimiento.java
  servicios.ServicioAbastecimiento
  servicios.ServicioAbastecimiento$1
+model/AbstractClass.java
+ model.AbstractClass
 servicios/ServicioComLogisticaPrx.java
  servicios.ServicioComLogisticaPrx
 services/VentaServiceBroker.java

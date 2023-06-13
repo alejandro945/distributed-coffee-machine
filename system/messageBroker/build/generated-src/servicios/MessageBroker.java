@@ -19,7 +19,7 @@ public interface MessageBroker extends com.zeroc.Ice.Object
 {
     void queueAlarma(Alarma am, com.zeroc.Ice.Current current);
 
-    boolean acknowledge(com.zeroc.Ice.Current current);
+    boolean acknowledge(int code, int machine, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -73,8 +73,13 @@ public interface MessageBroker extends com.zeroc.Ice.Object
     static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_acknowledge(MessageBroker obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
-        inS.readEmptyParams();
-        boolean ret = obj.acknowledge(current);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        int iceP_code;
+        int iceP_machine;
+        iceP_code = istr.readInt();
+        iceP_machine = istr.readInt();
+        inS.endReadParams();
+        boolean ret = obj.acknowledge(iceP_code, iceP_machine, current);
         com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
         ostr.writeBool(ret);
         inS.endWriteParams(ostr);

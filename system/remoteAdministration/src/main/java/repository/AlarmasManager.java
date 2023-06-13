@@ -15,25 +15,19 @@ public class AlarmasManager {
         this.comunicator = communicator;
     }
 
-    public String alarmaMaquina(int idAlarma, int idMaquina, Date fechainicial) {
+    /**
+     * @param idAlarma alarm type
+     */
+    public int alarmaMaquina(int idAlarma, int idMaquina, Date fechainicial) {
         ConexionBD cbd = new ConexionBD(comunicator);
         cbd.conectarBaseDatos();
         ManejadorDatos md = new ManejadorDatos();
         md.setConexion(cbd.getConnection());
-
-        String alarma = md.darNombreAlarma(idAlarma);
-        String operador = md.darOperador(idMaquina);
-
-        if (alarma != null && operador != null) {
-            AlarmaMaquina aM = new AlarmaMaquina(idAlarma, idMaquina,
-                    fechainicial);
-            md.registrarAlarma(aM);
-            cbd.cerrarConexion();
-            return "Fallo de máquina: " + alarma + " - Atención por:"
-                    + operador;
-        }
+        int concecutivo = 0;
+        AlarmaMaquina aM = new AlarmaMaquina(idAlarma, idMaquina, fechainicial);
+        concecutivo = md.registrarAlarma(aM); // insert en alarma_maquina
         cbd.cerrarConexion();
-        return null;
+        return concecutivo;
     }
 
     public void desactivarAlarma(int idAlarma, int idMaquina, Date fechaFinal) {

@@ -11,7 +11,6 @@ import servicios.Moneda;
 public class AlarmaServiceBroker implements MessageBroker {
 
     private AlarmaRepository alarmaRepository;
-
     private AlarmaServicePrx alarmaServicePrx;
 
     public AlarmaServiceBroker(AlarmaRepository alarmaRepository, AlarmaServicePrx alarmaServicePrx) {
@@ -22,15 +21,17 @@ public class AlarmaServiceBroker implements MessageBroker {
     @Override
     public void queueAlarma(Alarma am, Current current) {
         // Guarda en la capa de persistencia
-        alarmaRepository.enqueue(
-                new model.Alarma(am.idAlarma, am.codMaquina, am.externalType, am.isTerminated, am.message));
+        alarmaRepository.add(new model.Alarma(am.idAlarma, am.codMaquina, am.externalType, am.isTerminated, am.message));
+        // Envía a los consumidores
         sendNotifications(am);
     }
 
     @Override
-    public boolean acknowledge(Current current) {
-        model.Alarma am = alarmaRepository.dequeue();
+    public boolean acknowledge(int code, int type, Current current) {
+        model.Alarma am = alarmaRepository.getElement(code, type);
         if (am != null) {
+            //Mark Delivered
+            alarmaRepository.remove(am);
             return true;
         }
         return false;

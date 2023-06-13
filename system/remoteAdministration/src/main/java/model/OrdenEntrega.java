@@ -27,10 +27,6 @@ public class OrdenEntrega {
         this.idAlarma = idAlarma;
     }
 
-    public OrdenEntrega() {
-        super();
-    }
-
     public int getIdOperador() {
         return idOperador;
     }

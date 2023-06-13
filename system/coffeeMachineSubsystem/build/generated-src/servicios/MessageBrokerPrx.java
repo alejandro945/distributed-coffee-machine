@@ -53,36 +53,41 @@ public interface MessageBrokerPrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
-    default boolean acknowledge()
+    default boolean acknowledge(int code, int machine)
     {
-        return acknowledge(com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        return acknowledge(code, machine, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default boolean acknowledge(java.util.Map<String, String> context)
+    default boolean acknowledge(int code, int machine, java.util.Map<String, String> context)
     {
-        return _iceI_acknowledgeAsync(context, true).waitForResponse();
+        return _iceI_acknowledgeAsync(code, machine, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> acknowledgeAsync()
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> acknowledgeAsync(int code, int machine)
     {
-        return _iceI_acknowledgeAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_acknowledgeAsync(code, machine, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> acknowledgeAsync(java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> acknowledgeAsync(int code, int machine, java.util.Map<String, String> context)
     {
-        return _iceI_acknowledgeAsync(context, false);
+        return _iceI_acknowledgeAsync(code, machine, context, false);
     }
 
     /**
      * @hidden
+     * @param iceP_code -
+     * @param iceP_machine -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_acknowledgeAsync(java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_acknowledgeAsync(int iceP_code, int iceP_machine, java.util.Map<String, String> context, boolean sync)
     {
         com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "acknowledge", null, sync, null);
-        f.invoke(true, context, null, null, istr -> {
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeInt(iceP_code);
+                     ostr.writeInt(iceP_machine);
+                 }, istr -> {
                      boolean ret;
                      ret = istr.readBool();
                      return ret;

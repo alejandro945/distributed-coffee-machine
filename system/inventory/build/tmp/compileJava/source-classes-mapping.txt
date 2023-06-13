@@ -16,11 +16,10 @@ servicios/_VentaServicePrxI.java
  servicios._VentaServicePrxI
 servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
+servicios/_MessageBrokerPrxI.java
+ servicios._MessageBrokerPrxI
 servicios/ProxyServicePrx.java
  servicios.ProxyServicePrx
-servicios/ProxyService.java
- servicios.ProxyService
- servicios.ProxyService$1
 servicios/VentaService.java
  servicios.VentaService
  servicios.VentaService$1
@@ -28,10 +27,10 @@ mantenimientoExistencias/Inventario.java
  mantenimientoExistencias.Inventario
 servicios/_RecetaServicePrxI.java
  servicios._RecetaServicePrxI
-servicios/Moneda.java
- servicios.Moneda
 servicios/_ObserverPrxI.java
  servicios._ObserverPrxI
+servicios/Moneda.java
+ servicios.Moneda
 servicios/ServicioComLogistica.java
  servicios.ServicioComLogistica
  servicios.ServicioComLogistica$1
@@ -50,15 +49,15 @@ servicios/Alarma.java
  servicios.Alarma
 servicios/_ProxyServicePrxI.java
  servicios._ProxyServicePrxI
-servicios/ServicioComLogisticaPrx.java
- servicios.ServicioComLogisticaPrx
+servicios/MessageBroker.java
+ servicios.MessageBroker
+ servicios.MessageBroker$1
 dataAccess/ManejadorDatos.java
  dataAccess.ManejadorDatos
 dataAccess/ConexionBD.java
  dataAccess.ConexionBD
-servicios/ServicioAbastecimiento.java
- servicios.ServicioAbastecimiento
- servicios.ServicioAbastecimiento$1
+servicios/MessageBrokerPrx.java
+ servicios.MessageBrokerPrx
 servicios/Observer.java
  servicios.Observer
  servicios.Observer$1
@@ -84,10 +83,11 @@ modelo/IngredientesInv.java
  modelo.IngredientesInv
 servicios/MapStrIntHelper.java
  servicios.MapStrIntHelper
-servicios/_MessageBrokerPrxI.java
- servicios._MessageBrokerPrxI
-servicios/MessageBroker.java
- servicios.MessageBroker
- servicios.MessageBroker$1
-servicios/MessageBrokerPrx.java
- servicios.MessageBrokerPrx
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1

@@ -40,7 +40,6 @@ public class ObserverService implements Observer {
         }
     }
 
-
     @Override
     public void _notifyAll(Current current) {
         System.out.println("ObserverService._notifyAll - Notifying all proxy observers");

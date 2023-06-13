@@ -28,7 +28,6 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 	// @Atributes
 
 	// @ Connection
-	private AlarmaServicePrx alarmaServicePrx;
 	private VentaServicePrx ventasService;
 	private ProxyServicePrx proxyServicePrx;
 	private MessageBrokerPrx messageBrokerPrx;
@@ -111,7 +110,6 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 	 */
 	@Override
 	public void abastecer(int codMaquina, int idAlarma, Current current) {
-		int cantidad = 0;
 		System.out.println("Entra a abastecer maquina" + this.codMaquina);
 		System.out.println("Orden de trabajo con id de alarma " + idAlarma + " para maquina " + codMaquina);
 
@@ -452,8 +450,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 					// Driver # 2 - Alarma de escasez de ingredientes @alexandersanchezjr
 					// alarmaServicePrx.recibirNotificacionEscasezIngredientes(ing.getNombre(),
 					// codMaquina);
-					messageBrokerPrx
-							.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, "Se requiere mantenimiento"));
+					messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()));
 
 					frame.getTextAreaAlarmas().setText(
 							frame.getTextAreaAlarmas().getText()

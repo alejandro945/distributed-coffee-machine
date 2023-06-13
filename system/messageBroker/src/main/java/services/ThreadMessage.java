@@ -15,15 +15,15 @@ public class ThreadMessage extends Thread {
     @Override
     public void run() {
         try {
-            while (!alarmaRepository.getQueue().isEmpty()) {
-                model.Alarma am = alarmaRepository.dequeue();
+            for (model.Alarma am : alarmaRepository.getElements()) {
                 if (am != null) {
-                    alarmaServiceBroker.sendNotifications(new servicios.Alarma(am.getIdAlarma(), am.getCodMaquina(),
-                            am.getExternalType(), am.getIsTerminated(), am.getMessage()));
+                    alarmaServiceBroker.sendNotifications(new servicios.Alarma(am.getIdAlarma(), am.getCode(),
+                            am.getType(), am.getIsTerminated(), am.getMessage()));
                 }
                 Thread.sleep(1000);
             }
             Thread.sleep(120000);
+            run();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -20,10 +20,10 @@ servicios/VentaService.java
  servicios.VentaService$1
 servicios/_RecetaServicePrxI.java
  servicios._RecetaServicePrxI
-model/OrdenEntrega.java
- model.OrdenEntrega
 model/VentasMaquina.java
  model.VentasMaquina
+model/OrdenEntrega.java
+ model.OrdenEntrega
 servicios/_ObserverPrxI.java
  servicios._ObserverPrxI
 servicios/ServicioComLogistica.java
@@ -31,11 +31,11 @@ servicios/ServicioComLogistica.java
  servicios.ServicioComLogistica$1
 model/AlarmaMaquina.java
  model.AlarmaMaquina
+service/ObserverService.java
+ service.ObserverService
 servicios/RecetaService.java
  servicios.RecetaService
  servicios.RecetaService$1
-service/ObserverService.java
- service.ObserverService
 servicios/ObservablePrx.java
  servicios.ObservablePrx
 servicios/Alarma.java
@@ -47,11 +47,11 @@ servicios/Observer.java
  servicios.Observer$1
 model/VentasReceta.java
  model.VentasReceta
-repository/AlarmasManager.java
- repository.AlarmasManager
 servicios/AlarmaService.java
  servicios.AlarmaService
  servicios.AlarmaService$1
+repository/AlarmasManager.java
+ repository.AlarmasManager
 model/Maquina.java
  model.Maquina
 servicios/StringSeqHelper.java

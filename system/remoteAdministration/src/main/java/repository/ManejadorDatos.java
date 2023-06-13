@@ -56,7 +56,9 @@ public class ManejadorDatos {
 				// TODO: Notificar al operador encargado
 			} else {
 				Statement st = conexion.createStatement();
-				st.execute("SELECT NEXTVAL('CONSECALARMA')");
+				// st.execute("SELECT NEXTVAL('CONSECALARMA')");
+				st.execute("SELECT NEXTVAL('CONSECUTIVO')");
+
 				ResultSet rs = st.getResultSet();
 				consecutivo = 0;
 				if (rs.next()) {
@@ -145,7 +147,8 @@ public class ManejadorDatos {
 	}
 
 	/**
-	 * Method that look for the machines and see the ones that are unvaliable 
+	 * Method that look for the machines and see the ones that are unvaliable
+	 * 
 	 * @param codigooperador
 	 * @return
 	 */
@@ -298,7 +301,8 @@ public class ManejadorDatos {
 	}
 
 	/**
-	 * Metodo debe estar en logistica buscar con base al id de la maquina para encontrar el operador asociado
+	 * Metodo debe estar en logistica buscar con base al id de la maquina para
+	 * encontrar el operador asociado
 	 * <b>Descripción:</b>Retorna el nombre del operador y la ubicación de la
 	 * maquin de café <b>Pre:</b> El identificador de la máquina debe
 	 * corresponder con uno existente en la base de datos
@@ -334,7 +338,6 @@ public class ManejadorDatos {
 		return null;
 	}
 
-	
 	/**
 	 * Get the email of an operator
 	 */
@@ -387,6 +390,7 @@ public class ManejadorDatos {
 
 	/**
 	 * Method tha validate if an operator exists
+	 * 
 	 * @param codigoOperador
 	 * @param password
 	 * @return
@@ -411,6 +415,7 @@ public class ManejadorDatos {
 	/**
 	 * Method that register an ingredient in the database
 	 * y crea por defecto las alarmas con el nombre de critico o normal
+	 * 
 	 * @param nombre != null
 	 */
 	public String registrarIngrediente(String nombre) {

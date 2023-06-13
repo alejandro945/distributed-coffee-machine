@@ -68,9 +68,12 @@ public class AlarmaServiceImp implements AlarmaService {
     @Override
     public void recibirNotificacionEscasezIngredientes(String iDing, int idMaq, MessageBrokerPrx messageBroker,
             Current current) {
+        int[] response = new int[] { 0, 0 };
         System.out.println(idMaq + " " + iDing);
         int alarmId = manager.alarmaMaquina(ALARMA_INGREDIENTE, idMaq, new Date());
-        int[] response = createOrdenes(idMaq, alarmId, new int[] { 0, 0, 1 });
+        if (alarmId != 0) {
+            response = createOrdenes(idMaq, alarmId, new int[] { 0, 0, 1 });
+        }
         feedback(ALARMA_INGREDIENTE, idMaq, alarmId, response, messageBroker);
     }
 

@@ -26,9 +26,8 @@ public class MessageBroker {
             AlarmaServiceBroker alarma = new AlarmaServiceBroker(AlarmaRepository.getInstance(), alarmaServicePrx);
             ThreadMessage threadMessage = new ThreadMessage(alarma, AlarmaRepository.getInstance());
             threadMessage.start();
-
-            MessageBrokerPrxPrx messageBroker = MessageBrokerPrx
-          .uncheckedCast(adapter.add(alarma, Util.stringToIdentity("broker")));
+            MessageBrokerPrx messageBroker = MessageBrokerPrx.uncheckedCast(adapter.add(alarma, Util.stringToIdentity("broker")));
+            alarma.setMessageBroker(messageBroker);
 
             // Add services to adapter
             adapter.add(alarma, Util.stringToIdentity("Alarmas")); //Server Binding

@@ -6,12 +6,12 @@ import repository.AlarmaRepository;
 import servicios.Alarma;
 import servicios.AlarmaServicePrx;
 import servicios.MessageBroker;
+import servicios.MessageBrokerPrx;
 import servicios.Moneda;
 
 public class AlarmaServiceBroker implements MessageBroker {
 
     private MessageBrokerPrx messageBroker;
-
     private AlarmaRepository alarmaRepository;
     private AlarmaServicePrx alarmaServicePrx;
 

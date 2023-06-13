@@ -80,6 +80,5 @@ module servicios{
     interface OperadorLogistica {
       void atenderOperador();
     }
-
     
 }

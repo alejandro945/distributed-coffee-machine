@@ -1,3 +1,5 @@
 system/gradle
 system/.vscode
 system/.gradle
+**/build
+**/bin

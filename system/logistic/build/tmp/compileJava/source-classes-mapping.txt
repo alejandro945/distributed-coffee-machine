@@ -20,8 +20,14 @@ servicios/ServicioAbastecimientoPrx.java
  servicios.ServicioAbastecimientoPrx
 servicios/ProxyServicePrx.java
  servicios.ProxyServicePrx
+<<<<<<< HEAD
 servicios/_MessageBrokerPrxI.java
  servicios._MessageBrokerPrxI
+=======
+servicios/ProxyService.java
+ servicios.ProxyService
+ servicios.ProxyService$1
+>>>>>>> c2c1295fdaa61eb2942098695853972cd3c08e4c
 servicios/VentaService.java
  servicios.VentaService
  servicios.VentaService$1
@@ -46,15 +52,25 @@ servicios/ObservablePrx.java
 servicios/RecetaService.java
  servicios.RecetaService
  servicios.RecetaService$1
+servicios/Alarma.java
+ servicios.Alarma
 servicios/_ProxyServicePrxI.java
  servicios._ProxyServicePrxI
 CmLogistics.java
  CmLogistics
+<<<<<<< HEAD
 servicios/MessageBroker.java
  servicios.MessageBroker
  servicios.MessageBroker$1
 servicios/MessageBrokerPrx.java
  servicios.MessageBrokerPrx
+=======
+servicios/ServicioComLogisticaPrx.java
+ servicios.ServicioComLogisticaPrx
+servicios/ServicioAbastecimiento.java
+ servicios.ServicioAbastecimiento
+ servicios.ServicioAbastecimiento$1
+>>>>>>> c2c1295fdaa61eb2942098695853972cd3c08e4c
 servicios/Observer.java
  servicios.Observer
  servicios.Observer$1
@@ -75,6 +91,7 @@ servicios/Observable.java
  servicios.Observable$1
 servicios/MapStrIntHelper.java
  servicios.MapStrIntHelper
+<<<<<<< HEAD
 servicios/ServicioAbastecimiento.java
  servicios.ServicioAbastecimiento
  servicios.ServicioAbastecimiento$1
@@ -83,3 +100,12 @@ servicios/ServicioComLogisticaPrx.java
 servicios/ProxyService.java
  servicios.ProxyService
  servicios.ProxyService$1
+=======
+servicios/_MessageBrokerPrxI.java
+ servicios._MessageBrokerPrxI
+servicios/MessageBroker.java
+ servicios.MessageBroker
+ servicios.MessageBroker$1
+servicios/MessageBrokerPrx.java
+ servicios.MessageBrokerPrx
+>>>>>>> c2c1295fdaa61eb2942098695853972cd3c08e4c

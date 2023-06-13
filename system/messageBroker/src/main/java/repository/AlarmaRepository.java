@@ -2,7 +2,7 @@ package repository;
 
 import model.Alarma;
 
-public class AlarmaRepository extends IRepositorio<String, Alarma> {
+public class AlarmaRepository extends IRepositorio<Alarma> {
 
     private static AlarmaRepository instance;
 

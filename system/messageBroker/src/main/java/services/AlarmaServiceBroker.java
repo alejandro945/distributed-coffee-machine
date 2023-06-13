@@ -1,47 +1,60 @@
 package services;
 
-import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.Current;
 
-import servicios.AlarmaService;
+import repository.AlarmaRepository;
+import servicios.Alarma;
+import servicios.AlarmaServicePrx;
+import servicios.MessageBroker;
 import servicios.Moneda;
 
-public class AlarmaServiceBroker implements AlarmaService {
+public class AlarmaServiceBroker implements MessageBroker {
 
-    private Communicator communicator;
+    private AlarmaRepository alarmaRepository;
 
-    public AlarmaServiceBroker(Communicator communicator) {
-        this.communicator = communicator;
+    private AlarmaServicePrx alarmaServicePrx;
+
+    public AlarmaServiceBroker(AlarmaRepository alarmaRepository, AlarmaServicePrx alarmaServicePrx) {
+        this.alarmaRepository = alarmaRepository;
+        this.alarmaServicePrx = alarmaServicePrx;
     }
 
     @Override
-    public void recibirNotificacionEscasezIngredientes(String iDing, int idMaq, Current current) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recibirNotificacionEscasezIngredientes'");
+    public void queueAlarma(Alarma am, Current current) {
+        // Guarda en la capa de persistencia
+        alarmaRepository.enqueue(
+                new model.Alarma(am.idAlarma, am.codMaquina, am.externalType, am.isTerminated, am.message));
+        sendNotifications(am);
     }
 
     @Override
-    public void recibirNotificacionInsuficienciaMoneda(Moneda moneda, int idMaq, Current current) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recibirNotificacionInsuficienciaMoneda'");
+    public boolean acknowledge(Current current) {
+        model.Alarma am = alarmaRepository.dequeue();
+        if (am != null) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public void recibirNotificacionEscasezSuministro(String idSumin, int idMaq, Current current) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recibirNotificacionEscasezSuministro'");
-    }
+    public void sendNotifications(Alarma am) {
+        if (am.isTerminated) {
+            // Si la alarma es terminada, se envía a la capa de servicios
+            alarmaServicePrx.recibirNotificacionAbastesimiento(am.codMaquina, am.idAlarma + "", 0);
+            return;
+        }
 
-    @Override
-    public void recibirNotificacionAbastesimiento(int idMaq, String idInsumo, int cantidad, Current current) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recibirNotificacionAbastesimiento'");
+        if (am.externalType == 1) {
+            alarmaServicePrx.recibirNotificacionEscasezIngredientes(am.message, am.codMaquina);
+        } else if (am.externalType == 2) {
+            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN, am.codMaquina);
+        } else if (am.externalType == 3) {
+            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS, am.codMaquina);
+        } else if (am.externalType == 4) {
+            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS, am.codMaquina);
+        } else if (am.externalType == 5) {
+            alarmaServicePrx.recibirNotificacionEscasezSuministro(am.message, am.codMaquina);
+        } else if (am.externalType == 6) {
+            alarmaServicePrx.recibirNotificacionMalFuncionamiento(am.codMaquina, am.message);
+        }
     }
-
-    @Override
-    public void recibirNotificacionMalFuncionamiento(int idMaq, String descri, Current current) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recibirNotificacionMalFuncionamiento'");
-    }
-
 }

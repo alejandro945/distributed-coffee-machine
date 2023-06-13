@@ -17,9 +17,9 @@ package servicios;
 
 public interface MessageBroker extends com.zeroc.Ice.Object
 {
-    String[] alarmas(com.zeroc.Ice.Current current);
+    void queueAlarma(Alarma am, com.zeroc.Ice.Current current);
 
-    String[] ventas(com.zeroc.Ice.Current current);
+    boolean acknowledge(com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -52,15 +52,15 @@ public interface MessageBroker extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_alarmas(MessageBroker obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_queueAlarma(MessageBroker obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
-        inS.readEmptyParams();
-        String[] ret = obj.alarmas(current);
-        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
-        ostr.writeStringSeq(ret);
-        inS.endWriteParams(ostr);
-        return inS.setResult(ostr);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        Alarma iceP_am;
+        iceP_am = Alarma.ice_read(istr);
+        inS.endReadParams();
+        obj.queueAlarma(iceP_am, current);
+        return inS.setResult(inS.writeEmptyParams());
     }
 
     /**
@@ -70,13 +70,13 @@ public interface MessageBroker extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_ventas(MessageBroker obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_acknowledge(MessageBroker obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         inS.readEmptyParams();
-        String[] ret = obj.ventas(current);
+        boolean ret = obj.acknowledge(current);
         com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
-        ostr.writeStringSeq(ret);
+        ostr.writeBool(ret);
         inS.endWriteParams(ostr);
         return inS.setResult(ostr);
     }
@@ -84,12 +84,12 @@ public interface MessageBroker extends com.zeroc.Ice.Object
     /** @hidden */
     final static String[] _iceOps =
     {
-        "alarmas",
+        "acknowledge",
         "ice_id",
         "ice_ids",
         "ice_isA",
         "ice_ping",
-        "ventas"
+        "queueAlarma"
     };
 
     /** @hidden */
@@ -107,7 +107,7 @@ public interface MessageBroker extends com.zeroc.Ice.Object
         {
             case 0:
             {
-                return _iceD_alarmas(this, in, current);
+                return _iceD_acknowledge(this, in, current);
             }
             case 1:
             {
@@ -127,7 +127,7 @@ public interface MessageBroker extends com.zeroc.Ice.Object
             }
             case 5:
             {
-                return _iceD_ventas(this, in, current);
+                return _iceD_queueAlarma(this, in, current);
             }
         }
 

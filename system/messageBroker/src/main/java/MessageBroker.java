@@ -3,7 +3,9 @@ import java.util.List;
 
 import com.zeroc.Ice.*;
 
+import repository.AlarmaRepository;
 import services.AlarmaServiceBroker;
+import services.ThreadMessage;
 import services.VentaServiceBroker;
 import servicios.*;
 
@@ -16,9 +18,14 @@ public class MessageBroker {
             // Adapter
             ObjectAdapter adapter = communicator.createObjectAdapter("Broker");
 
+            AlarmaServicePrx alarmaServicePrx = AlarmaServicePrx.checkedCast(communicator.propertyToProxy("alarmas"))
+                    .ice_twoway();
+
             // Ice Services
-            AlarmaServiceBroker alarma = new AlarmaServiceBroker(communicator);
-            VentaServiceBroker ventas = new VentaServiceBroker(communicator);
+            AlarmaServiceBroker alarma = new AlarmaServiceBroker(AlarmaRepository.getInstance(), alarmaServicePrx);
+            VentaServiceBroker ventas = new VentaServiceBroker();
+            ThreadMessage threadMessage = new ThreadMessage(alarma, AlarmaRepository.getInstance());
+            threadMessage.start();
 
             // Services
             // ObserverService observerService = new ObserverService(recetas);

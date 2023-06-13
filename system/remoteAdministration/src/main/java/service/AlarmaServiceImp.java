@@ -6,9 +6,12 @@ import com.zeroc.Ice.Current;
 
 import repository.AlarmasManager;
 import servicios.AlarmaService;
+import servicios.MessageBrokerPrx;
 import servicios.Moneda;
 
 public class AlarmaServiceImp implements AlarmaService {
+
+    private MessageBrokerPrx messageBroker;
 
     public static final int ALARMA_INGREDIENTE = 1;
     public static final int ALARMA_MONEDA_CIEN = 2;
@@ -26,6 +29,7 @@ public class AlarmaServiceImp implements AlarmaService {
     @Override
     public void recibirNotificacionEscasezIngredientes(String iDing, int idMaq, Current current) {
         manager.alarmaMaquina(ALARMA_INGREDIENTE, idMaq, new Date());
+        // messageBroker.acknowledge(idMaq, idMaq, null)
     }
 
     @Override
@@ -33,6 +37,7 @@ public class AlarmaServiceImp implements AlarmaService {
         switch (moneda) {
             case CIEN:
                 manager.alarmaMaquina(ALARMA_MONEDA_CIEN, idMaq, new Date());
+
                 break;
             case DOCIENTOS:
                 manager.alarmaMaquina(ALARMA_MONEDA_DOS, idMaq, new Date());

@@ -70,6 +70,14 @@ module servicios{
 
     interface MessageBroker{
       void queueAlarma(Alarma am);
-      bool acknowledge();    
+      bool acknowledge(int code, int machine);    
+    }
+
+    interface OrdenLogistica {
+      void confirmarOrden();
+    }
+
+    interface OperadorLogistica {
+      void atenderOperador();
     }
 }

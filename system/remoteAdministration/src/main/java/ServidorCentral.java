@@ -3,6 +3,7 @@ import java.util.List;
 import com.zeroc.Ice.*;
 
 import repository.AlarmasManager;
+import repository.OrdenManager;
 import repository.ProductoReceta;
 import repository.ServerControl;
 import repository.VentasManager;
@@ -28,7 +29,7 @@ public class ServidorCentral {
 
             // Services
             ObserverService observerService = new ObserverService(recetas);
-            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator));
+            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator), new OrdenManager(communicator));
 
             // Controllers
             ServicioComLogistica log = new ControlComLogistica(control);

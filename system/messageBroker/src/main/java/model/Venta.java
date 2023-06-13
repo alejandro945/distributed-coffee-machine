@@ -1,15 +1,14 @@
 package model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Venta implements Serializable {
+public class Venta extends AbstractClass {
     private String nombre, id;
     private int valor;
     private Date fecha;
 
     public Venta(String nombre, String id, int valor, Date fecha) {
-        super();
+        super(id, valor);
         this.nombre = nombre;
         this.id = id;
         this.valor = valor;

@@ -6,7 +6,6 @@ import com.zeroc.Ice.*;
 import repository.AlarmaRepository;
 import services.AlarmaServiceBroker;
 import services.ThreadMessage;
-import services.VentaServiceBroker;
 import servicios.*;
 
 public class MessageBroker {
@@ -18,34 +17,20 @@ public class MessageBroker {
             // Adapter
             ObjectAdapter adapter = communicator.createObjectAdapter("Broker");
 
-            AlarmaServicePrx alarmaServicePrx = AlarmaServicePrx.checkedCast(communicator.propertyToProxy("alarmas"))
-                    .ice_twoway();
-
             // Ice Services
+            AlarmaServicePrx alarmaServicePrx = AlarmaServicePrx.checkedCast(communicator.propertyToProxy("alarmas")).ice_twoway();
+           
+            // Services
             AlarmaServiceBroker alarma = new AlarmaServiceBroker(AlarmaRepository.getInstance(), alarmaServicePrx);
-            VentaServiceBroker ventas = new VentaServiceBroker();
             ThreadMessage threadMessage = new ThreadMessage(alarma, AlarmaRepository.getInstance());
             threadMessage.start();
 
-            // Services
-            // ObserverService observerService = new ObserverService(recetas);
-            // AlarmaServiceImp alarma = new AlarmaServiceImp(new
-            // AlarmasManager(communicator));
-
-            // Controllers
-
             // Add services to adapter
-            adapter.add(alarma, Util.stringToIdentity("Alarmas"));
-            adapter.add(ventas, Util.stringToIdentity("Ventas"));
+            adapter.add(alarma, Util.stringToIdentity("Alarmas")); //Server Binding
 
             // Activate adapter
             adapter.activate();
             communicator.waitForShutdown();
-
-            // Activate adapter
-            adapter.activate();
-            communicator.waitForShutdown();
-
         }
     }
 }

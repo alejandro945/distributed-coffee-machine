@@ -2,20 +2,16 @@ package repository;
 
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.LinkedBlockingQueue;
 
-public abstract class IRepositorio<T extends Serializable, > implements Serializable {
+import model.AbstractClass;
+
+public abstract class IRepositorio<T extends AbstractClass> implements Serializable {
 
     private List<T> list;
-
-    private int code;
-    private int externalType;
-
     private String name;
 
     public IRepositorio(String name) {
         this.list = new ArrayList<>();
-        this.name = name;
         loadData();
     }
 
@@ -39,7 +35,7 @@ public abstract class IRepositorio<T extends Serializable, > implements Serializ
 
     public T getElement(int codMaquina, int externalType) {
         for (T element : list) {
-            if (element.getCodMaquina() == codMaquina && element.getExternalType() == externalType) {
+            if (element.getCode() == codMaquina && element.getType() == externalType) {
                 return element;
             }
         }
@@ -77,7 +73,7 @@ public abstract class IRepositorio<T extends Serializable, > implements Serializ
             ObjectInputStream oos = new ObjectInputStream(fis);
             Object ois = oos.readObject();
             IRepositorio<T> md = (IRepositorio<T>) ois;
-            this.setElements(md.getQueue());
+            this.setElements(md.getElements());
             oos.close();
         } catch (Exception e) {
             System.err.println("Error al cargar AlarmaRepositorio");

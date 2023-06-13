@@ -13,13 +13,23 @@ import model.AlarmaMaquina;
 import model.AsignacionMaquina;
 import model.Maquina;
 import model.Operador;
-import model.OrdenEntrega;
 import model.VentasMaquina;
 import model.VentasReceta;
 
 public class ManejadorDatos {
 
 	private Connection conexion;
+
+	/**
+	 * <b>Descripción:</b>Modifica el Objeto Connection para realizar la
+	 * conexion a la BD.
+	 * 
+	 * @param conexion
+	 *                 Es el objeto Connection
+	 */
+	public void setConexion(Connection conexion) {
+		this.conexion = conexion;
+	}
 
 	/**
 	 * <b>Descripción:</b>Este método crea una nueva alarma en el sistema <br>
@@ -29,7 +39,8 @@ public class ManejadorDatos {
 	 * @param aM
 	 *           Corresponde a la alarma de una máquina en específico.
 	 */
-	public void registrarAlarma(AlarmaMaquina aM) {
+	public int registrarAlarma(AlarmaMaquina aM) {
+		int consecutivo = 0;
 		try {
 
 			// Verificar que no exista esa alarma en el sistema
@@ -42,17 +53,14 @@ public class ManejadorDatos {
 			ResultSet rsx = psx.executeQuery();
 
 			if (rsx.next()) {
-				System.out
-						.println("Alarma ya agregada previamente, se notificará al operador encargado");
+				System.out.println("Alarma ya agregada previamente, se notificará al operador encargado");
+				// TODO: Notificar al operador encargado
 			} else {
-
 				Statement st = conexion.createStatement();
 				st.execute("SELECT NEXTVAL('CONSECALARMA')");
 				ResultSet rs = st.getResultSet();
-				int consecutivo = 0;
-				if (rs.next()) {
-					consecutivo = rs.getInt(1);
-				}
+				consecutivo = 0;
+				if (rs.next()) { consecutivo = rs.getInt(1); }
 
 				String insertnuevaA = "INSERT INTO ALARMA_MAQUINA (ID_ALARMA,ID_MAQUINA,FECHA_INICIAL,CONSECUTIVO) VALUES (?,?,?,?)";
 				PreparedStatement pst = conexion
@@ -68,7 +76,7 @@ public class ManejadorDatos {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		return consecutivo;
 	}
 
 	/**
@@ -351,7 +359,7 @@ public class ManejadorDatos {
 	 *                 Corresponde al identificador de la alarma.
 	 * @return String Retorna el nombre de la alarma.
 	 */
-	public String darNombreAlarma(int idAlarma) {
+	public String getAlarmName(int idAlarma) {
 		try {
 
 			String query = "SELECT * FROM ALARMA a WHERE a.IDALARMA = ?";
@@ -395,6 +403,11 @@ public class ManejadorDatos {
 		return false;
 	}
 
+	/**
+	 * Method that register an ingredient in the database
+	 * 
+	 * @param nombre != null
+	 */
 	public String registrarIngrediente(String nombre) {
 
 		String retorno = "";
@@ -511,6 +524,9 @@ public class ManejadorDatos {
 
 	}
 
+	/**
+	 * Method that register a recipe in the database
+	 */
 	public String registrarReceta(String nombre, int precio) {
 
 		String retorno = "";
@@ -584,6 +600,13 @@ public class ManejadorDatos {
 
 	}
 
+	/**
+	 * Method that register a recipe ingredient in the database
+	 * 
+	 * @param idReceta
+	 * @param idIngrediente
+	 * @param valor
+	 */
 	public void registrarRecetaIngrediente(int idReceta, int idIngrediente,
 			int valor) {
 
@@ -603,6 +626,11 @@ public class ManejadorDatos {
 		}
 	}
 
+	/**
+	 * Method that delete a recipe from the database
+	 * 
+	 * @param cod
+	 */
 	public void borrarReceta(int cod) {
 
 		try {
@@ -631,6 +659,11 @@ public class ManejadorDatos {
 
 	}
 
+	/**
+	 * Method that search a recipe in the database
+	 * 
+	 * @return
+	 */
 	public String[] consultarRecetas() {
 
 		String[] retorno = null;
@@ -724,17 +757,6 @@ public class ManejadorDatos {
 
 		return retorno;
 
-	}
-
-	/**
-	 * <b>Descripción:</b>Modifica el Objeto Connection para realizar la
-	 * conexion a la BD.
-	 * 
-	 * @param conexion
-	 *                 Es el objeto Connection
-	 */
-	public void setConexion(Connection conexion) {
-		this.conexion = conexion;
 	}
 
 	public String[] consultarRecetaIngrediente() {
@@ -940,31 +962,4 @@ public class ManejadorDatos {
 
 	}
 
-	public void insertOrdenEntrega(OrdenEntrega oe) {
-		try {
-			Statement st = conexion.createStatement();
-			st.execute("SELECT NEXTVAL('SEQ_ORDEN_ENTREGA')");
-			ResultSet rs = st.getResultSet();
-			int consecutivo = 0;
-			if (rs.next()) {
-				consecutivo = rs.getInt(1);
-			}
-
-			String insertnuevaOrden = "INSERT INTO ORDENES_ENTREGA (IDOPERADOR, IDORDEN, IDMAQUINA, IDKIT, FECHA, CANTIDAD, IDSUMINISTRO, IDINGREDIENTE, IDALARMA) VALUES (?,?,?,?,?,?,?,?,?)";
-			PreparedStatement pst = conexion
-					.prepareStatement(insertnuevaOrden);
-			pst.setInt(1, oe.getIdOperador());
-			pst.setInt(2, consecutivo);
-			pst.setInt(3, oe.getIdMaquina());
-			pst.setInt(4, oe.getIdKit());
-			pst.setDate(5, new Date(oe.getFecha().getTime()));
-			pst.setInt(6, oe.getCantidad());
-			pst.setInt(7, oe.getIdSuministro());
-			pst.setInt(8, oe.getIdIngrediente());
-			pst.setInt(9, oe.getIdAlarma());
-			pst.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 }

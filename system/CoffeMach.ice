@@ -72,4 +72,12 @@ module servicios{
       void queueAlarma(Alarma am);
       bool acknowledge(int code, int machine);    
     }
+
+    interface OrdenLogistica {
+      void confirmarOrden();
+    }
+
+    interface OperadorLogistica {
+      void atenderOperador();
+    }
 }

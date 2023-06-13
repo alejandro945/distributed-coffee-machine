@@ -21,8 +21,7 @@ public class BodegaCentral {
             OrdenLogisticaPrx orden = OrdenLogisticaPrx.checkedCast(communicator.propertyToProxy("logistica")).ice_twoway();
             OperadorLogisticaPrx operador = OperadorLogisticaPrx.checkedCast(communicator.propertyToProxy("operador")).ice_twoway();
 
-            // Services
-            ControladorBodega control = new ControladorBodega(operador, orden);
+            ControladorBodega control = new ControladorBodega(operador, orden, communicator);
 
             control.run(); 
 

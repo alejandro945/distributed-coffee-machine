@@ -47,14 +47,21 @@ insert into alarma (idalarma,nombre) values (11,'alarma11');
 insert into alarma (idalarma,nombre) values (12,'alarma12');
 
 /*Máquinas*/
-insert into maquina (idmaquina,ubicacion) values (1,'U.Icesi-Edificio C');
-insert into maquina (idmaquina,ubicacion) values (2,'U.Icesi-Edificio E');
-insert into maquina (idmaquina,ubicacion) values (3,'Av 5. N 33-34');
-insert into maquina (idmaquina,ubicacion) values (4,'Cra 12 N 66-90');
-insert into maquina (idmaquina,ubicacion) values (5,'Cosmocentro');
-insert into maquina (idmaquina,ubicacion) values (6,'Chipichape');
-insert into maquina (idmaquina,ubicacion) values (7,'Palmeto');
-insert into maquina (idmaquina,ubicacion) values (8,'Jardin Plaza');
+-- Crea una función que inserte las máquinas
+CREATE OR REPLACE FUNCTION insertar_maquinas()
+RETURNS VOID AS $$
+DECLARE
+    contador INTEGER := 1;
+BEGIN
+    FOR contador IN 1..200 LOOP
+        -- Genera la sentencia INSERT
+        EXECUTE 'INSERT INTO maquina (idmaquina, ubicacion) VALUES (' || contador || ', ''Ubicacion ' || contador || ''');';
+    END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Llama a la función para insertar las máquinas
+SELECT insertar_maquinas();
 
 /*Alarma Máquina
 insert into alarma_maquina (id_alarma,id_maquina,fecha_inicial,fecha_final,consecutivo) values (2,5,now(),null,2);

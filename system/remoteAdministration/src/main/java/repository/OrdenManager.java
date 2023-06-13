@@ -61,7 +61,7 @@ public class OrdenManager {
             String insertnuevaOrden = "INSERT INTO ORDENES_ENTREGA (IDOPERADOR, IDORDEN, IDMAQUINA, IDKIT, FECHA, CANTIDAD, IDSUMINISTRO, IDINGREDIENTE, IDALARMA) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst =  cbd.getConnection().prepareStatement(insertnuevaOrden);
             pst.setNull(1, Types.NULL);
-            pst.setInt(2, consecutivo);
+            pst.setInt(2, consecutivo); //Este es el error sapa
             pst.setInt(3, oe.getIdMaquina());
             pst.setInt(4, oe.getIdKit());
             pst.setDate(5, new Date(oe.getFecha().getTime()));

@@ -10,6 +10,7 @@ gradle build
 routeServidor="./remoteAdministration/build/"
 routeCoffeeMach="./coffeeMachineSubsystem/build/"
 routeProxy="./proxyCache/build/"
+brokerMessage="./messageBroker/build/"
 
 echo "Comprimiendo librerias"
 
@@ -35,4 +36,3 @@ sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/server.cfg ${maqui
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/proxy.cfg ${maquinas}4:./${path}/libs
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/coffeMach.cfg ${maquinas}11:./${path}/libs
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/codMaquina.cafe ${maquinas}11:./${path}/libs
-

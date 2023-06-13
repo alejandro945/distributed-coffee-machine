@@ -14,8 +14,6 @@ import servicios.Moneda;
 
 public class AlarmaServiceImp implements AlarmaService {
 
-    private MessageBrokerPrx messageBroker;
-
     public static final int ALARMA_INGREDIENTE = 1;
     public static final int ALARMA_MONEDA_CIEN = 2;
     public static final int ALARMA_MONEDA_DOS = 3;
@@ -56,22 +54,28 @@ public class AlarmaServiceImp implements AlarmaService {
     /**
      * Metodo que envia la confirmacion de la alarma and for debug porpuses
      */
-    private void feedback(int typeAlarm, int idMaq, int alarmId, int[] type) {
-        System.out.println(
-                "Orden de entrega: " + type[0] + " Orden de trabajo: " + type[1] + "Asoicada a la alarma: " + alarmId);
+    private void feedback(int typeAlarm, int idMaq, int alarmId, int[] type, MessageBrokerPrx messageBroker) {
+        if (alarmId == 0)
+            System.out.println("Orden de entrega: " + type[0] + " Orden de trabajo: " + type[1]
+                    + "Asoicada a la alarma: " + alarmId);
+        else
+            System.out.println("Alarma de finalización desactivada correctamente");
         // Recibí la notificación, ahora debo enviar la confirmación
         messageBroker.acknowledge(typeAlarm, idMaq);
     }
 
     @Override
-    public void recibirNotificacionEscasezIngredientes(String iDing, int idMaq, Current current) {
+    public void recibirNotificacionEscasezIngredientes(String iDing, int idMaq, MessageBrokerPrx messageBroker,
+            Current current) {
+                System.out.println(idMaq + " " + iDing);
         int alarmId = manager.alarmaMaquina(ALARMA_INGREDIENTE, idMaq, new Date());
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 0, 0, 1 });
-        feedback(ALARMA_INGREDIENTE, idMaq, alarmId, response);
+        feedback(ALARMA_INGREDIENTE, idMaq, alarmId, response, messageBroker);
     }
 
     @Override
-    public void recibirNotificacionInsuficienciaMoneda(Moneda moneda, int idMaq, Current current) {
+    public void recibirNotificacionInsuficienciaMoneda(Moneda moneda, int idMaq, MessageBrokerPrx messageBroker,
+            Current current) {
         int alarmId = 0;
         int alarmamoneda = 0;
         switch (moneda) {
@@ -91,30 +95,35 @@ public class AlarmaServiceImp implements AlarmaService {
                 break;
         }
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 1, 0, 0 });
-        feedback(alarmamoneda, idMaq, alarmId, response);
+        feedback(alarmamoneda, idMaq, alarmId, response, messageBroker);
     }
 
     @Override
-    public void recibirNotificacionEscasezSuministro(String idSumin, int idMaq, Current current) {
+    public void recibirNotificacionEscasezSuministro(String idSumin, int idMaq, MessageBrokerPrx messageBroker,
+            Current current) {
         int alarmId = manager.alarmaMaquina(ALARMA_SUMINISTRO, idMaq, new Date());
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 0, 1, 0 });
-        feedback(ALARMA_SUMINISTRO, idMaq, alarmId, response);
+        feedback(ALARMA_SUMINISTRO, idMaq, alarmId, response, messageBroker);
     }
 
     @Override
-    public void recibirNotificacionMalFuncionamiento(int idMaq, String descri, Current current) {
+    public void recibirNotificacionMalFuncionamiento(int idMaq, String descri, MessageBrokerPrx messageBroker,
+            Current current) {
         int alarmId = manager.alarmaMaquina(ALARMA_MAL_FUNCIONAMIENTO, idMaq, new Date());
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 1, 0, 0 });
-        feedback(ALARMA_MAL_FUNCIONAMIENTO, idMaq, alarmId, response);
+        feedback(ALARMA_MAL_FUNCIONAMIENTO, idMaq, alarmId, response, messageBroker);
     }
 
     /**
-     * Caso de uso de resolucion de alarmas solo esta definido para el proceso de abastecimiento
+     * Caso de uso de resolucion de alarmas solo esta definido para el proceso de
+     * abastecimiento
      * de ingredientes.
      */
     @Override
-    public void recibirNotificacionAbastesimiento(int idMaq, String idInsumo, int cantidad, Current current) {
+    public void recibirNotificacionAbastesimiento(int idMaq, String idInsumo, int cantidad,
+            MessageBrokerPrx messageBroker, Current current) {
         manager.desactivarAlarma(ALARMA_INGREDIENTE, idMaq, new Date());
+        feedback(ALARMA_INGREDIENTE, idMaq, 0, new int[] {}, messageBroker);
     }
 
 }

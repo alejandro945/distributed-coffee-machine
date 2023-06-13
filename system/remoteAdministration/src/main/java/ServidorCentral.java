@@ -29,7 +29,8 @@ public class ServidorCentral {
 
             // Services
             ObserverService observerService = new ObserverService(recetas);
-            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator), new OrdenManager(communicator));
+            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator),
+                    new OrdenManager(communicator));
 
             // Controllers
             ServicioComLogistica log = new ControlComLogistica(control);

@@ -89,7 +89,6 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 	 * Method that reads the machine code from a file
 	 */
 	private void readMachineCode() {
-		int code = 0;
 		FileInputStream fstream;
 		try {
 			String path = "codMaquina.cafe";
@@ -97,12 +96,12 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			fstream = new FileInputStream(file);
 			DataInputStream entrada = new DataInputStream(fstream);
 			BufferedReader buffer = new BufferedReader(new InputStreamReader(entrada));
-			code = Integer.parseInt(buffer.readLine());
+			this.codMaquina = Integer.parseInt(buffer.readLine());
 			entrada.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Machine code: " + code);
+		System.out.println("Machine code: " + this.codMaquina);
 	}
 
 	/**
@@ -156,6 +155,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			// DRIVER # 2 notify to the server alarm resolved @alexandersanchezjr
 			// alarmaServicePrx.recibirNotificacionAbastesimiento(codMaquina, idAlarma + "",
 			// cantidad);
+			System.out.println(codMaquina + " Maquina codigo");
 			messageBrokerPrx.queueAlarma(new servicios.Alarma(idAlarma, codMaquina, 0, true, ""));
 		}
 	}
@@ -318,6 +318,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// DRIVER # 2 - Alarma de mal funcionamiento @alexandersanchezjr
 				// alarmaServicePrx.recibirNotificacionMalFuncionamiento(codMaquina, "Se
 				// requiere mantenimiento");
+				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx
 						.queueAlarma(new servicios.Alarma(0, codMaquina, 6, false, "Se requiere mantenimiento"));
 
@@ -450,6 +451,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 					// Driver # 2 - Alarma de escasez de ingredientes @alexandersanchezjr
 					// alarmaServicePrx.recibirNotificacionEscasezIngredientes(ing.getNombre(),
 					// codMaquina);
+					System.out.println(codMaquina + " Maquina codigo");
 					messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()));
 
 					frame.getTextAreaAlarmas().setText(
@@ -470,6 +472,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// Driver # 2 - Alarma de escasez CRITICO de ingredientes @alexandersanchezjr
 				// alarmaServicePrx.recibirNotificacionEscasezIngredientes(ing.getNombre(),
 				// codMaquina);
+				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()));
 
 				frame.getTextAreaAlarmas().setText(
@@ -625,6 +628,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// Driver # 2 - Alarma de escasez de monedas 100 @alexandersanchezjr
 				// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN,
 				// codMaquina);
+				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 2, false, ""));
 				frame.getTextAreaAlarmas().setText(
 						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de 100" + "\n");
@@ -637,6 +641,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			// Driver # 2 - Alarma de escasez CRITICO de monedas 100 @alexandersanchezjr
 			// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN,
 			// codMaquina);
+			System.out.println(codMaquina + " Maquina codigo");
 			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 2, false, ""));
 
 			frame.getTextAreaAlarmas().setText(
@@ -654,6 +659,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// Driver # 2 - Alarma de escasez de monedas 200 @alexandersanchezjr
 				// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS,
 				// codMaquina);
+				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 3, false, ""));
 
 				frame.getTextAreaAlarmas().setText(
@@ -667,6 +673,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			// Driver # 2 - Alarma de escasez CRITICO de monedas 200 @alexandersanchezjr
 			// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS,
 			// codMaquina);
+			System.out.println(codMaquina + " Maquina codigo");
 			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 3, false, ""));
 
 			frame.getTextAreaAlarmas().setText(
@@ -684,6 +691,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// Driver # 2 - Alarma de escasez de monedas 500 @alexandersanchezjr
 				// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS,
 				// codMaquina);
+				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 4, false, ""));
 
 				frame.getTextAreaAlarmas().setText(
@@ -697,6 +705,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			// Driver # 2 - Alarma de escasez CRITICO de monedas 500 @alexandersanchezjr
 			// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS,
 			// codMaquina);
+			System.out.println(codMaquina + " Maquina codigo");
 			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 4, false, ""));
 
 			frame.getTextAreaAlarmas().setText(

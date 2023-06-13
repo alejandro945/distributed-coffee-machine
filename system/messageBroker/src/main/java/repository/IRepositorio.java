@@ -11,13 +11,14 @@ public abstract class IRepositorio<T extends AbstractClass> implements Serializa
     private String name;
 
     public IRepositorio(String name) {
+        this.name = name;
         this.list = new ArrayList<>();
         loadData();
     }
 
     public void add(T element) {
         list.add(element);
-        saveData();
+        this.saveData();
     }
 
     public void remove(T element) {

@@ -15,8 +15,8 @@ DROP sequence IF EXISTS consecutivo1 CASCADE;
 DROP sequence IF EXISTS seq_ingredientes CASCADE;
 DROP sequence IF EXISTS seq_alarmas CASCADE;
 DROP sequence IF EXISTS seq_receta CASCADE;
-DROP sequence IF EXISTS seq_ordenes_entrega CASCADE;
-DROP sequence IF EXISTS seq_ordenes_logistica CASCADE;
+DROP sequence IF EXISTS seq_orden_entrega CASCADE;
+DROP sequence IF EXISTS seq_orden_trabajo CASCADE;
 DROP TABLE IF EXISTS monedas CASCADE;
 DROP TABLE IF EXISTS ingredientesInv CASCADE;
 DROP TABLE IF EXISTS suministros CASCADE;
@@ -57,9 +57,9 @@ create sequence seq_alarmas minvalue 1 start with 13 increment by 1 no cycle;
 
 create sequence seq_receta minvalue 1 start with 13 increment by 1 no cycle;
 
-create sequence seq_ordenes_entrega minvalue 1 start with 1 increment by 1 no cycle;
+create sequence seq_orden_entrega minvalue 1 start with 1 increment by 1 no cycle;
 
-create sequence seq_ordenes_logistica minvalue 1 start with 1 increment by 1 no cycle;
+create sequence seq_orden_trabajo minvalue 1 start with 1 increment by 1 no cycle;
 
 
 create table monedas (idmoneda integer primary key, nombre varchar(300) not null, cantidad numeric(20,5) not null);

@@ -109,7 +109,8 @@ public class AlarmaServiceImp implements AlarmaService {
     }
 
     /**
-     * Caso de uso de resolucion de alarmas solo esta definido para el proceso de abastecimiento
+     * Caso de uso de resolucion de alarmas solo esta definido para el proceso de
+     * abastecimiento
      * de ingredientes.
      */
     @Override

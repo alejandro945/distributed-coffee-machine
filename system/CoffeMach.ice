@@ -30,12 +30,17 @@ module servicios{
 	   void abastecer(int codMaquina, int tipoAlarma);
     }
 
+    interface MessageBroker{
+      void queueAlarma(Alarma am);
+      bool acknowledge(int code, int machine);    
+    }
+
     interface AlarmaService{
-      void recibirNotificacionEscasezIngredientes(string iDing, int idMaq);
-      void recibirNotificacionInsuficienciaMoneda(Moneda moneda, int idMaq);
-      void recibirNotificacionEscasezSuministro(string idSumin, int idMaq);
-      void recibirNotificacionAbastesimiento(int idMaq, string idInsumo, int cantidad );
-      void recibirNotificacionMalFuncionamiento(int idMaq, string descri);
+      void recibirNotificacionEscasezIngredientes(string iDing, int idMaq, MessageBroker* broker);
+      void recibirNotificacionInsuficienciaMoneda(Moneda moneda, int idMaq, MessageBroker* broker);
+      void recibirNotificacionEscasezSuministro(string idSumin, int idMaq, MessageBroker* broker);
+      void recibirNotificacionAbastesimiento(int idMaq, string idInsumo, int cantidad, MessageBroker* broker);
+      void recibirNotificacionMalFuncionamiento(int idMaq, string descri, MessageBroker* broker);
     }
 
     interface VentaService{
@@ -68,11 +73,6 @@ module servicios{
       void notifyAll();
     }
 
-    interface MessageBroker{
-      void queueAlarma(Alarma am);
-      bool acknowledge(int code, int machine);    
-    }
-
     interface OrdenLogistica {
       void confirmarOrden();
     }
@@ -80,4 +80,6 @@ module servicios{
     interface OperadorLogistica {
       void atenderOperador();
     }
+
+    
 }

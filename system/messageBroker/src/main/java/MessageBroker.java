@@ -17,6 +17,8 @@ public class MessageBroker {
             // Adapter
             ObjectAdapter adapter = communicator.createObjectAdapter("Broker");
 
+
+
             // Ice Services
             AlarmaServicePrx alarmaServicePrx = AlarmaServicePrx.checkedCast(communicator.propertyToProxy("alarmas")).ice_twoway();
            
@@ -24,6 +26,9 @@ public class MessageBroker {
             AlarmaServiceBroker alarma = new AlarmaServiceBroker(AlarmaRepository.getInstance(), alarmaServicePrx);
             ThreadMessage threadMessage = new ThreadMessage(alarma, AlarmaRepository.getInstance());
             threadMessage.start();
+
+            MessageBrokerPrxPrx messageBroker = MessageBrokerPrx
+          .uncheckedCast(adapter.add(alarma, Util.stringToIdentity("broker")));
 
             // Add services to adapter
             adapter.add(alarma, Util.stringToIdentity("Alarmas")); //Server Binding

@@ -71,6 +71,8 @@ public class ProductoReceta implements RecetaService {
         return null;
     }
 
+    // Deprecated
+
     @Override
     public void definirProducto(String nombre, int precio, Map<String, Integer> ingredientes, Current current) {
         throw new UnsupportedOperationException("Unimplemented method 'definirProducto'");

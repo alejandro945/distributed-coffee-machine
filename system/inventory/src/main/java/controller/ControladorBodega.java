@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.Scanner;
-
 import com.zeroc.Ice.Communicator;
 
 import guiInventario.Interfaz;

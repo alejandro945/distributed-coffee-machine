@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 
 import com.zeroc.Ice.Communicator;
 
@@ -33,7 +34,7 @@ public class OrdenManager {
             String insertnuevaOrden = "INSERT INTO ORDENES_TRABAJO (IDALARMA, IDOPERADOR, IDORDEN, IDMAQUINA, FECHA, IDORDEN_ENTREGA) VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = conexion.prepareStatement(insertnuevaOrden);
             pst.setInt(1, ot.getIdAlarma());
-            pst.setInt(2, ot.getIdOperador());
+            pst.setNull(2, Types.NULL);
             pst.setInt(3, consecutivo);
             pst.setInt(4, ot.getIdmaquina());
             pst.setDate(5, new Date(ot.getFecha().getTime()));
@@ -59,12 +60,12 @@ public class OrdenManager {
             if (rs.next()) { consecutivo = rs.getInt(1); }
             String insertnuevaOrden = "INSERT INTO ORDENES_ENTREGA (IDOPERADOR, IDORDEN, IDMAQUINA, IDKIT, FECHA, CANTIDAD, IDSUMINISTRO, IDINGREDIENTE, IDALARMA) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst =  cbd.getConnection().prepareStatement(insertnuevaOrden);
-            pst.setInt(1, oe.getIdOperador());
+            pst.setNull(1, Types.NULL);
             pst.setInt(2, consecutivo);
             pst.setInt(3, oe.getIdMaquina());
             pst.setInt(4, oe.getIdKit());
             pst.setDate(5, new Date(oe.getFecha().getTime()));
-            pst.setInt(6, oe.getCantidad());
+            pst.setNull(6, Types.NULL);
             pst.setInt(7, oe.getIdSuministro());
             pst.setInt(8, oe.getIdIngrediente());
             pst.setInt(9, oe.getIdAlarma());

@@ -30,6 +30,17 @@ public class ObserverService implements Observer {
         return true;
     }
 
+    @Override
+    public void _notifyAll(Current current) {
+        System.out.println("ObserverService._notifyAll - Notifying all proxy observers");
+        for (int i = 0; i < observables.size(); i++) {
+            observables.get(i).update(getUpdate("product", current));
+        }
+    }
+
+    /**
+     * Method to get entities depending on the key
+     */
     private String[] getUpdate(String key, Current current) {
         if (key == "product") {
             return productoReceta.consultarProductos(current); // All
@@ -37,14 +48,6 @@ public class ObserverService implements Observer {
             return productoReceta.consultarRecetas(current);
         } else {
             return productoReceta.consultarIngredientes(current);
-        }
-    }
-
-    @Override
-    public void _notifyAll(Current current) {
-        System.out.println("ObserverService._notifyAll - Notifying all proxy observers");
-        for (int i = 0; i < observables.size(); i++) {
-            observables.get(i).update(getUpdate("product", current));
         }
     }
 

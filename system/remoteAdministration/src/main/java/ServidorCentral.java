@@ -5,7 +5,7 @@ import com.zeroc.Ice.*;
 import repository.AlarmasManager;
 import repository.OrdenManager;
 import repository.ProductoReceta;
-import repository.ServerControl;
+import repository.LogisticManager;
 import repository.VentasManager;
 import service.AlarmaServiceImp;
 import service.ObserverService;
@@ -23,14 +23,13 @@ public class ServidorCentral {
             ObjectAdapter adapter = communicator.createObjectAdapter("Server");
 
             // Repositories that implements services better decoupling
-            ServerControl control = new ServerControl(communicator);
+            LogisticManager control = new LogisticManager(communicator);
             ProductoReceta recetas = new ProductoReceta(communicator);
             VentasManager ventas = new VentasManager(communicator);
 
             // Services
             ObserverService observerService = new ObserverService(recetas);
-            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator),
-                    new OrdenManager(communicator));
+            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator), new OrdenManager(communicator));
 
             // Controllers
             ServicioComLogistica log = new ControlComLogistica(control);
@@ -38,11 +37,11 @@ public class ServidorCentral {
             controladorRecetas.run();
 
             // Add services to adapter
-            adapter.add(alarma, Util.stringToIdentity("Alarmas"));
-            adapter.add(ventas, Util.stringToIdentity("Ventas"));
-            adapter.add(log, Util.stringToIdentity("logistica"));
-            adapter.add(recetas, Util.stringToIdentity("Recetas"));// Conection with proxy
-            adapter.add(observerService, Util.stringToIdentity("Observer")); // Conection with pub-sub
+            adapter.add(alarma, Util.stringToIdentity("Alarmas")); // Message Broker on Alarm Topic
+            adapter.add(ventas, Util.stringToIdentity("Ventas")); // Message Broker on Sales Topic
+            adapter.add(log, Util.stringToIdentity("Logistica"));
+            adapter.add(recetas, Util.stringToIdentity("Recetas"));// Proxy Cache on Recipes
+            adapter.add(observerService, Util.stringToIdentity("Observer")); // Pub and Sub on Recipes
 
             // Activate adapter
             adapter.activate();

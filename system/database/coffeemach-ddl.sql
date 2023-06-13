@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS ingredientesInv CASCADE;
 DROP TABLE IF EXISTS suministros CASCADE;
 DROP TABLE IF EXISTS kit_reparacion CASCADE;
 DROP TABLE IF EXISTS ordenes_entrega CASCADE;
-DROP TABLE IF EXISTS ordenes_logistica CASCADE;
+DROP TABLE IF EXISTS ordenes_trabajo CASCADE;
 
 
 create table receta (idreceta integer primary key, nombre varchar(300) not null, precio numeric(20,5) not null);
@@ -72,4 +72,4 @@ create table kit_reparacion (idkit integer primary key, nombre varchar(300) not 
 
 create table ordenes_entrega (idOperador integer, idorden integer primary key, idmaquina integer, idkit integer, fecha date not null, cantidad integer not null, idsuministro integer, idIngredient integer, idAlarma integer, foreign key (idmaquina) references maquina (idmaquina), foreign key (idkit) references kit_reparacion (idkit), foreign key (idsuministro) references suministros (idsuministro), foreign key (idIngredient) references ingredientesInv (idingrediente), foreign key (idOperador) references operadores (idoperador), foreign key(idAlarma) references alarma (idalarma));
 
-create table ordenes_logistica (idAlarma integer, idOperador integer, idorden integer primary key, idmaquina integer, fecha date not null, idOrdenEntrega integer, foreign key (idmaquina) references maquina (idmaquina), foreign key (idOrdenEntrega) references ordenes_entrega (idorden), foreign key (idOperador) references operadores (idoperador), foreign key(idAlarma) references alarma (idalarma));
+create table ordenes_trabajo (idAlarma integer, idOperador integer, idorden integer primary key, idmaquina integer, fecha date not null, idOrdenEntrega integer, foreign key (idmaquina) references maquina (idmaquina), foreign key (idOrdenEntrega) references ordenes_entrega (idorden), foreign key (idOperador) references operadores (idoperador), foreign key(idAlarma) references alarma (idalarma));

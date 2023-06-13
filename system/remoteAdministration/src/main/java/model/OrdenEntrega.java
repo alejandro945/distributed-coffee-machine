@@ -5,7 +5,7 @@ import java.util.Date;
 public class OrdenEntrega {
 
     private int idOperador;
-    private int idOrden;
+    private int idOrden; // Consecutivo in database
     private int idMaquina;
     private int idKit;
     private int cantidad;
@@ -14,14 +14,10 @@ public class OrdenEntrega {
     private int idIngrediente;
     private int idAlarma;
 
-    public OrdenEntrega(int idOperador, int idOrden, int idMaquina, int idKit, int cantidad, Date fecha,
-            int idSuministro, int idIngrediente, int idAlarma) {
-        this.idOperador = idOperador;
-        this.idOrden = idOrden;
+    public OrdenEntrega(int idMaquina, int idAlarma, Date fecha, int idKit, int idSuministro, int idIngrediente) {
         this.idMaquina = idMaquina;
-        this.idKit = idKit;
-        this.cantidad = cantidad;
         this.fecha = fecha;
+        this.idKit = idKit;
         this.idSuministro = idSuministro;
         this.idIngrediente = idIngrediente;
         this.idAlarma = idAlarma;

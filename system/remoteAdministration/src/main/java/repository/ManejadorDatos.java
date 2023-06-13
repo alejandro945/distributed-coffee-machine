@@ -60,8 +60,11 @@ public class ManejadorDatos {
 				st.execute("SELECT NEXTVAL('CONSECALARMA')");
 				ResultSet rs = st.getResultSet();
 				consecutivo = 0;
-				if (rs.next()) { consecutivo = rs.getInt(1); }
-
+				if (rs.next()) {
+					consecutivo = rs.getInt(1);
+				}
+				System.out.println(consecutivo + " Consecutivo");
+				System.out.println(aM.getIdMaquina() + " Id Alarma");
 				String insertnuevaA = "INSERT INTO ALARMA_MAQUINA (ID_ALARMA,ID_MAQUINA,FECHA_INICIAL,CONSECUTIVO) VALUES (?,?,?,?)";
 				PreparedStatement pst = conexion
 						.prepareStatement(insertnuevaA);

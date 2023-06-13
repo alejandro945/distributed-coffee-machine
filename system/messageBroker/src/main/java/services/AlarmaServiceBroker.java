@@ -51,6 +51,7 @@ public class AlarmaServiceBroker implements MessageBroker {
         }
 
         if (am.externalType == 1) {
+            System.out.println(am.codMaquina);
             alarmaServicePrx.recibirNotificacionEscasezIngredientes(am.message, am.codMaquina, messageBroker);
         } else if (am.externalType == 2) {
             alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN, am.codMaquina, messageBroker);

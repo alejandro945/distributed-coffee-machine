@@ -10,8 +10,8 @@ public class CmLogistics {
         try (Communicator communicator = Util.initialize(args, "logistica.cfg", extArgs)) {
             ObjectAdapter adapter = communicator.createObjectAdapter("CmLogistic");
             
-            OrdenTrabajo ordenTrabajo = new OrdenTrabajo();
-            PlanificadorRuta planificadorRuta = new PlanificadorRuta();
+            OrdenTrabajo ordenTrabajo = new OrdenTrabajo(communicator);
+            PlanificadorRuta planificadorRuta = new PlanificadorRuta(communicator);
 
             adapter.add(ordenTrabajo, Util.stringToIdentity("OrdenTrabajo"));
             adapter.add(planificadorRuta, Util.stringToIdentity("PlanificadorRuta"));

@@ -64,4 +64,12 @@ module servicios{
       StringArr alarmas();
       StringArr ventas();
     }
+
+    interface OrdenLogistica {
+      void confirmarOrden();
+    }
+
+    interface OperadorLogistica {
+      void atenderOperador();
+    }
 }

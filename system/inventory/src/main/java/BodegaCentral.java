@@ -25,8 +25,11 @@ public class BodegaCentral {
             /* Thread t = new Thread(interfaz); */
             /* t.start(); */
 
+            OrdenEntregaImp orden = new OrdenEntregaImp(logistica, communicator);
             // Adapter Configuration
-            adapter.add(new OrdenEntregaImp(logistica, communicator), Util.stringToIdentity("Logistica"));
+            adapter.add(orden, Util.stringToIdentity("Logistica"));
+            adapter.add(orden, Util.stringToIdentity("Inv"));
+
             // Activate adapter
             adapter.activate();
             communicator.waitForShutdown();

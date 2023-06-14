@@ -115,13 +115,13 @@ condMaquina=1
 for i in "${clients[@]}"
 do
     newVal=$(($start+$i))
-    for ((j=0; j<2; j++))
+    for ((j=0; j<5; j++))
     do
         newPort=$(($port+$j))
         echo $newPort
         sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}$i "cd $path/libs && sed -i 's/CoffeMach.Endpoints = default -h 192\.168\.131\..* -p ..*/CoffeMach.Endpoints = default -h 192.168.131.'"$newVal"' -p '"$newPort"'/' coffeMach.cfg"
         sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}$i "cd $path/libs && echo $condMaquina > codMaquina.cafe"
-        sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}$i "cd $path/libs && java -cp './*' CoffeeMach" &
+        sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}$i "cd $path/libs && java -cp './*' CoffeeMach" & >> "test.txt" &
         echo "run machine in $j node $i"
         condMaquina=$(($condMaquina+1))
         sleep 3      

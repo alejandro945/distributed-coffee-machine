@@ -16,12 +16,15 @@ public class CmLogistics {
 
             OrdenTrabajo ordenTrabajo = new OrdenTrabajo(communicator, bodega);
 
-            //LogisticDashboard dashboard = new LogisticDashboard(communicator);
+            // LogisticDashboard dashboard = new LogisticDashboard(communicator);
 
-            /* Thread t = new Thread(dashboard);
-            t.start(); */
+            /*
+             * Thread t = new Thread(dashboard);
+             * t.start();
+             */
 
             adapter.add(ordenTrabajo, Util.stringToIdentity("Inventario"));
+            adapter.add(ordenTrabajo, Util.stringToIdentity("Log"));
 
             adapter.activate();
             communicator.waitForShutdown();

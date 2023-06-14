@@ -53,5 +53,7 @@ sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/proxy.cfg ${maquin
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/coffeMach.cfg ${maquinas}11:./${path}/libs
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/codMaquina.cafe ${maquinas}11:./${path}/libs
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/broker.cfg ${maquinas}5:./${path}/libs
-sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/logistic.cfg ${maquinas}13:./${path}/libs
+echo "Logistica"
+sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/logistica.cfg ${maquinas}13:./${path}/libs
+echo "Bodega"
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/bodegaCentral.cfg ${maquinas}14:./${path}/libs

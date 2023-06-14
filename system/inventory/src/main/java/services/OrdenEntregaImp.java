@@ -9,11 +9,10 @@ import servicios.OrdenLogisticaPrx;
 
 public class OrdenEntregaImp implements OrdenBodega {
 
-    private OrdenLogisticaPrx ordenLogistica;
+    //private OrdenLogisticaPrx ordenLogistica;
     private ControladorBodega controladorBodega;
 
-    public OrdenEntregaImp(OrdenLogisticaPrx ordenLogistica, Communicator communicator) {
-        this.ordenLogistica = ordenLogistica;
+    public OrdenEntregaImp(Communicator communicator) {
         this.controladorBodega = new ControladorBodega(communicator);
     }
 
@@ -24,7 +23,7 @@ public class OrdenEntregaImp implements OrdenBodega {
         controladorBodega.updateOrden(codOrden, codOp);
         System.out.println("Se ha actualizado correctamente el operador de la orden de entrega");
         // Al final se hace un feedback a logistica Aknowledgement
-        ordenLogistica.confirmarOrden(codOrden);
+       // ordenLogistica.confirmarOrden(codOrden);
         return true;
     }
 

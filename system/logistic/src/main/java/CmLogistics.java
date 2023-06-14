@@ -23,7 +23,7 @@ public class CmLogistics {
              * t.start();
              */
 
-            adapter.add(ordenTrabajo, Util.stringToIdentity("Inventario"));
+            //adapter.add(ordenTrabajo, Util.stringToIdentity("Inventario"));
             adapter.add(ordenTrabajo, Util.stringToIdentity("Log"));
 
             adapter.activate();

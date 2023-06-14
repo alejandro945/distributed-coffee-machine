@@ -4,10 +4,12 @@ import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.Current;
 
 import model.Operario;
+import repository.ConexionBD;
+import repository.ManejadorDatos;
 import servicios.OperadorLogistica;
 
 public class PlanificadorRuta implements OperadorLogistica{
-    private Operario operario;
+
     private Communicator communicator;
 
     public PlanificadorRuta(Communicator com) {
@@ -15,12 +17,17 @@ public class PlanificadorRuta implements OperadorLogistica{
     }
 
     @Override
-    public void atenderOperador(Current current) {
-
-        
-
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atenderOperador'");
+    public boolean atenderOperador(int codOp, int codOrden, Current current) {
+        boolean resultado = false;
+        if (codOp != 0) {
+            ConexionBD connection = new ConexionBD(communicator);
+            connection.conectarBaseDatos();
+            ManejadorDatos dataManager = new ManejadorDatos();
+            dataManager.setConexion(connection.getConnection());
+            resultado = dataManager.atenderOperador(codOp, codOrden);
+            connection.cerrarConexion();
+        }
+        return resultado;
     }
 
 

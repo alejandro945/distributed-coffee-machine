@@ -25,7 +25,7 @@ public class TaskService implements Runnable {
     private CallbackPrx cb;
     private int type;
     private int idMaq;
-    private String description; 
+    private String description;
     private Moneda moneda;
 
     public TaskService(OrdenManager ordenManager, AlarmasManager manager, MessageBrokerPrx messageBroker,
@@ -102,19 +102,19 @@ public class TaskService implements Runnable {
         feedback(alarmamoneda, idMaq, alarmId, response, messageBroker, cb);
     }
 
-    private void recibirNotificacionEscasezSuministro(){
+    private void recibirNotificacionEscasezSuministro() {
         int alarmId = manager.alarmaMaquina(ALARMA_SUMINISTRO, idMaq, new Date());
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 0, 1, 0 });
         feedback(ALARMA_SUMINISTRO, idMaq, alarmId, response, messageBroker, cb);
     }
 
-    private void recibirNotificacionMalFuncionamiento(){
+    private void recibirNotificacionMalFuncionamiento() {
         int alarmId = manager.alarmaMaquina(ALARMA_MAL_FUNCIONAMIENTO, idMaq, new Date());
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 1, 0, 0 });
         feedback(ALARMA_MAL_FUNCIONAMIENTO, idMaq, alarmId, response, messageBroker, cb);
     }
 
-    private void recibirNotificacionAbastesimiento(){
+    private void recibirNotificacionAbastesimiento() {
         manager.desactivarAlarma(ALARMA_INGREDIENTE, idMaq, new Date());
         feedback(ALARMA_INGREDIENTE, idMaq, 0, new int[] {}, messageBroker, cb);
     }
@@ -129,7 +129,6 @@ public class TaskService implements Runnable {
                     + "Asoicada a la alarma: " + alarmId);
         else
             System.out.println("Alarma repetida en el servidor");
-        System.out.println(cb);
         // Recibí la notificación, ahora debo enviar la confirmación
         messageBroker.acknowledge(typeAlarm, idMaq, cb);
     }

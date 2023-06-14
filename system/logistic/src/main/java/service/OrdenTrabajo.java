@@ -22,6 +22,7 @@ public class OrdenTrabajo implements OrdenLogistica {
     public boolean confirmarOrden(int codOrden, Current current) {
         // Metodo llamado desde inventario para notificar que se ha entregado los
         // insumos al operador
+        System.out.println("Recibimos confirmacion de entrega a nuestro operario");
         boolean resultado = false;
         if (codOrden != 0) {
             ConexionBD connection = new ConexionBD(communicator);
@@ -32,11 +33,13 @@ public class OrdenTrabajo implements OrdenLogistica {
             connection.cerrarConexion();
         }
         System.out.println("El operador ha salido a abastecer la maquina");
+        System.out.println("Final :)");
         return resultado;
     }
 
     @Override
     public void notificarOrdenTrabajo(int code,Current current) {
+        System.out.println("Ha llegado una notificacion de alarma de orden de trabajo de alarma" + code);
         // Asignar operario a orden de trabajo
         if (code != 0) {
             ConexionBD connection = new ConexionBD(communicator);

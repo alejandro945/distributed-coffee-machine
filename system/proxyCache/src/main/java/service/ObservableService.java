@@ -16,6 +16,7 @@ public class ObservableService implements Observable {
 
     @Override
     public void update(String[] data, Current current) {
+        System.out.println("Recibimos nuevos datos de recetas enviado por el server central");
         System.out.println("ObservableService.update - Server · Data: " + data);
         cacheService.putElementInCache("product", data);
         observerService._notifyAll(current);

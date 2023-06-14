@@ -2,38 +2,33 @@ package controller;
 
 import com.zeroc.Ice.Communicator;
 
-import guiInventario.Interfaz;
-import servicios.OperadorLogisticaPrx;
-import servicios.OrdenLogisticaPrx;
+import dataAccess.ConexionBD;
+import dataAccess.ManejadorDatos;
 
 public class ControladorBodega {
 
-    OperadorLogisticaPrx operador;
-    OrdenLogisticaPrx orden;
-    Communicator communicator;
+    private ManejadorDatos manejadorDatos;
 
-    public ControladorBodega (OperadorLogisticaPrx o, OrdenLogisticaPrx ord, Communicator communicator) {
-        this.operador = o;
-        this.orden = ord;
-        this.communicator = communicator;
+    public ControladorBodega ( Communicator communicator) {
+        this.manejadorDatos = new ManejadorDatos(new ConexionBD(communicator).getConnection());
     }
 
     public void confirmarOrden(int codOrden) {
-        // TODO Auto-generated method stub
-        orden.confirmarOrden(codOrden);
+        manejadorDatos.obtenerOrdenEntrega(codOrden);
+        // Actualizar cantidad de suministros asociados
     }
 
-    public void atenderOperador(int codOp, int codOrden) {
-        operador.atenderOperador(codOp, codOrden);
+
+    public void updateOrden(int codOrden, int codOp) {
+        manejadorDatos.updateOperario(codOp, codOp);
     }
+
 
     public void comprarSuministros() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'comprarSuministros'");
     }
 
     public void consultarSuministros() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'consultarSuministros'");
     }
     

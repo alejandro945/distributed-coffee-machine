@@ -1,13 +1,8 @@
 package repository;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ManejadorDatos {
 
@@ -24,21 +19,6 @@ public class ManejadorDatos {
 		this.conexion = conexion;
 	}
 
-	public boolean atenderOperador (int codOperador, int codOrden) {
-		boolean retorno = false;
-		try {
-			String update = "UPDATE OPERADOR SET IDOPERADOR = ? WHERE CODIGO = ?";
-			PreparedStatement pst = conexion.prepareStatement(update);
-			pst.setInt(1, codOperador);
-			pst.setInt(2, codOrden);
-			pst.executeUpdate();
-			retorno = true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return retorno;
-	}
-
 	public boolean confirmarOrden (int codOrden) {
 		boolean retorno = false;
 		try {
@@ -53,4 +33,21 @@ public class ManejadorDatos {
 		return retorno;
 	}
 
+	public boolean asignarOperador(int idOperador, int idMaquina) {
+		boolean retorno = false;
+		try {
+
+			String insert = "INSERT INTO ASIGNACION_MAQUINA (ID_MAQUINA,ID_OPERADOR) VALUES (?,?)";
+			PreparedStatement pst = conexion.prepareStatement(insert);
+			pst.setInt(1, idMaquina);
+			pst.setInt(2, idOperador);
+			pst.executeUpdate();
+			retorno = true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return retorno;
+	}
 }

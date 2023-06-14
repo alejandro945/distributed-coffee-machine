@@ -2,26 +2,26 @@ import java.util.*;
 import com.zeroc.Ice.*;
 
 import service.OrdenTrabajo;
-import service.PlanificadorRuta;
-import ui.LogisticDashboard;
+import servicios.OrdenBodegaPrx;
 
 public class CmLogistics {
     public static void main(String[] args) {
         List<String> extArgs = new ArrayList<>();
         try (Communicator communicator = Util.initialize(args, "logistica.cfg", extArgs)) {
             ObjectAdapter adapter = communicator.createObjectAdapter("CmLogistics");
-            
 
-            OrdenTrabajo ordenTrabajo = new OrdenTrabajo(communicator);
-            PlanificadorRuta planificadorRuta = new PlanificadorRuta(communicator);
+            // Ice Services
+            OrdenBodegaPrx bodega = OrdenBodegaPrx.checkedCast(communicator.propertyToProxy("inventario"))
+                    .ice_twoway();
 
-            LogisticDashboard dashboard = new LogisticDashboard(communicator);
+            OrdenTrabajo ordenTrabajo = new OrdenTrabajo(communicator, bodega);
 
-            Thread t = new Thread(dashboard);
-            t.start();
+            //LogisticDashboard dashboard = new LogisticDashboard(communicator);
 
-            adapter.add(ordenTrabajo, Util.stringToIdentity("Orden"));
-            adapter.add(planificadorRuta, Util.stringToIdentity("Operador"));
+            /* Thread t = new Thread(dashboard);
+            t.start(); */
+
+            adapter.add(ordenTrabajo, Util.stringToIdentity("Inventario"));
 
             adapter.activate();
             communicator.waitForShutdown();

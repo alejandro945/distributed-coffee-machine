@@ -3,8 +3,6 @@ package ui;
 import com.zeroc.Ice.Communicator;
 
 import controller.LogisticController;
-import service.PlanificadorRuta;
-import servicios.OrdenLogistica;
 
 public class LogisticDashboard implements Runnable {
 

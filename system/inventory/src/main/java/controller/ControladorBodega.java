@@ -11,7 +11,6 @@ public class ControladorBodega {
     OperadorLogisticaPrx operador;
     OrdenLogisticaPrx orden;
     Communicator communicator;
-    private Interfaz interfaz;
 
     public ControladorBodega (OperadorLogisticaPrx o, OrdenLogisticaPrx ord, Communicator communicator) {
         this.operador = o;
@@ -19,20 +18,13 @@ public class ControladorBodega {
         this.communicator = communicator;
     }
 
-    public void run() {
-        interfaz = new Interfaz(this);
-        Thread t = new Thread(interfaz);
-        t.start();
-    }
-
     public void confirmarOrden(int codOrden) {
         // TODO Auto-generated method stub
-        orden.confirmarOrden();
+        orden.confirmarOrden(codOrden);
     }
 
-    public void atenderOperador(int codOp) {
-        // TODO Auto-generated method stub
-        operador.atenderOperador();
+    public void atenderOperador(int codOp, int codOrden) {
+        operador.atenderOperador(codOp, codOrden);
     }
 
     public void comprarSuministros() {

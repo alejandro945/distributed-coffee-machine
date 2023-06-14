@@ -5,6 +5,7 @@ import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.ObjectAdapter;
 import com.zeroc.Ice.Util;
 import controller.ControladorBodega;
+import guiInventario.Interfaz;
 import servicios.OperadorLogisticaPrx;
 import servicios.OrdenLogisticaPrx;
 
@@ -21,9 +22,9 @@ public class BodegaCentral {
             OrdenLogisticaPrx orden = OrdenLogisticaPrx.checkedCast(communicator.propertyToProxy("logistica")).ice_twoway();
             OperadorLogisticaPrx operador = OperadorLogisticaPrx.checkedCast(communicator.propertyToProxy("operador")).ice_twoway();
 
-            ControladorBodega control = new ControladorBodega(operador, orden, communicator);
-
-            control.run(); 
+            Interfaz interfaz = new Interfaz(operador, orden, communicator);
+            Thread t = new Thread(interfaz);
+            t.start();
 
             // Activate adapter
             adapter.activate();

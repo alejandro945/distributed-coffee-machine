@@ -2,17 +2,21 @@ package guiInventario;
 
 import java.util.Scanner;
 
+import com.zeroc.Ice.Communicator;
+
 import controller.ControladorBodega;
+import servicios.OperadorLogisticaPrx;
+import servicios.OrdenLogisticaPrx;
 
 //import bodega.Bodega;
 //import mantenimientoExistencias.Inventario;
 
 public class Interfaz implements Runnable {
 
-    private ControladorBodega cb;
+    private ControladorBodega controlador;
 
-    public Interfaz (ControladorBodega cb) {
-        this.cb = cb;
+    public Interfaz (OperadorLogisticaPrx operador, OrdenLogisticaPrx orden, Communicator com) {
+        controlador = new ControladorBodega(operador, orden, com);
     }
 
     @Override
@@ -36,13 +40,18 @@ public class Interfaz implements Runnable {
 						System.out.println(">>Codigo perador atendido: ");
 						int codOp = lector.nextInt();
 						lector.nextLine();
+                        System.out.println(">>Codigo orden: ");
+                        int codOrden = lector.nextInt();
+                        lector.nextLine();
+
+                        atenderOperador(codOp, codOrden);
 
 						// guardarlo
 						break;
 					case 2:
                         lector.nextLine();
                         System.out.println(">>Codigo orden: ");
-                        int codOrden = lector.nextInt();
+                        // int codOrden = lector.nextInt();
                         lector.nextLine();
 
                         // guardarlo
@@ -66,6 +75,20 @@ public class Interfaz implements Runnable {
 
     }
 
-    
+    private void atenderOperador (int codOp, int codOrden) {
+        controlador.atenderOperador(codOp, codOrden);
+    }
+
+    private void confirmarOrden (int codOrden) {
+        controlador.confirmarOrden(codOrden);
+    }
+
+    private void comprarSuministros () {
+        controlador.comprarSuministros();
+    }
+
+    private void consultarSuministros () {
+        controlador.consultarSuministros();
+    }
 
 }

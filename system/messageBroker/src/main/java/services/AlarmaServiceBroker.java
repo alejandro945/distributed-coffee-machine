@@ -30,7 +30,8 @@ public class AlarmaServiceBroker implements MessageBroker {
         // Guarda en la capa de persistencia
         alarmaRepository
                 .add(new model.Alarma(am.idAlarma, am.codMaquina, am.externalType, am.isTerminated, am.message, cb));
-        sendNotifications(am, cb);
+            
+                sendNotifications(am, cb);
     }
 
     @Override

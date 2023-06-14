@@ -24,6 +24,7 @@ public class AlarmaServiceImp implements AlarmaService {
     public void recibirNotificacionEscasezIngredientes(String iDing, int idMaq, MessageBrokerPrx messageBroker,
             CallbackPrx cb,
             Current current) {
+        System.out.println("Callback machine en entry point" + cb);
         TaskService tk = new TaskService(ordenManager, manager, messageBroker, cb, 1, idMaq);
         tk.setDescription(iDing);
         handler.execute(tk);

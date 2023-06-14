@@ -124,7 +124,7 @@ public class TaskService implements Runnable {
      */
     private void feedback(int typeAlarm, int idMaq, int alarmId, int[] type, MessageBrokerPrx messageBroker,
             CallbackPrx cb) {
-        if (alarmId == 0)
+        if (alarmId != 0)
             System.out.println("Orden de entrega: " + type[0] + " Orden de trabajo: " + type[1]
                     + "Asoicada a la alarma: " + alarmId);
         else

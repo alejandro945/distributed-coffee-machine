@@ -66,17 +66,19 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 	 */
 	public void run() {
 		try {
-			frame = new Interfaz();
-			frame.setLocationRelativeTo(null);
-			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			frame.setVisible(true);
+			/*
+			 * frame = new Interfaz();
+			 * frame.setLocationRelativeTo(null);
+			 * frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			 * frame.setVisible(true);
+			 */
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		initMachine();
 		verificarProductos();
 		verificarMonedas();
-		eventos();
+		// eventos();
 	}
 
 	/**
@@ -86,10 +88,12 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 		// Code
 		readMachineCode();
 		// Interface
-		actualizarRecetasCombo();
-		actualizarRecetasGraf();
-		actualizarInsumosGraf();
-		actualizarAlarmasGraf();
+		/*
+		 * actualizarRecetasCombo();
+		 * actualizarRecetasGraf();
+		 * actualizarInsumosGraf();
+		 * actualizarAlarmasGraf();
+		 */
 	}
 
 	/**
@@ -462,11 +466,12 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 					System.out.println(codMaquina + " Maquina codigo");
 					messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()),
 							callbackPrx);
-
-					frame.getTextAreaAlarmas().setText(
-							frame.getTextAreaAlarmas().getText()
-									+ "Se genero una alarma de Ingrediente: "
-									+ alIng.getMensaje() + "\n");
+					/*
+					 * frame.getTextAreaAlarmas().setText(
+					 * frame.getTextAreaAlarmas().getText()
+					 * + "Se genero una alarma de Ingrediente: "
+					 * + alIng.getMensaje() + "\n");
+					 */
 
 				}
 			}
@@ -484,13 +489,15 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()),
 						callbackPrx);
+				/*
+				 * frame.getTextAreaAlarmas().setText(
+				 * frame.getTextAreaAlarmas().getText()
+				 * + "Se genero una alarma de: Critico de "
+				 * + alIng.getMensaje() + "\n");
+				 * 
+				 * frame.interfazDeshabilitada();
+				 */
 
-				frame.getTextAreaAlarmas().setText(
-						frame.getTextAreaAlarmas().getText()
-								+ "Se genero una alarma de: Critico de "
-								+ alIng.getMensaje() + "\n");
-
-				frame.interfazDeshabilitada();
 			}
 
 		}
@@ -628,6 +635,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 	 * Mehotd that verify the coins
 	 */
 	public void verificarMonedas() {
+		System.out.println("hola");
 		// Monedas de 100
 		DepositoMonedas moneda = monedas.findByKey("100");
 		if (moneda.getCantidad() <= moneda.getMinimo() && moneda.getCantidad() > moneda.getCritico()) {
@@ -640,8 +648,9 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// codMaquina);
 				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 2, false, ""), callbackPrx);
-				frame.getTextAreaAlarmas().setText(
-						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de 100" + "\n");
+				// frame.getTextAreaAlarmas().setText(
+				// frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de
+				// 100" + "\n");
 			}
 		}
 		if (moneda.getCantidad() <= moneda.getCritico()) {
@@ -654,9 +663,10 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			System.out.println(codMaquina + " Maquina codigo");
 			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 2, false, ""), callbackPrx);
 
-			frame.getTextAreaAlarmas().setText(
-					frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica Monedas de 100" + "\n");
-			frame.interfazDeshabilitada();
+			// frame.getTextAreaAlarmas().setText(
+			// frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica
+			// Monedas de 100" + "\n");
+			// frame.interfazDeshabilitada();
 		}
 
 		// Monedas de 200
@@ -672,8 +682,9 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 3, false, ""), callbackPrx);
 
-				frame.getTextAreaAlarmas().setText(
-						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Mondedas de 200" + "\n");
+				// frame.getTextAreaAlarmas().setText(
+				// frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Mondedas de
+				// 200" + "\n");
 			}
 		}
 		if (moneda.getCantidad() <= moneda.getCritico()) {
@@ -686,9 +697,10 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			System.out.println(codMaquina + " Maquina codigo");
 			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 3, false, ""), callbackPrx);
 
-			frame.getTextAreaAlarmas().setText(
-					frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica de Monedas de 200" + "\n");
-			frame.interfazDeshabilitada();
+			// frame.getTextAreaAlarmas().setText(
+			// frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica de
+			// Monedas de 200" + "\n");
+			// frame.interfazDeshabilitada();
 		}
 
 		// Monedas de 500
@@ -704,8 +716,9 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 4, false, ""), callbackPrx);
 
-				frame.getTextAreaAlarmas().setText(
-						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de 500" + "\n");
+				// frame.getTextAreaAlarmas().setText(
+				// frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de
+				// 500" + "\n");
 			}
 		}
 		if (moneda.getCantidad() <= moneda.getCritico()) {
@@ -718,9 +731,10 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			System.out.println(codMaquina + " Maquina codigo");
 			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 4, false, ""), callbackPrx);
 
-			frame.getTextAreaAlarmas().setText(
-					frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica Monedas de 500" + "\n");
-			frame.interfazDeshabilitada();
+			// frame.getTextAreaAlarmas().setText(
+			// frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica
+			// Monedas de 500" + "\n");
+			// frame.interfazDeshabilitada();
 		}
 	}
 

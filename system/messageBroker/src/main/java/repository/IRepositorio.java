@@ -26,7 +26,7 @@ public abstract class IRepositorio<T extends AbstractClass> implements Serializa
 
     public void remove(T element) {
         list.remove(element);
-        saveData();
+        this.saveData();
     }
 
     public void setElements(List<T> elements) {

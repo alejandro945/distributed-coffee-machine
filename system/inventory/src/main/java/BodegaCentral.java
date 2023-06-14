@@ -16,10 +16,10 @@ public class BodegaCentral {
         try (Communicator communicator = Util.initialize(args, "bodegaCentral.cfg", params)) {
 
             // Adapter
-            ObjectAdapter adapter = communicator.createObjectAdapter("Bodega");
+            ObjectAdapter adapter = communicator.createObjectAdapter("BodegaCentral");
 
             // Ice Services
-            OrdenLogisticaPrx orden = OrdenLogisticaPrx.checkedCast(communicator.propertyToProxy("logistica")).ice_twoway();
+            OrdenLogisticaPrx orden = OrdenLogisticaPrx.checkedCast(communicator.propertyToProxy("orden")).ice_twoway();
             OperadorLogisticaPrx operador = OperadorLogisticaPrx.checkedCast(communicator.propertyToProxy("operador")).ice_twoway();
 
             Interfaz interfaz = new Interfaz(operador, orden, communicator);

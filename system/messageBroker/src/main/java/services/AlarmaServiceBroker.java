@@ -30,13 +30,16 @@ public class AlarmaServiceBroker implements MessageBroker {
         // Guarda en la capa de persistencia
         alarmaRepository
                 .add(new model.Alarma(am.idAlarma, am.codMaquina, am.externalType, am.isTerminated, am.message, cb));
-            
-                sendNotifications(am, cb);
+
+        sendNotifications(am, cb);
     }
 
     @Override
     public boolean acknowledge(int code, int type, CallbackPrx cb, Current current) {
         model.Alarma am = alarmaRepository.getElement(code, type);
+        System.out.println(am + " AM");
+        System.out.println("Code: " + code + " Type: " + type);
+        System.out.println(cb + " CB");
         if (am != null) {
             // Mark Delivered
             System.out.println("Tamaño antes" + alarmaRepository.getElements().size());
@@ -51,7 +54,7 @@ public class AlarmaServiceBroker implements MessageBroker {
     public void sendNotifications(Alarma am, CallbackPrx cb) {
         if (am.isTerminated) {
             // Si la alarma es terminada, se envía a la capa de servicios
-            alarmaServicePrx.recibirNotificacionAbastesimiento(am.codMaquina, am.idAlarma + "", 0, messageBroker,cb);
+            alarmaServicePrx.recibirNotificacionAbastesimiento(am.codMaquina, am.idAlarma + "", 0, messageBroker, cb);
             return;
         }
 
@@ -63,11 +66,12 @@ public class AlarmaServiceBroker implements MessageBroker {
         } else if (am.externalType == 3) {
             alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS, am.codMaquina, messageBroker, cb);
         } else if (am.externalType == 4) {
-            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS, am.codMaquina, messageBroker, cb);
+            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS, am.codMaquina, messageBroker,
+                    cb);
         } else if (am.externalType == 5) {
             alarmaServicePrx.recibirNotificacionEscasezSuministro(am.message, am.codMaquina, messageBroker, cb);
         } else if (am.externalType == 6) {
-            alarmaServicePrx.recibirNotificacionMalFuncionamiento(am.codMaquina, am.message, messageBroker,cb);
+            alarmaServicePrx.recibirNotificacionMalFuncionamiento(am.codMaquina, am.message, messageBroker, cb);
         }
 
     }

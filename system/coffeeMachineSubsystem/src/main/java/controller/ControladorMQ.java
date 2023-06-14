@@ -75,6 +75,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 		}
 		initMachine();
 		verificarProductos();
+		verificarMonedas();
 		eventos();
 	}
 
@@ -326,7 +327,8 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// requiere mantenimiento");
 				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx
-						.queueAlarma(new servicios.Alarma(0, codMaquina, 6, false, "Se requiere mantenimiento"), callbackPrx);
+						.queueAlarma(new servicios.Alarma(0, codMaquina, 6, false, "Se requiere mantenimiento"),
+								callbackPrx);
 
 				// LDB Adding alarm to the list
 				alarmas.addElement("1", temp);
@@ -458,7 +460,8 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 					// alarmaServicePrx.recibirNotificacionEscasezIngredientes(ing.getNombre(),
 					// codMaquina);
 					System.out.println(codMaquina + " Maquina codigo");
-					messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()), callbackPrx);
+					messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()),
+							callbackPrx);
 
 					frame.getTextAreaAlarmas().setText(
 							frame.getTextAreaAlarmas().getText()
@@ -479,7 +482,8 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// alarmaServicePrx.recibirNotificacionEscasezIngredientes(ing.getNombre(),
 				// codMaquina);
 				System.out.println(codMaquina + " Maquina codigo");
-				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()), callbackPrx);
+				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()),
+						callbackPrx);
 
 				frame.getTextAreaAlarmas().setText(
 						frame.getTextAreaAlarmas().getText()

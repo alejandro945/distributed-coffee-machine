@@ -17,8 +17,11 @@ public abstract class IRepositorio<T extends AbstractClass> implements Serializa
     }
 
     public void add(T element) {
-        list.add(element);
-        this.saveData();
+        T elementAux = getElement(element.getCode(), element.getType());
+        if (elementAux == null) {
+            list.add(element);
+            this.saveData();
+        }
     }
 
     public void remove(T element) {

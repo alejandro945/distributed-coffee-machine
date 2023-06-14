@@ -15,7 +15,6 @@ public class AlarmaServiceBroker implements MessageBroker {
     private MessageBrokerPrx messageBroker;
     private AlarmaRepository alarmaRepository;
     private AlarmaServicePrx alarmaServicePrx;
-    private CallbackPrx callBackToMachine;
 
     public AlarmaServiceBroker(AlarmaRepository alarmaRepository, AlarmaServicePrx alarmaServicePrx) {
         this.alarmaRepository = alarmaRepository;
@@ -30,10 +29,8 @@ public class AlarmaServiceBroker implements MessageBroker {
     public void queueAlarma(Alarma am, CallbackPrx cb, Current current) {
         // Guarda en la capa de persistencia
         alarmaRepository
-                .add(new model.Alarma(am.idAlarma, am.codMaquina, am.externalType, am.isTerminated, am.message));
-        // Envía a los consumidores
-        this.callBackToMachine = cb;
-        sendNotifications(am);
+                .add(new model.Alarma(am.idAlarma, am.codMaquina, am.externalType, am.isTerminated, am.message, cb));
+        sendNotifications(am, cb);
     }
 
     @Override
@@ -48,26 +45,26 @@ public class AlarmaServiceBroker implements MessageBroker {
         return false;
     }
 
-    public void sendNotifications(Alarma am) {
+    public void sendNotifications(Alarma am, CallbackPrx cb) {
         if (am.isTerminated) {
             // Si la alarma es terminada, se envía a la capa de servicios
-            alarmaServicePrx.recibirNotificacionAbastesimiento(am.codMaquina, am.idAlarma + "", 0, messageBroker,this.callBackToMachine);
+            alarmaServicePrx.recibirNotificacionAbastesimiento(am.codMaquina, am.idAlarma + "", 0, messageBroker,cb);
             return;
         }
 
         if (am.externalType == 1) {
             System.out.println(am.codMaquina);
-            alarmaServicePrx.recibirNotificacionEscasezIngredientes(am.message, am.codMaquina, messageBroker, this.callBackToMachine);
+            alarmaServicePrx.recibirNotificacionEscasezIngredientes(am.message, am.codMaquina, messageBroker, cb);
         } else if (am.externalType == 2) {
-            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN, am.codMaquina, messageBroker, this.callBackToMachine);
+            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN, am.codMaquina, messageBroker, cb);
         } else if (am.externalType == 3) {
-            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS, am.codMaquina, messageBroker, this.callBackToMachine);
+            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS, am.codMaquina, messageBroker, cb);
         } else if (am.externalType == 4) {
-            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS, am.codMaquina, messageBroker, this.callBackToMachine);
+            alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS, am.codMaquina, messageBroker, cb);
         } else if (am.externalType == 5) {
-            alarmaServicePrx.recibirNotificacionEscasezSuministro(am.message, am.codMaquina, messageBroker, this.callBackToMachine);
+            alarmaServicePrx.recibirNotificacionEscasezSuministro(am.message, am.codMaquina, messageBroker, cb);
         } else if (am.externalType == 6) {
-            alarmaServicePrx.recibirNotificacionMalFuncionamiento(am.codMaquina, am.message, messageBroker, this.callBackToMachine);
+            alarmaServicePrx.recibirNotificacionMalFuncionamiento(am.codMaquina, am.message, messageBroker,cb);
         }
 
     }

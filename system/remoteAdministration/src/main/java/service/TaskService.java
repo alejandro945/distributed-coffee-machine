@@ -129,6 +129,7 @@ public class TaskService implements Runnable {
                     + "Asoicada a la alarma: " + alarmId);
         else
             System.out.println("Alarma repetida en el servidor");
+        System.out.println(cb);
         // Recibí la notificación, ahora debo enviar la confirmación
         messageBroker.acknowledge(typeAlarm, idMaq, cb);
     }

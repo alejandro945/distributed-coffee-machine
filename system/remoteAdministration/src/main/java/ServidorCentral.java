@@ -29,12 +29,14 @@ public class ServidorCentral {
 
             // Services
             ObserverService observerService = new ObserverService(recetas);
-            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator), new OrdenManager(communicator));
+            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator),
+                    new OrdenManager(communicator));
 
             // Controllers
             ServicioComLogistica log = new ControlComLogistica(control);
-            ControladorRecetas controladorRecetas = new ControladorRecetas(recetas, observerService);
-            controladorRecetas.run();
+            // ControladorRecetas controladorRecetas = new ControladorRecetas(recetas,
+            // observerService);
+            // controladorRecetas.run();
 
             // Add services to adapter
             adapter.add(alarma, Util.stringToIdentity("Alarmas")); // Message Broker on Alarm Topic

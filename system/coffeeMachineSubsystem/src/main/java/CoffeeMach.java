@@ -1,6 +1,7 @@
 import com.zeroc.Ice.*;
 
 import controller.ControladorMQ;
+import service.CallbackService;
 import service.ObservableService;
 
 import java.util.*;
@@ -15,7 +16,8 @@ public class CoffeeMach {
       ObjectAdapter adapter = communicator.createObjectAdapter("CoffeMach");
 
       // Ice Services
-      MessageBrokerPrx messageBrokerAlarma = MessageBrokerPrx.checkedCast(communicator.propertyToProxy("alarmas")).ice_twoway();
+      MessageBrokerPrx messageBrokerAlarma = MessageBrokerPrx.checkedCast(communicator.propertyToProxy("alarmas"))
+          .ice_twoway();
       VentaServicePrx ventas = VentaServicePrx.checkedCast(communicator.propertyToProxy("ventas")).ice_twoway();
       ProxyServicePrx proxyServicePrx = ProxyServicePrx.checkedCast(communicator.propertyToProxy("proxy")).ice_twoway();
       ObserverPrx observerServicePrx = ObserverPrx.checkedCast(communicator.propertyToProxy("observer")).ice_twoway();
@@ -28,6 +30,9 @@ public class CoffeeMach {
       ObservablePrx observablePrx = ObservablePrx
           .uncheckedCast(adapter.add(new ObservableService(controller), Util.stringToIdentity("observable")));
       observerServicePrx.attach(observablePrx);
+      CallbackPrx callbackPrx = CallbackPrx
+          .uncheckedCast(adapter.add(new CallbackService(), Util.stringToIdentity("callback")));
+      controller.setCallbackPrx(callbackPrx);
 
       // Add services to adapter
       adapter.add((ServicioAbastecimiento) controller, Util.stringToIdentity("supply"));

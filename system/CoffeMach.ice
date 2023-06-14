@@ -30,17 +30,21 @@ module servicios{
 	   void abastecer(int codMaquina, int tipoAlarma);
     }
 
+    interface Callback {
+      void alarmConfirmation(string data);
+    }
+
     interface MessageBroker{
-      void queueAlarma(Alarma am);
-      bool acknowledge(int code, int machine);    
+      void queueAlarma(Alarma am, Callback* cb);
+      bool acknowledge(int code, int machine,Callback* cb);    
     }
 
     interface AlarmaService{
-      void recibirNotificacionEscasezIngredientes(string iDing, int idMaq, MessageBroker* broker);
-      void recibirNotificacionInsuficienciaMoneda(Moneda moneda, int idMaq, MessageBroker* broker);
-      void recibirNotificacionEscasezSuministro(string idSumin, int idMaq, MessageBroker* broker);
-      void recibirNotificacionAbastesimiento(int idMaq, string idInsumo, int cantidad, MessageBroker* broker);
-      void recibirNotificacionMalFuncionamiento(int idMaq, string descri, MessageBroker* broker);
+      void recibirNotificacionEscasezIngredientes(string iDing, int idMaq, MessageBroker* broker,Callback* cb);
+      void recibirNotificacionInsuficienciaMoneda(Moneda moneda, int idMaq, MessageBroker* broker,Callback* cb);
+      void recibirNotificacionEscasezSuministro(string idSumin, int idMaq, MessageBroker* broker,Callback* cb);
+      void recibirNotificacionAbastesimiento(int idMaq, string idInsumo, int cantidad, MessageBroker* broker,Callback* cb);
+      void recibirNotificacionMalFuncionamiento(int idMaq, string descri, MessageBroker* broker,Callback* cb);
     }
 
     interface VentaService{

@@ -31,6 +31,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 	private VentaServicePrx ventasService;
 	private ProxyServicePrx proxyServicePrx;
 	private MessageBrokerPrx messageBrokerPrx;
+	private CallbackPrx callbackPrx;
 
 	// @UI Interface
 	private Interfaz frame;
@@ -49,6 +50,10 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 		this.proxyServicePrx = proxyServicePrx;
 		this.ventasService = ventasS;
 		this.messageBrokerPrx = alarmaS;
+	}
+
+	public void setCallbackPrx(CallbackPrx callbackPrx) {
+		this.callbackPrx = callbackPrx;
 	}
 
 	// @Methods
@@ -156,7 +161,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			// alarmaServicePrx.recibirNotificacionAbastesimiento(codMaquina, idAlarma + "",
 			// cantidad);
 			System.out.println(codMaquina + " Maquina codigo");
-			messageBrokerPrx.queueAlarma(new servicios.Alarma(idAlarma, codMaquina, 0, true, ""));
+			messageBrokerPrx.queueAlarma(new servicios.Alarma(idAlarma, codMaquina, 0, true, ""), callbackPrx);
 		}
 	}
 
@@ -320,7 +325,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// requiere mantenimiento");
 				System.out.println(codMaquina + " Maquina codigo");
 				messageBrokerPrx
-						.queueAlarma(new servicios.Alarma(0, codMaquina, 6, false, "Se requiere mantenimiento"));
+						.queueAlarma(new servicios.Alarma(0, codMaquina, 6, false, "Se requiere mantenimiento"), callbackPrx);
 
 				// LDB Adding alarm to the list
 				alarmas.addElement("1", temp);
@@ -452,7 +457,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 					// alarmaServicePrx.recibirNotificacionEscasezIngredientes(ing.getNombre(),
 					// codMaquina);
 					System.out.println(codMaquina + " Maquina codigo");
-					messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()));
+					messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()), callbackPrx);
 
 					frame.getTextAreaAlarmas().setText(
 							frame.getTextAreaAlarmas().getText()
@@ -473,7 +478,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// alarmaServicePrx.recibirNotificacionEscasezIngredientes(ing.getNombre(),
 				// codMaquina);
 				System.out.println(codMaquina + " Maquina codigo");
-				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()));
+				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 1, false, ing.getNombre()), callbackPrx);
 
 				frame.getTextAreaAlarmas().setText(
 						frame.getTextAreaAlarmas().getText()
@@ -629,7 +634,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN,
 				// codMaquina);
 				System.out.println(codMaquina + " Maquina codigo");
-				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 2, false, ""));
+				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 2, false, ""), callbackPrx);
 				frame.getTextAreaAlarmas().setText(
 						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de 100" + "\n");
 			}
@@ -642,7 +647,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.CIEN,
 			// codMaquina);
 			System.out.println(codMaquina + " Maquina codigo");
-			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 2, false, ""));
+			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 2, false, ""), callbackPrx);
 
 			frame.getTextAreaAlarmas().setText(
 					frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica Monedas de 100" + "\n");
@@ -660,7 +665,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS,
 				// codMaquina);
 				System.out.println(codMaquina + " Maquina codigo");
-				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 3, false, ""));
+				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 3, false, ""), callbackPrx);
 
 				frame.getTextAreaAlarmas().setText(
 						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Mondedas de 200" + "\n");
@@ -674,7 +679,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.DOCIENTOS,
 			// codMaquina);
 			System.out.println(codMaquina + " Maquina codigo");
-			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 3, false, ""));
+			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 3, false, ""), callbackPrx);
 
 			frame.getTextAreaAlarmas().setText(
 					frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica de Monedas de 200" + "\n");
@@ -692,7 +697,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 				// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS,
 				// codMaquina);
 				System.out.println(codMaquina + " Maquina codigo");
-				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 4, false, ""));
+				messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 4, false, ""), callbackPrx);
 
 				frame.getTextAreaAlarmas().setText(
 						frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Monedas de 500" + "\n");
@@ -706,7 +711,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			// alarmaServicePrx.recibirNotificacionInsuficienciaMoneda(Moneda.QUINIENTOS,
 			// codMaquina);
 			System.out.println(codMaquina + " Maquina codigo");
-			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 4, false, ""));
+			messageBrokerPrx.queueAlarma(new servicios.Alarma(0, codMaquina, 4, false, ""), callbackPrx);
 
 			frame.getTextAreaAlarmas().setText(
 					frame.getTextAreaAlarmas().getText() + "Se genero una alarma de: Critica Monedas de 500" + "\n");

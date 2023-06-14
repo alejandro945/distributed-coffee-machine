@@ -17,8 +17,6 @@ public class MessageBroker {
             // Adapter
             ObjectAdapter adapter = communicator.createObjectAdapter("Broker");
 
-
-
             // Ice Services
             AlarmaServicePrx alarmaServicePrx = AlarmaServicePrx.checkedCast(communicator.propertyToProxy("alarmas")).ice_twoway();
            

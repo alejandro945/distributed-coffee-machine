@@ -9,13 +9,16 @@ import model.ConexionBD;
 
 public class AlarmasManager {
 
+    // @Attributes
     private Communicator comunicator;
 
+    // @Constructor
     public AlarmasManager(Communicator communicator) {
         this.comunicator = communicator;
     }
 
     /**
+     * Method that creates an alarm in database
      * @param idAlarma alarm type
      */
     public int alarmaMaquina(int idAlarma, int idMaquina, Date fechainicial) {
@@ -30,6 +33,10 @@ public class AlarmasManager {
         return concecutivo;
     }
 
+    /**
+     * Method to deactivate an alarm in this case the alarm is deactivated when the
+     * prop final date have a value
+     */
     public void desactivarAlarma(int idAlarma, int idMaquina, Date fechaFinal) {
         ConexionBD cbd = new ConexionBD(comunicator);
         cbd.conectarBaseDatos();

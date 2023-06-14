@@ -3,11 +3,11 @@ package ui;
 import java.util.Scanner;
 
 import model.Operador;
-import repository.ServerControl;
+import repository.LogisticManager;
 
 public class ConsolaAdministracion implements Runnable {
 
-	public ConsolaAdministracion(ServerControl control) { }
+	public ConsolaAdministracion(LogisticManager control) { }
 
 	@Override
 	public void run() {

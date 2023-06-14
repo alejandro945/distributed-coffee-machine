@@ -24,8 +24,7 @@ public class ManejadorDatos {
 	 * <b>Descripción:</b>Modifica el Objeto Connection para realizar la
 	 * conexion a la BD.
 	 * 
-	 * @param conexion
-	 *                 Es el objeto Connection
+	 * @param conexion Es el objeto Connection
 	 */
 	public void setConexion(Connection conexion) {
 		this.conexion = conexion;
@@ -33,21 +32,21 @@ public class ManejadorDatos {
 
 	/**
 	 * <b>Descripción:</b>Este método crea una nueva alarma en el sistema <br>
-	 * <b>Pre:</b>Se debe enviar un id válido de alarma, un id válido de maquina
+	 * <b>Pre:</b>Se debe enviar un tipo válido de alarma, un id válido de maquina
 	 * en el objeto enviado por parámetro
 	 * 
-	 * @param aM
-	 *           Corresponde a la alarma de una máquina en específico.
+	 * @param aM Corresponde a la alarma de una máquina en específico.
 	 */
 	public int registrarAlarma(AlarmaMaquina aM) {
 		int consecutivo = 0;
 		try {
 
-			// Verificar que no exista esa alarma en el sistema
+			// Verificar que no exista esa alarma en el sistema validando las que no estan
+			// resueltas
+			// y el tipo de alarma con el id de la maquina
 
 			String busAlaCoincidente = "SELECT * FROM ALARMA_MAQUINA alx WHERE alx.FECHA_FINAL is null AND alx.ID_ALARMA = ? AND alx.ID_MAQUINA = ?";
-			PreparedStatement psx = conexion
-					.prepareStatement(busAlaCoincidente);
+			PreparedStatement psx = conexion.prepareStatement(busAlaCoincidente);
 			psx.setInt(1, aM.getIdAlarma());
 			psx.setInt(2, aM.getIdMaquina());
 			ResultSet rsx = psx.executeQuery();
@@ -57,7 +56,9 @@ public class ManejadorDatos {
 				// TODO: Notificar al operador encargado
 			} else {
 				Statement st = conexion.createStatement();
-				st.execute("SELECT NEXTVAL('CONSECALARMA')");
+				// st.execute("SELECT NEXTVAL('CONSECALARMA')");
+				st.execute("SELECT NEXTVAL('CONSECUTIVO')");
+
 				ResultSet rs = st.getResultSet();
 				consecutivo = 0;
 				if (rs.next()) {
@@ -68,14 +69,12 @@ public class ManejadorDatos {
 				String insertnuevaA = "INSERT INTO ALARMA_MAQUINA (ID_ALARMA,ID_MAQUINA,FECHA_INICIAL,CONSECUTIVO) VALUES (?,?,?,?)";
 				PreparedStatement pst = conexion
 						.prepareStatement(insertnuevaA);
-				pst.setInt(1, aM.getIdAlarma());
+				pst.setInt(1, aM.getIdAlarma()); // Tipo
 				pst.setInt(2, aM.getIdMaquina());
 				pst.setDate(3, new Date(aM.getFechaInicialAlarma().getTime()));
 				pst.setInt(4, consecutivo);
 				pst.executeUpdate();
-
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -83,6 +82,7 @@ public class ManejadorDatos {
 	}
 
 	/**
+	 * Method to desactivate an alarm
 	 * 
 	 * @param idMaquina
 	 * @param idAlarma
@@ -91,21 +91,19 @@ public class ManejadorDatos {
 	public void desactivarAlarma(int idMaquina, int idAlarma,
 			java.util.Date fechafinal) {
 		String updateAlarma = "UPDATE ALARMA_MAQUINA SET FECHA_FINAL = ? WHERE ID_ALARMA = ? AND ID_MAQUINA = ?";
-
 		try {
 			PreparedStatement ps = conexion.prepareStatement(updateAlarma);
 			ps.setDate(1, new Date(fechafinal.getTime()));
 			ps.setInt(2, idAlarma);
 			ps.setInt(3, idMaquina);
-
 			ps.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	/**
+	 * METODO DEBE ESTAR EN LOGISTICA
 	 * <b>Descripcion:</b>Este método retorna un conjunto de asignaciones que
 	 * tiene un operador de logística<br>
 	 * <b>Pre:</b>El código del operador debe corresponder con un registro
@@ -149,6 +147,7 @@ public class ManejadorDatos {
 	}
 
 	/**
+	 * Method that look for the machines and see the ones that are unvaliable
 	 * 
 	 * @param codigooperador
 	 * @return
@@ -269,6 +268,7 @@ public class ManejadorDatos {
 	}
 
 	/**
+	 * METODO DEBE ESTAR EN LOGISITCA
 	 * <b>Descripción:</b>Asigna un operador a una máquina de café
 	 * <b>Pre:</b>Tanto el código del operador, como el código de la máquina
 	 * deben existir en la base de datos
@@ -301,6 +301,8 @@ public class ManejadorDatos {
 	}
 
 	/**
+	 * Metodo debe estar en logistica buscar con base al id de la maquina para
+	 * encontrar el operador asociado
 	 * <b>Descripción:</b>Retorna el nombre del operador y la ubicación de la
 	 * maquin de café <b>Pre:</b> El identificador de la máquina debe
 	 * corresponder con uno existente en la base de datos
@@ -336,6 +338,9 @@ public class ManejadorDatos {
 		return null;
 	}
 
+	/**
+	 * Get the email of an operator
+	 */
 	public String darCorreoOperador(int codigoOperador) {
 
 		try {
@@ -384,6 +389,7 @@ public class ManejadorDatos {
 	}
 
 	/**
+	 * Method tha validate if an operator exists
 	 * 
 	 * @param codigoOperador
 	 * @param password
@@ -408,6 +414,7 @@ public class ManejadorDatos {
 
 	/**
 	 * Method that register an ingredient in the database
+	 * y crea por defecto las alarmas con el nombre de critico o normal
 	 * 
 	 * @param nombre != null
 	 */
@@ -528,7 +535,7 @@ public class ManejadorDatos {
 	}
 
 	/**
-	 * Method that register a recipe in the database
+	 * Method that register a product in the database
 	 */
 	public String registrarReceta(String nombre, int precio) {
 
@@ -630,7 +637,7 @@ public class ManejadorDatos {
 	}
 
 	/**
-	 * Method that delete a recipe from the database
+	 * Method that delete a product from the database
 	 * 
 	 * @param cod
 	 */
@@ -663,7 +670,7 @@ public class ManejadorDatos {
 	}
 
 	/**
-	 * Method that search a recipe in the database
+	 * Method that search a product in the database
 	 * 
 	 * @return
 	 */
@@ -715,6 +722,9 @@ public class ManejadorDatos {
 
 	}
 
+	/**
+	 * Method that search ingredients in the database
+	 */
 	public String[] consultarIngredientes() {
 
 		String[] retorno = null;
@@ -762,6 +772,9 @@ public class ManejadorDatos {
 
 	}
 
+	/**
+	 * Method that search the recipe in the database
+	 */
 	public String[] consultarRecetaIngrediente() {
 
 		String[] retorno = null;
@@ -812,6 +825,10 @@ public class ManejadorDatos {
 		return retorno;
 	}
 
+	/**
+	 * Method that gets ingredients, recipes and recipe-ingredients from the
+	 * database
+	 */
 	public ArrayList<String> consultaRecetasCompleta() {
 
 		ArrayList<String> listaRecetas = new ArrayList<String>();
@@ -899,7 +916,7 @@ public class ManejadorDatos {
 								.parseInt(splitRecetaIngrediente[1].trim()));
 
 						String alarmas = validarAlarma(Integer
-								.parseInt(splitRecetaIngrediente[1].trim()));
+								.parseInt(splitRecetaIngrediente[1].trim())); // Validate
 
 						concat += "#" + idNombreIng + "-" + alarmas + "-"
 								+ cantidadProducto;
@@ -920,6 +937,9 @@ public class ManejadorDatos {
 
 	}
 
+	/**
+	 * Method that search the ingredient in the database that return just a string
+	 */
 	private String consultarIngrediente(int id) throws SQLException {
 
 		String retorno = "";

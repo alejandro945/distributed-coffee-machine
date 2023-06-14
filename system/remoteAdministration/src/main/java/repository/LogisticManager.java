@@ -6,17 +6,13 @@ import com.zeroc.Ice.Communicator;
 
 import model.*;
 
-public class ServerControl {
+public class LogisticManager {
 
 	ArrayList<String> listaAsociada = new ArrayList<String>();
 	private Communicator comunicator;
 
-	public ServerControl(Communicator com) {
+	public LogisticManager(Communicator com) {
 		this.comunicator = com;
-		//ConsolaAdministracion cAdmin = new ConsolaAdministracion(this);
-		//Thread th = new Thread(cAdmin);
-		//th.start();
-
 	}
 
 	public boolean asignarOperador(int idMaquina, int idOperador) {

@@ -44,10 +44,11 @@ public class AlarmaServiceImp implements AlarmaService {
         // Ademas se debe actualizar el id del paquete asociado y cunato se necesita
         // para la entrega
         int entregaId = ordenManager
-                .insertOrdenEntrega(new OrdenEntrega(0, 0, idMaq, type[0], 0, new Date(), type[1], type[2], alarmId));
+                .insertOrdenEntrega(new OrdenEntrega(idMaq, alarmId, new Date(), type[0], type[1], type[2]));
         // En el componnete de logistica debe existir cuando se asigna un operador a la
         // orden de trabajo el respectivo update de la orden refereciada
-        int trabajoId = ordenManager.insertOrdenTrabajo(new OrdenTrabajo(alarmId, 0, 0, idMaq, new Date(), entregaId));
+        int trabajoId = ordenManager.insertOrdenTrabajo(new OrdenTrabajo(alarmId, idMaq, new Date(), entregaId));
+        // Notificar a logistica y bodega ???
         return new int[] { entregaId, trabajoId };
     }
 
@@ -67,9 +68,12 @@ public class AlarmaServiceImp implements AlarmaService {
     @Override
     public void recibirNotificacionEscasezIngredientes(String iDing, int idMaq, MessageBrokerPrx messageBroker,
             Current current) {
-                System.out.println(idMaq + " " + iDing);
+        int[] response = new int[] { 0, 0 };
+        System.out.println(idMaq + " " + iDing);
         int alarmId = manager.alarmaMaquina(ALARMA_INGREDIENTE, idMaq, new Date());
-        int[] response = createOrdenes(idMaq, alarmId, new int[] { 0, 0, 1 });
+        if (alarmId != 0) {
+            response = createOrdenes(idMaq, alarmId, new int[] { 0, 0, 1 });
+        }
         feedback(ALARMA_INGREDIENTE, idMaq, alarmId, response, messageBroker);
     }
 

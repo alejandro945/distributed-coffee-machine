@@ -51,6 +51,7 @@ module servicios{
       StringArr consultarIngredientes();
 	    StringArr consultarRecetas();
       StringArr consultarProductos();
+      
       void definirProducto(string nombre, int precio, MapStrInt ingredientes);
 	    void borrarReceta(int cod);
 	    void definirRecetaIngrediente(int idReceta, int idIngrediente,int valor);

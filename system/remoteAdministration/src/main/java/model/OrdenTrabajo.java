@@ -5,15 +5,13 @@ import java.util.Date;
 public class OrdenTrabajo {
     private int idAlarma;
     private int idOperador;
-    private int idorden;
+    private int idorden; // Consecutivo in database
     private int idmaquina;
     private Date fecha;
     private int idOrdenEntrega;
 
-    public OrdenTrabajo(int idAlarma, int idOperador, int idorden, int idmaquina, Date fecha, int idOrdenEntrega) {
+    public OrdenTrabajo(int idAlarma, int idmaquina, Date fecha, int idOrdenEntrega) {
         this.idAlarma = idAlarma;
-        this.idOperador = idOperador;
-        this.idorden = idorden;
         this.idmaquina = idmaquina;
         this.fecha = fecha;
         this.idOrdenEntrega = idOrdenEntrega;

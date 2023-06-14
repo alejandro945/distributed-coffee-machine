@@ -39,7 +39,9 @@ public class AlarmaServiceBroker implements MessageBroker {
         model.Alarma am = alarmaRepository.getElement(code, type);
         if (am != null) {
             // Mark Delivered
+            System.out.println("Tamaño antes" + alarmaRepository.getElements().size());
             alarmaRepository.remove(am);
+            System.out.println("Tamaño despues" + alarmaRepository.getElements().size());
             cb.alarmConfirmation(code + " Fue confirmada y almacenada en la capa de persistencia");
             return true;
         }

@@ -13,7 +13,7 @@ public class BodegaCentral {
 
     public static void main(String[] args) {
         List<String> params = new ArrayList<>();
-        try (Communicator communicator = Util.initialize(args, "warehouse.cfg", params)) {
+        try (Communicator communicator = Util.initialize(args, "bodegaCentral.cfg", params)) {
 
             // Adapter
             ObjectAdapter adapter = communicator.createObjectAdapter("Bodega");

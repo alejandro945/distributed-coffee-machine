@@ -18,7 +18,7 @@ public class ThreadMessage extends Thread {
             for (model.Alarma am : alarmaRepository.getElements()) {
                 if (am != null) {
                     alarmaServiceBroker.sendNotifications(new servicios.Alarma(am.getIdAlarma(), am.getCode(),
-                            am.getType(), am.getIsTerminated(), am.getMessage()));
+                            am.getType(), am.getIsTerminated(), am.getMessage()),am.getCb());
                 }
                 Thread.sleep(1000);
             }

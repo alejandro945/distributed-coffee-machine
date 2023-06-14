@@ -24,7 +24,6 @@ public class CoffeeMach {
 
       // Controller
       ControladorMQ controller = new ControladorMQ(proxyServicePrx, ventas, messageBrokerAlarma);
-      controller.run();
 
       // Services
       ObservablePrx observablePrx = ObservablePrx
@@ -33,6 +32,7 @@ public class CoffeeMach {
       CallbackPrx callbackPrx = CallbackPrx
           .uncheckedCast(adapter.add(new CallbackService(), Util.stringToIdentity("callback")));
       controller.setCallbackPrx(callbackPrx);
+      controller.run();
 
       // Add services to adapter
       adapter.add((ServicioAbastecimiento) controller, Util.stringToIdentity("supply"));

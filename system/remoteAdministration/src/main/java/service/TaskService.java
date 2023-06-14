@@ -124,11 +124,12 @@ public class TaskService implements Runnable {
      */
     private void feedback(int typeAlarm, int idMaq, int alarmId, int[] type, MessageBrokerPrx messageBroker,
             CallbackPrx cb) {
-        if (alarmId == 0)
+        if (alarmId != 0)
             System.out.println("Orden de entrega: " + type[0] + " Orden de trabajo: " + type[1]
                     + "Asoicada a la alarma: " + alarmId);
         else
-            System.out.println("Alarma de finalización desactivada correctamente");
+            System.out.println("Alarma repetida en el servidor");
+        System.out.println(cb);
         // Recibí la notificación, ahora debo enviar la confirmación
         messageBroker.acknowledge(typeAlarm, idMaq, cb);
     }

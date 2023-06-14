@@ -74,11 +74,11 @@ module servicios{
     }
 
     interface OrdenLogistica {
-      void confirmarOrden();
+      bool confirmarOrden(int codOrden);
     }
 
     interface OperadorLogistica {
-      void atenderOperador();
+      bool atenderOperador(int codOp, int codOrden);
     }
     
 }

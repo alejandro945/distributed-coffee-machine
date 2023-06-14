@@ -80,10 +80,12 @@ module servicios{
 
     interface OrdenLogistica {
       bool confirmarOrden(int codOrden);
+      void notificarOrdenTrabajo(int code);
     }
 
-    interface OperadorLogistica {
+    interface OrdenBodega {
       bool atenderOperador(int codOp, int codOrden);
+      void notificarOrdenEntrega(int code);
     }
     
 }

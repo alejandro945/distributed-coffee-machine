@@ -27,9 +27,16 @@ public class ServidorCentral {
             ProductoReceta recetas = new ProductoReceta(communicator);
             VentasManager ventas = new VentasManager(communicator);
 
+            // Ice Services
+            OrdenLogisticaPrx ordenLogisticaPrx = OrdenLogisticaPrx.checkedCast(communicator.propertyToProxy("logistica"))
+                    .ice_twoway(); // Logistica
+            OrdenBodegaPrx ordenBodegaPrx = OrdenBodegaPrx.checkedCast(communicator.propertyToProxy("inventario"))
+                    .ice_twoway(); // Inventario
+
             // Services
             ObserverService observerService = new ObserverService(recetas);
-            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator), new OrdenManager(communicator));
+            AlarmaServiceImp alarma = new AlarmaServiceImp(new AlarmasManager(communicator),
+                    new OrdenManager(communicator), ordenLogisticaPrx, ordenBodegaPrx);
 
             // Controllers
             ServicioComLogistica log = new ControlComLogistica(control);

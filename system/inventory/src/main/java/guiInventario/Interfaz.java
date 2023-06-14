@@ -5,8 +5,8 @@ import java.util.Scanner;
 import com.zeroc.Ice.Communicator;
 
 import controller.ControladorBodega;
-import servicios.OperadorLogisticaPrx;
 import servicios.OrdenLogisticaPrx;
+import servicios.OrdenBodegaPrx;
 
 //import bodega.Bodega;
 //import mantenimientoExistencias.Inventario;
@@ -15,8 +15,8 @@ public class Interfaz implements Runnable {
 
     private ControladorBodega controlador;
 
-    public Interfaz (OperadorLogisticaPrx operador, OrdenLogisticaPrx orden, Communicator com) {
-        controlador = new ControladorBodega(operador, orden, com);
+    public Interfaz (OrdenBodegaPrx operador, OrdenLogisticaPrx orden, Communicator com) {
+        /* controlador = new ControladorBodega(operador, orden, com); */
     }
 
     @Override
@@ -76,18 +76,18 @@ public class Interfaz implements Runnable {
     }
 
     private void atenderOperador (int codOp, int codOrden) {
-        controlador.atenderOperador(codOp, codOrden);
+        //controlador.atenderOperador(codOp, codOrden);
     }
 
-    private void confirmarOrden (int codOrden) {
+    public void confirmarOrden (int codOrden) {
         controlador.confirmarOrden(codOrden);
     }
 
-    private void comprarSuministros () {
+    public void comprarSuministros () {
         controlador.comprarSuministros();
     }
 
-    private void consultarSuministros () {
+    public void consultarSuministros () {
         controlador.consultarSuministros();
     }
 

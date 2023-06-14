@@ -53,6 +53,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 	}
 
 	public void setCallbackPrx(CallbackPrx callbackPrx) {
+		System.out.println("CallbackPrx setted" + callbackPrx);
 		this.callbackPrx = callbackPrx;
 	}
 
@@ -161,7 +162,7 @@ public class ControladorMQ implements Runnable, ServicioAbastecimiento {
 			// alarmaServicePrx.recibirNotificacionAbastesimiento(codMaquina, idAlarma + "",
 			// cantidad);
 			System.out.println(codMaquina + " Maquina codigo");
-			messageBrokerPrx.queueAlarma(new servicios.Alarma(idAlarma, codMaquina, 0, true, ""), callbackPrx);
+			messageBrokerPrx.queueAlarma(new servicios.Alarma(idAlarma, codMaquina, 0, true, ""), this.callbackPrx);
 		}
 	}
 

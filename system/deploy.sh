@@ -40,12 +40,12 @@ sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${warehouse}/libs.zip ${m
 
 
 echo "Unzip libs in the machines"
-sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}3 "mkdir ci-cd-coffeemachine && cd ci-cd-coffeemachine && mkdir libs && rm -r libs && unzip libs.zip"
-sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}4 "mkdir ci-cd-coffeemachine && cd ci-cd-coffeemachine && mkdir libs && rm -r libs && unzip libs.zip"
-sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}11 "mkdir ci-cd-coffeemachine && cd ci-cd-coffeemachine && mkdir libs && rm -r libs && unzip libs.zip"
-sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}5 "mkdir ci-cd-coffeemachine && cd ci-cd-coffeemachine && mkdir libs && rm -r libs && unzip libs.zip"
-sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}13 "mkdir ci-cd-coffeemachine && cd ci-cd-coffeemachine && mkdir libs && rm -r libs && unzip libs.zip"
-sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}14 "mkdir ci-cd-coffeemachine && cd ci-cd-coffeemachine && mkdir libs && rm -r libs && unzip libs.zip"
+sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}3 "mkdir ci-cd-coffeemachine; cd ci-cd-coffeemachine; mkdir libs; rm -r libs; unzip libs.zip"
+sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}4 "mkdir ci-cd-coffeemachine; cd ci-cd-coffeemachine; mkdir libs; rm -r libs; unzip libs.zip"
+sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}11 "mkdir ci-cd-coffeemachine; cd ci-cd-coffeemachine; mkdir libs; rm -r libs; unzip libs.zip"
+sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}5 "mkdir ci-cd-coffeemachine; cd ci-cd-coffeemachine; mkdir libs; rm -r libs; unzip libs.zip"
+sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}13 "mkdir ci-cd-coffeemachine;  cd ci-cd-coffeemachine; mkdir libs; rm -r libs; unzip libs.zip"
+sshpass -p ${PASSWORD} ssh -o StrictHostKeyChecking=no ${maquinas}14 "mkdir ci-cd-coffeemachine;  cd ci-cd-coffeemachine; mkdir libs; rm -r libs; unzip libs.zip"
 
 echo "send config files to each process node"
 sshpass -p ${PASSWORD} scp -o StrictHostKeyChecking=no ${cfg}/server.cfg ${maquinas}3:./${path}/libs

@@ -12,6 +12,7 @@ public class CoffeeMach {
     List<String> extPar = new ArrayList<>();
     try (Communicator communicator = Util.initialize(args, "coffeMach.cfg", extPar)) {
 
+      System.out.println("Se corrio la machine");
       // Ice Adapter
       ObjectAdapter adapter = communicator.createObjectAdapter("CoffeMach");
 

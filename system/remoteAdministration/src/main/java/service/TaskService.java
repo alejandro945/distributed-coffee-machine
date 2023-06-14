@@ -1,6 +1,7 @@
 package service;
 
 import java.util.Date;
+import java.util.concurrent.Semaphore;
 
 import model.OrdenEntrega;
 import model.OrdenTrabajo;
@@ -25,17 +26,19 @@ public class TaskService implements Runnable {
     private CallbackPrx cb;
     private int type;
     private int idMaq;
-    private String description; 
+    private String description;
     private Moneda moneda;
+    private Semaphore sem;
 
     public TaskService(OrdenManager ordenManager, AlarmasManager manager, MessageBrokerPrx messageBroker,
-            CallbackPrx cb, int type, int idMaq) {
+            CallbackPrx cb, int type, int idMaq, Semaphore sem) {
         this.ordenManager = ordenManager;
         this.manager = manager;
         this.messageBroker = messageBroker;
         this.cb = cb;
         this.type = type;
         this.idMaq = idMaq;
+        this.sem = sem;
     }
 
     public void setMoneda(Moneda moneda) {
@@ -51,35 +54,43 @@ public class TaskService implements Runnable {
      */
     @Override
     public void run() {
-        switch (type) {
-            case 1:
-                recibirNotificacionEscasezIngredientes(this.description);
-                break;
-            case 2:
-                recibirNotificacionInsuficienciaMoneda(this.moneda);
-                break;
-            case 3:
-                recibirNotificacionEscasezSuministro();
-                break;
-            case 4:
-                recibirNotificacionMalFuncionamiento();
-                break;
-            case 5:
-                recibirNotificacionAbastesimiento();
-                break;
-            default:
-                break;
+        try {
+            switch (type) {
+                case 1:
+                    recibirNotificacionEscasezIngredientes(this.description);
+                    break;
+                case 2:
+                    recibirNotificacionInsuficienciaMoneda(this.moneda);
+                    break;
+                case 3:
+                    recibirNotificacionEscasezSuministro();
+                    break;
+                case 4:
+                    recibirNotificacionMalFuncionamiento();
+                    break;
+                case 5:
+                    recibirNotificacionAbastesimiento();
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    private void recibirNotificacionEscasezIngredientes(String iDing) {
+    private void recibirNotificacionEscasezIngredientes(String iDing) throws InterruptedException {
+        sem.acquire();
         System.out.println(idMaq + " " + iDing);
         int alarmId = manager.alarmaMaquina(ALARMA_INGREDIENTE, idMaq, new Date());
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 0, 0, 1 });
+        sem.release();
         feedback(ALARMA_INGREDIENTE, idMaq, alarmId, response, messageBroker, cb);
     }
 
-    private void recibirNotificacionInsuficienciaMoneda(Moneda moneda) {
+    private void recibirNotificacionInsuficienciaMoneda(Moneda moneda) throws InterruptedException {
+        sem.acquire();
+
         int alarmId = 0;
         int alarmamoneda = 0;
         switch (moneda) {
@@ -99,23 +110,38 @@ public class TaskService implements Runnable {
                 break;
         }
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 1, 0, 0 });
+        sem.release();
+
         feedback(alarmamoneda, idMaq, alarmId, response, messageBroker, cb);
     }
 
-    private void recibirNotificacionEscasezSuministro(){
+    private void recibirNotificacionEscasezSuministro() throws InterruptedException {
+        sem.acquire();
+
         int alarmId = manager.alarmaMaquina(ALARMA_SUMINISTRO, idMaq, new Date());
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 0, 1, 0 });
+
+        sem.release();
+
         feedback(ALARMA_SUMINISTRO, idMaq, alarmId, response, messageBroker, cb);
     }
 
-    private void recibirNotificacionMalFuncionamiento(){
+    private void recibirNotificacionMalFuncionamiento() throws InterruptedException {
+        sem.acquire();
+
         int alarmId = manager.alarmaMaquina(ALARMA_MAL_FUNCIONAMIENTO, idMaq, new Date());
         int[] response = createOrdenes(idMaq, alarmId, new int[] { 1, 0, 0 });
+        sem.release();
+
         feedback(ALARMA_MAL_FUNCIONAMIENTO, idMaq, alarmId, response, messageBroker, cb);
     }
 
-    private void recibirNotificacionAbastesimiento(){
+    private void recibirNotificacionAbastesimiento() throws InterruptedException {
+        sem.acquire();
+
         manager.desactivarAlarma(ALARMA_INGREDIENTE, idMaq, new Date());
+        sem.release();
+
         feedback(ALARMA_INGREDIENTE, idMaq, 0, new int[] {}, messageBroker, cb);
     }
 
@@ -129,9 +155,10 @@ public class TaskService implements Runnable {
                     + "Asoicada a la alarma: " + alarmId);
         else
             System.out.println("Alarma repetida en el servidor");
-        System.out.println(cb);
         // Recibí la notificación, ahora debo enviar la confirmación
-        messageBroker.acknowledge(typeAlarm, idMaq, cb);
+        System.out.println("Se ha llamado al callback");
+        messageBroker.acknowledge(idMaq, typeAlarm, cb);
+
     }
 
     /**

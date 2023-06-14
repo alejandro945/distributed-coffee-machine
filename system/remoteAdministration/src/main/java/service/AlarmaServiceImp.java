@@ -25,7 +25,7 @@ public class AlarmaServiceImp implements AlarmaService {
             CallbackPrx cb,
             Current current) {
         System.out.println("Callback machine en entry point" + cb);
-        TaskService tk = new TaskService(ordenManager, manager, messageBroker, cb, 1, idMaq);
+        TaskService tk = new TaskService(ordenManager, manager, messageBroker, cb, 1, idMaq, handler.getSemaphore());
         tk.setDescription(iDing);
         handler.execute(tk);
     }
@@ -34,7 +34,7 @@ public class AlarmaServiceImp implements AlarmaService {
     public void recibirNotificacionInsuficienciaMoneda(Moneda moneda, int idMaq, MessageBrokerPrx messageBroker,
             CallbackPrx cb,
             Current current) {
-        TaskService tk = new TaskService(ordenManager, manager, messageBroker, cb, 2, idMaq);
+        TaskService tk = new TaskService(ordenManager, manager, messageBroker, cb, 2, idMaq, handler.getSemaphore());
         tk.setMoneda(moneda);
         handler.execute(tk);
     }
@@ -43,14 +43,14 @@ public class AlarmaServiceImp implements AlarmaService {
     public void recibirNotificacionEscasezSuministro(String idSumin, int idMaq, MessageBrokerPrx messageBroker,
             CallbackPrx cb,
             Current current) {
-        handler.execute(new TaskService(ordenManager, manager, messageBroker, cb, 3, idMaq));
+        handler.execute(new TaskService(ordenManager, manager, messageBroker, cb, 3, idMaq, handler.getSemaphore()));
     }
 
     @Override
     public void recibirNotificacionMalFuncionamiento(int idMaq, String descri, MessageBrokerPrx messageBroker,
             CallbackPrx cb,
             Current current) {
-        handler.execute(new TaskService(ordenManager, manager, messageBroker, cb, 4, idMaq));
+        handler.execute(new TaskService(ordenManager, manager, messageBroker, cb, 4, idMaq, handler.getSemaphore()));
     }
 
     /**
@@ -61,7 +61,7 @@ public class AlarmaServiceImp implements AlarmaService {
     @Override
     public void recibirNotificacionAbastesimiento(int idMaq, String idInsumo, int cantidad,
             MessageBrokerPrx messageBroker, CallbackPrx cb, Current current) {
-        handler.execute(new TaskService(ordenManager, manager, messageBroker, cb, 5, idMaq));
+        handler.execute(new TaskService(ordenManager, manager, messageBroker, cb, 5, idMaq, handler.getSemaphore()));
     }
 
 }

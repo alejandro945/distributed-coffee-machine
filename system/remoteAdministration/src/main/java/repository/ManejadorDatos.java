@@ -53,7 +53,6 @@ public class ManejadorDatos {
 
 			if (rsx.next()) {
 				System.out.println("Alarma ya agregada previamente, se notificará al operador encargado");
-				// TODO: Notificar al operador encargado
 			} else {
 				Statement st = conexion.createStatement();
 				// st.execute("SELECT NEXTVAL('CONSECALARMA')");

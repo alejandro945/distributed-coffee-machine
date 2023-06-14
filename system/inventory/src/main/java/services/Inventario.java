@@ -1,4 +1,4 @@
-package mantenimientoExistencias;
+package services;
 
 public interface Inventario {
     public void abastecerSuministros();

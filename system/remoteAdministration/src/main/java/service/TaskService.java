@@ -29,9 +29,10 @@ public class TaskService implements Runnable {
     private String description;
     private Moneda moneda;
     private Semaphore sem;
+    private AlarmaServiceImp alarmaServiceImp;
 
     public TaskService(OrdenManager ordenManager, AlarmasManager manager, MessageBrokerPrx messageBroker,
-            CallbackPrx cb, int type, int idMaq, Semaphore sem) {
+            CallbackPrx cb, int type, int idMaq, Semaphore sem, AlarmaServiceImp alarmaManager) {
         this.ordenManager = ordenManager;
         this.manager = manager;
         this.messageBroker = messageBroker;
@@ -39,6 +40,7 @@ public class TaskService implements Runnable {
         this.type = type;
         this.idMaq = idMaq;
         this.sem = sem;
+        this.alarmaServiceImp = alarmaManager;
     }
 
     public void setMoneda(Moneda moneda) {
@@ -181,7 +183,10 @@ public class TaskService implements Runnable {
             // En el componnete de logistica debe existir cuando se asigna un operador a la
             // orden de trabajo el respectivo update de la orden refereciada
             int trabajoId = ordenManager.insertOrdenTrabajo(new OrdenTrabajo(alarmId, idMaq, new Date(), entregaId));
-            // Notificar a logistica y bodega ???
+            // Notificar a logistica y bodega
+            System.out.println("Se notifica a logistica y bodega con el id de alarma: " + alarmId);
+            alarmaServiceImp.getOrdenLogistica().notificarOrdenTrabajo(alarmId);
+            alarmaServiceImp.getOrdenBodega().notificarOrdenEntrega(alarmId);
             return new int[] { entregaId, trabajoId };
         }
         return new int[] { 0, 0 };

@@ -136,6 +136,7 @@ public class ControladorRecetas implements Runnable {
 							idReceta, idIngrediente, valor, null);
 
 					asociar(idReceta, idIngrediente, valor);
+					observerService._notifyAll(null);
 
 				}
 

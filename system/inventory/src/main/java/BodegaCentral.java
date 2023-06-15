@@ -17,16 +17,22 @@ public class BodegaCentral {
             ObjectAdapter adapter = communicator.createObjectAdapter("BodegaCentral");
 
             // Ice Services
-            OrdenLogisticaPrx logistica = OrdenLogisticaPrx.checkedCast(communicator.propertyToProxy("logistica"))
-                    .ice_twoway();
+            /*
+             * OrdenLogisticaPrx logistica =
+             * OrdenLogisticaPrx.checkedCast(communicator.propertyToProxy("logistica"))
+             * .ice_twoway();
+             */
 
             // Commented for automatization purposes
             /* Interfaz interfaz = new Interfaz(operador, orden, communicator); */
             /* Thread t = new Thread(interfaz); */
             /* t.start(); */
 
+            OrdenEntregaImp orden = new OrdenEntregaImp(communicator);
             // Adapter Configuration
-            adapter.add(new OrdenEntregaImp(logistica, communicator), Util.stringToIdentity("Logistica"));
+            adapter.add(orden, Util.stringToIdentity("Inventario"));
+            adapter.add(orden, Util.stringToIdentity("Inv"));
+
             // Activate adapter
             adapter.activate();
             communicator.waitForShutdown();

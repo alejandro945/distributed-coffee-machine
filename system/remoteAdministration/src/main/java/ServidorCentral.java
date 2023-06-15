@@ -40,8 +40,9 @@ public class ServidorCentral {
 
             // Controllers
             ServicioComLogistica log = new ControlComLogistica(control);
-            ControladorRecetas controladorRecetas = new ControladorRecetas(recetas, observerService);
-            controladorRecetas.run();
+            // ControladorRecetas controladorRecetas = new ControladorRecetas(recetas,
+            // observerService);
+            // controladorRecetas.run();
 
             // Add services to adapter
             adapter.add(alarma, Util.stringToIdentity("Alarmas")); // Message Broker on Alarm Topic

@@ -25,7 +25,7 @@ public class ObserverService implements Observer {
         System.out.println("ObserverService.attach - Client: " + machine);
         if (machine == null)
             return false;
-        System.out.println("Size of machines observables" + observables.size());
+        System.out.println("Tamano of machines observables" + observables.size());
         observables.add(machine);
         return true;
     }
@@ -48,6 +48,7 @@ public class ObserverService implements Observer {
 
     @Override
     public void _notifyAll(Current current) {
+        System.out.println("Notificando a todas las maquinas de cafe suscritas sobre cambio en recetas");
         for (int i = 0; i < observables.size(); i++) {
             observables.get(i).update(getFromCache("product"));;
         }
